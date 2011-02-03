@@ -1,0 +1,306 @@
+% \iffalse meta-comment
+%
+% Copyright (C) 2010 by Jason Gross (jgross@mit.edu)
+%
+% This file may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either
+% version 1.3c of this license or (at your option) any later
+% version. The latest version of this license is in:
+%
+%   http://www.latex-project.org/lppl.txt
+%
+% and version 1.3c or later is part of all distributions of
+% LaTeX version 2005/12/01 or later.
+%
+% \fi
+%
+%
+% \iffalse
+%<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
+%<driver>\ProvidesFile{esg8022pset.dtx}
+%<class>\ProvidesClass{esg8022pset}
+%<class> [2010/10/08 v0.1b ESG PSet Template]
+%<class>\LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
+%<class>\RequirePackage{fancyhdr}
+%<class>\RequirePackage[T1]{fontenc}
+%<class>\RequirePackage{lastpage}
+%<class>\RequirePackage{xifthen}
+%<class>\RequirePackage{verbatim}
+%<class>\RequirePackage[margin=1in]{geometry}
+%<class>\RequirePackage{etoolbox,etextools}
+%
+%<class>\newboolean{esg8022pset@solutions}\newboolean{esg8022pset@problems}
+%<class>\newboolean{esg8022pset@pdfproblems}\newboolean{esg8022pset@pdfsolutions}
+%<class>\DeclareOption{problems}{\setboolean{esg8022pset@problems}{true}\setboolean{esg8022pset@solutions}{false}}
+%<class>\DeclareOption{solutions}{\setboolean{esg8022pset@problems}{false}\setboolean{esg8022pset@solutions}{true}}
+%<class>\DeclareOption{makeproblemspdf}{\setboolean{esg8022pset@pdfproblems}{true}}
+%<class>\DeclareOption{makesolutionspdf}{\setboolean{esg8022pset@pdfsolutions}{true}}
+%<class>\DeclareOption{makeallpdfs}{\setboolean{esg8022pset@pdfproblems}{true}\setboolean{esg8022pset@pdfsolutions}{true}}
+%<class>\ProcessOptions\relax
+%
+%<*driver>
+\documentclass{ltxdoc}
+\EnableCrossrefs
+\CodelineIndex
+\RecordChanges
+\begin{document}
+  \DocInput{esg8022pset.dtx}
+\end{document}
+%</driver>
+% \fi
+%
+% \CheckSum{0}
+%
+% \CharacterTable
+% {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
+%  Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
+%  Digits        \0\1\2\3\4\5\6\7\8\9
+%  Exclamation   \!     Double quote  \"     Hash (number) \#
+%  Dollar        \$     Percent       \%     Ampersand     \&
+%  Acute accent  \'     Left paren    \(     Right paren   \)
+%  Asterisk      \*     Plus          \+     Comma         \,
+%  Minus         \-     Point         \.     Solidus       \/
+%  Colon         \:     Semicolon     \;     Less than     \<
+%  Equals        \=     Greater than  \>     Question mark \?
+%  Commercial at \@     Left bracket  \[     Backslash     \\
+%  Right bracket \]     Circumflex    \^     Underscore    \_
+%  Grave accent  \`     Left brace    \{     Vertical bar  \|
+%  Right brace   \}     Tilde         \~}
+%
+% \changes{v0.1}{2010/09/07}{Initial version.}
+% \changes{v0.1b}{2010/10/08}{Made title textsc.}
+%
+% \GetFileInfo{esg8022pset.dtx}
+%
+% \DoNotIndex{\#,\$,\%,\&,\@,\\,\{,\},\^,\_,\~,\ }
+% \DoNotIndex{}
+%
+% \title{The \textsf{esg8022pset} class\thanks{This document
+%   corresponds to \textsf{esg8022pset}~\fileversion,
+%   dated~\filedate.}}
+% \author{Jason Gross \\ \texttt{jgross@mit.edu}}
+%
+% \maketitle
+%
+% \section{Introduction}
+% 
+% The \textsf{esg8022pset} class provides a template for ESG class PSets.
+%
+% \section{Usage}
+% I give the usage and specification of every macro defined.  I give bugs when
+% I know them (please email me if you find other bugs, or have fixes for the
+% bugs I list).  I sometimes give extra description or justification.
+%
+% \DescribeMacro{\duedate}
+% \noindent Usage: |\duedate|\marg{date} \par\noindent
+% Specification: The \meta{date} is used as the due date.
+%
+% \StopEventually{\PrintChanges\PrintIndex}
+%
+% \section{Setup}
+%    \begin{macrocode}
+\ifthenelse{\boolean{esg8022pset@problems} \OR \boolean{esg8022pset@solutions}}{
+}{
+  \expandnext{\renewcommand{\end}[1]}{\end{#1}\ifcsname end#1@hook\endcsname\csname end#1@hook\endcsname\else\fi}
+
+  \newcommand{\AfterEnvironment}[2]{%
+    \ifcsname end#1@hook\endcsname
+    \else
+      \csdef{end#1@hook}{}%
+    \fi
+    \csappto{end#1@hook}{#2}%
+  }
+
+
+  \newwrite\esgpset@problemsout
+  \newwrite\esgpset@solutionsout
+  \newwrite\esgpset@tempout
+  \newcommand{\esgpset@compilefile}[1]{\write18{pdflatex "#1"}}
+  \edef\esgpset@problemsfilename{\jobname\string_Problems.tex}
+  \edef\esgpset@solutionsfilename{\jobname\string_Solutions.tex}
+  \edef\esgpset@tempfilename{\jobname.tmp}
+  \newcommand{\writetoboth}[1]{\writetoproblems{#1}%
+    \writetosolutions{#1}}
+  \newcommand{\writetoall}[1]{\writetoboth{#1}\writetothis{#1}}
+  \newcommand{\writetoproblems}[1]{\immediate\write\esgpset@problemsout{#1}}
+  \newcommand{\writetosolutions}[1]{\immediate\write\esgpset@solutionsout{#1}}
+  \newcommand{\writetothis}[1]{{\edef\temp{#1}\expandafter}\expandafter\scantokens\expandafter{\temp}}
+
+  \immediate\openout\esgpset@problemsout\esgpset@problemsfilename
+  \immediate\openout\esgpset@solutionsout\esgpset@solutionsfilename
+
+  \AtEndDocument{
+    \writetoboth{\string\end{document}}
+    \immediate\closeout\esgpset@problemsout
+    \immediate\closeout\esgpset@solutionsout
+    \ifthenelse{\boolean{esg8022pset@pdfsolutions}}{\esgpset@compilefile{\esgpset@solutionsfilename}}{}
+    \ifthenelse{\boolean{esg8022pset@pdfproblems}}{\esgpset@compilefile{\esgpset@problemsfilename}}{}
+  }
+
+  \begingroup
+    \writetosolutions{%
+      \string\documentclass[solutions]{esg8022pset}
+    }
+    \writetoproblems{%
+      \string\documentclass[problems]{esg8022pset}
+    }
+  \endgroup
+
+  \newenvironment{preamble}{%
+    \begingroup% Lets Keep the Changes Local
+      \immediate\openout\esgpset@tempout\esgpset@tempfilename
+      \@bsphack
+      \let\do\@makeother\dospecials\catcode`\^^M\active
+      \def\verbatim@processline{\writetoboth{\the\verbatim@line}\immediate\write\esgpset@tempout{\the\verbatim@line}}
+      \verbatim@start
+  }{\@esphack\immediate\closeout\esgpset@tempout\endgroup}
+  \AfterEnvironment{preamble}{\input{\esgpset@tempfilename}}
+
+  \AtBeginDocument{
+
+    \begingroup
+      \writetoboth{%
+        \string\classname{\expandafter\unexpanded\expandafter{\@classname}}
+      }
+      \writetoboth{%
+        \string\semester{\expandafter\unexpanded\expandafter{\@semester}}
+      }
+      \writetoboth{%
+        \string\problemsetnumber{\expandafter\unexpanded\expandafter{\@problemsetnumber}}
+      }
+      \writetoboth{%
+        \string\date{\expandafter\unexpanded\expandafter{\@date}}
+      }
+      \writetoboth{%
+        \string\duedate{\expandafter\unexpanded\expandafter{\@duedate}}
+      }
+      \writetoboth{%
+        \string\readingassignment{\expandafter\unexpanded\expandafter{\@readingassignment}}
+      }
+      \writetoboth{\string\begin{document}}
+    \endgroup
+  }
+}
+
+
+\pagestyle{fancy}
+\headheight 14.5pt
+\fancyhead{}
+\fancyfoot{}
+\cfoot{\thepage\space of \pageref{LastPage}} 
+
+\let\@seccntformat\@gobble
+
+\AtBeginDocument{
+  \begingroup
+    \ifthenelse{\boolean{esg8022pset@problems}}{%
+      \edef\@cheader{Problem Set \@problemsetnumber\space - Problems}
+    }{
+      \ifthenelse{\boolean{esg8022pset@solutions}}{
+        \edef\@cheader{Problem Set \@problemsetnumber\space - Solutions}
+      }{
+        \edef\@cheader{Problem Set \@problemsetnumber\space - Problems}
+      }
+    }
+  \expandafter\endgroup
+  \expandafter\chead\expandafter{\@cheader}
+  \begingroup
+    \bf
+    \begin{center}%
+      {\noindent  \textsc{Massachusetts Institute of Technology} \par}%
+      {\noindent  Experimental Study Group \par}%
+    \end{center}%
+    {\noindent  \@classname, \@semester \par}%
+    \begin{center}%
+      {\noindent \Large
+        Problem Set \@problemsetnumber
+        \ifthenelse{\boolean{esg8022pset@solutions}}{% \OR \NOT \boolean{esg8022pset@problems}{%
+          \space Solutions%
+        }{}%
+      \par}%
+    \end{center}%
+    {\noindent Due: \@duedate \\\\}%
+    %\ifx\@readingassignment\@empty
+    %  {\noindent Reading: \@readingassignment \par}%
+    %\else
+    %\fi
+  \endgroup
+  \global\let\duedate\relax
+  \global\let\problemsetnumber\relax
+  \global\let\semester\relax
+  \global\let\classname\relax
+  \global\let\readingassignment\relax
+  \global\let\@duedate\relax
+  \global\let\@problemsetnumber\relax
+  \global\let\@semester\relax
+  \global\let\@classname\relax
+  \global\let\@readingassignment\relax
+}
+%    \end{macrocode}
+%
+% \begin{macro}{\duedate}
+% \begin{macro}{\problemsetnumber}
+% \begin{macro}{\semester}
+% \begin{macro}{\classname}
+% \begin{macro}{\readingassignment}
+%    These four macros are provided by \file{esg8022pset.dtx} to provide
+%    information about the class assigning the pset.
+%    The information is stored away in internal control sequences.
+%    It is the task of the |\maketitle| command to use the
+%    information provided. The definitions of these macros are shown
+%    here for information.
+%    \begin{macrocode}
+\newcommand*{\duedate}[1]{\gdef\@duedate{#1}}
+\newcommand*{\problemsetnumber}[1]{\gdef\@problemsetnumber{#1}}
+\newcommand*{\semester}[1]{\gdef\@semester{#1}}
+\newcommand*{\classname}[1]{\gdef\@classname{#1}}
+\newcommand*{\readingassignment}[1]{\gdef\@readingassignment{#1}}
+\readingassignment{}
+%    \end{macrocode}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+% \end{macro}
+%
+%
+%
+%
+% \subsection{Problem Environments}
+% \begin{environment}{problem}
+% \begin{environment}{statement}
+% \begin{environment}{solution}
+%    \begin{macrocode}
+\newenvironment{problem}[2][\relax]{%
+  \ifthenelse{\equal{#1}{\relax}}{%
+    \writetoall{\string\section{Problem \string\thesection: #2}}%
+  }{%
+    \writetoall{\string\section*{Problem #1: #2}}%
+  }%
+  \writetosolutions{\string\subsection{Problem}}%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \immediate\openout\esgpset@tempout\esgpset@tempfilename
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\immediate\write\esgpset@tempout{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\immediate\closeout\esgpset@tempout\endgroup
+  \input{\esgpset@tempfilename}%
+}
+\newenvironment{solution}{%
+  \writetosolutions{\string\subsection{Solution}}%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetosolutions{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\endgroup}% 
+%    \end{macrocode}
+% \end{environment}
+% \end{environment}
+% \end{environment}
+%
+%
+%
+% \Finale
+\endinput
