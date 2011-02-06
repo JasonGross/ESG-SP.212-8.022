@@ -5,7 +5,8 @@
   \usepackage{enumerate}
   \usepackage{graphicx}
   \usepackage{hyperref}
-  %\usepackage{siunitx}
+  \usepackage{mathtools}
+  \usepackage[per-mode=symbol]{siunitx} %If this line is giving you trouble, try replacing per-mode with per
   \providecommand{\uvec}[1]{{\hat{\bf{#1}}}}
   \usepackage{pgf,tikz}
   \usetikzlibrary{arrows}
@@ -29,10 +30,78 @@
 \problemsetnumber{2}
 \duedate{Sunday, February 13}
 %\readingassignment{Kleppner and Kolenkow, \emph{An Introduction to Mechanics}, Chapters Seven and Eight}
+\psettitle{Gauss's law and electric potential}
 
 \begin{document}
 
 % Comments in solutions are my old solutions to the pset
+\begin{ForPSet}
+  \addtocounter{section}{-1}
+\end{ForPSet}
+
+\begin{problem}{Line integrals; work; units and dimensional analysis (Optional)}
+  A force ${\vec F} = A(y^2{\hat x} + 2x^2{\hat y})$ is acting on a
+  particle which is initially at the origin of the $(x,y)$ coordinate
+  system.  We transport the particle on a square path defined by the
+  points $(0,0)$, $(0,l)$, $(l,l)$, $(l,0)$, $(0,0)$.  The constant $A$
+  is positive.
+
+  \begin{enumerate}[(a)]
+    \item Suppose we work in SI units: the coordinates $(x,y)$ are measured
+      in meters, so that the particle moves $l$ meters along each leg of the
+      path; the force is measured in Newtons.  What must be the units of
+      $A$?  Express in terms of kg, m, and s.
+    \item Suppose we work in cgs units: the coordinates $(x,y)$ are measured
+      in centimeters, and the force is measured in dynes.  What must be the
+      units of $A$?  Express in terms of gm, cm, and s.
+    \item How much work does the force do when the particle travels around
+      the path?  (Your answer does not depend on the choice of units:
+      express it in terms of the constants $A$ and $l$, which are assumed to
+      have units built into them.)  Is this a conservative force?
+    \item If we place a particle right at the origin, the total force is
+      zero, so it will just stay there.  Is this a stable situation?  Give
+      any argument you please (mathematical, physical, intuitive) to justify
+      the stability (or instability) of this situation.
+  \end{enumerate}
+\end{problem}
+\begin{solution}
+  \begin{enumerate}[(a)]
+    \item $A$ must have the units $[\text{Force}]/[\text{Length}]^2$.  Since
+      Newtons are \si{\kilo\gram\meter\per\second\squared}, $A$ must be in \si{\kilo\gram\per\meter\per\second\squared}.
+    \item $A$ must be in \si{\gram\per\centi\meter\per\second\squared}.
+    \item We use $W = \int {\vec F}\cdot{\vec ds}$, where the
+      integral is taken along the specified path:
+      \begin{align*} 
+        W & =
+          \int_0^l {\vec F}(x,y=0)\cdot{\hat x\,dx} +
+          \int_0^l {\vec F}(x = l,y)\cdot{\hat y\,dy} +\\
+          & \int_l^0 {\vec F}(x,y=l)\cdot{\hat x\,dx} +
+          \int_l^0 {\vec F}(x = 0,y)\cdot{\hat y\,dy}\;.
+      \end{align*}
+      Each of these integrals is simple to evaluate:
+      \begin{align*}
+        \int_0^l {\vec F}(x,y = 0)\cdot{\hat x\,dx} & =
+          A \int_0^l (0 + 2x^2\hat y)\cdot\hat x\,dx = 0\;,\\
+        \int_0^l {\vec F}(x = l,y)\cdot{\hat y\,dy} & =
+          A \int_0^l (y^2\hat x + 2l^2\hat y)\cdot\hat y\,dy = 2 A l^3\;,\\
+        \int_l^0 {\vec F}(x,y = l)\cdot{\hat x\,dx} & =
+          -A \int_0^l (l^2\hat x + 2x^2\hat y)\cdot\hat x\,dx = -A l^3\;,\\
+        \int_l^0 {\vec F}(x,y = 0)\cdot{\hat y\,dy} & =
+          -A \int_0^l (y^2\hat x + 0)\cdot\hat y\,dy = 0\;.
+      \end{align*}
+      Adding, the total work done is $W = Al^3$.  Since this is a closed
+      path and the work done around this path is nonzero this is \emph{not}
+      a conservative force.
+    \item This is clearly \emph{not} stable!  In a stable situation,
+      if the particle were to be displaced a small distance in any
+      direction, there would be a \emph{restoring force} that would tend to
+      push it back towards the origin.  In the case, when the particle is
+      slightly displaced, the force points away from the origin.  This force
+      law instead drives a ``runaway''.  Any tiny perturbing force would be
+      enough to cause the particle to fall out of its stable point.
+  \end{enumerate}
+\end{solution}
+
 
 \begin{problem}{Purcell 1.16}
   The sphere of radius $a$ was filled with positive charge at uniform density $\rho$. Then a smaller sphere of radius $a/2$ was carved out, as shown in the figure, and left empty. What are the direction and magnitude of the electric field at $A$? At $B$?
@@ -118,7 +187,7 @@
 
 
 \begin{problem}{Purcell 1.31}
-  Like the charged rubber balloon described on page 31, a charged soap bubble experiences an outward electrical force on every bit of its surface. Given the total charge $Q$ on a bubble of radius $R$, what is the magnitude of the resultant force tending to pull any hemispherical half of the bubble away from the other half? (Should this force divided by $2\pi R$ exceed the surface tension of the soap film interesting behavior might be expected!)
+  A charged soap bubble experiences an outward electrical force on every bit of its surface. Given the total charge $Q$ on a bubble of radius $R$, what is the magnitude of the resultant force tending to pull any hemispherical half of the bubble away from the other half? (Should this force divided by $2\pi R$ exceed the surface tension of the soap film interesting behavior might be expected!)
 
   \begin{flushright}\emph{Ans}. $Q^2/8R^2$.\end{flushright}
 \end{problem}
@@ -133,42 +202,65 @@
     %& = \frac{Q^2}{8R^2}
   %\end{align*}
   
-  \begin{figure}[ht]
-    \begin{center}
-      \includegraphics[width=9cm]{ps02_sol_03}
-      \label{fig:bubble1}
-      \caption{A spherical bubble on which charges are uniformly distributed.}
-    \end{center}
-  \end{figure}
-
-  Refer to \autoref{fig:bubble1} in which we want to calculate the
-  total force on the upper hemisphere.  For any piece of area element
-  $dA$, the force is pointing outward from the origin; applying eq.(35) of
-  Purcell ch.1,
-  \begin{equation*} F = \frac12 (E_1 + E_2)\sigma \end{equation*}
-  (note that ``F'' in eq.(35) is the force per unit area), 
-  the magnitude is determined by 
-
-  \begin{align}
-    \delta F & = \frac{1}{2}(E_{inner}+E_{outer})\, \sigma\, dA \nonumber \\
-             & = \frac{Q^2}{8\pi R^2}\sin{\theta}d\theta d\phi, \nonumber \\
-    \text{where,}\qquad\qquad\qquad E_{\text{inner}} & = 0,\nonumber\\
-    E_{\text{outer}} & = 4\pi\sigma,\label{eqn:bubble1}\\
-    dA & = R^2\sin{\theta}d\theta d\phi \nonumber\\
-    \sigma & = Q/(4\pi R^2). \nonumber
-  \end{align}
-  \autoref{eqn:bubble1} is easily seen by eq.(31) of Purcell ch.1,
-  \begin{equation*} E_2 - E_1 = 4 \pi \sigma. \end{equation*}
-  The projected
-  component of $\delta F$ on X-Y plane should be completely canceled throughout
-  the hemisphere as $\sigma$ is constant.  So the net force on the
-  hemisphere is the sum of the z-component of $\delta F$, i.e.
+  In class, we derived that the pressure exerted by the electric field
+  in a spherical shell is equal to
+  $$P = 2\pi \sigma^2 = 2\pi \left(\frac{Q}{4\pi R^2}\right)^2 = \frac{Q^2}{8\pi R^4}.$$
+  
+  The area of a small area element is $R^2\sin\theta\,d\theta\,d\phi$.  (See diagram below.)
+  \begin{center}\includegraphics[width=0.35\textwidth]{ps02_sol_03}\end{center}
+  
+  For a small area element $dA$, the force is given by
+  $$\vec{dF} = P(dA)\hat r = \frac{Q^2}{8\pi R^4}(R^2\sin\theta\,d\theta\,d\phi)\hat r.$$
+  
+  Due to the symmetry of the problem, the net force on the hemisphere
+  is directed along $\hat z$.
+  
   \begin{align*}
-    F & = \sum \delta F\cos{\theta} \\
-      & = \int_0^{\pi/2}d\theta\int_0^{2\pi}d\phi\frac{Q^2}{8\pi
-    R^2}\sin{\theta}\cos{\theta}\\
-      & = \frac{Q^2}{8R^2}.
+    \vec F & = \sum \delta \vec F_z \\
+           & = \sum \delta \vec F \cos\theta\hat z \\
+           & = \hat z \int_0^{2\pi}\,d\phi\int_0^{\pi / 2}\sin\theta\cos\theta\,d\theta \frac{Q^2}{8\pi R^2} \\
+           & = 2\pi \frac12 \frac{Q^2}{8\pi R^2} \\
+           & = \frac{Q^2}{8 R^2}
   \end{align*}
+  
+  
+  
+  %\begin{figure}[ht]
+    %\begin{center}
+      %\includegraphics[width=9cm]{ps02_sol_03_old}
+      %\label{fig:bubble1}
+      %\caption{A spherical bubble on which charges are uniformly distributed.}
+    %\end{center}
+  %\end{figure}
+%
+  %Refer to \autoref{fig:bubble1} in which we want to calculate the
+  %total force on the upper hemisphere.  For any piece of area element
+  %$dA$, the force is pointing outward from the origin; applying eq.(35) of
+  %Purcell ch.1,
+  %\begin{equation*} F = \frac12 (E_1 + E_2)\sigma \end{equation*}
+  %(note that ``F'' in eq.(35) is the force per unit area), 
+  %the magnitude is determined by 
+%
+  %\begin{align}
+    %\delta F & = \frac{1}{2}(E_{inner}+E_{outer})\, \sigma\, dA \nonumber \\
+             %& = \frac{Q^2}{8\pi R^2}\sin{\theta}d\theta d\phi, \nonumber \\
+    %\text{where,}\qquad\qquad\qquad E_{\text{inner}} & = 0,\nonumber\\
+    %E_{\text{outer}} & = 4\pi\sigma,\label{eqn:bubble1}\\
+    %dA & = R^2\sin{\theta}d\theta d\phi \nonumber\\
+    %\sigma & = Q/(4\pi R^2). \nonumber
+  %\end{align}
+  %\autoref{eqn:bubble1} is easily seen by eq.(31) of Purcell ch.1,
+  %\begin{equation*} E_2 - E_1 = 4 \pi \sigma. \end{equation*}
+  %The projected
+  %component of $\delta F$ on X-Y plane should be completely canceled throughout
+  %the hemisphere as $\sigma$ is constant.  So the net force on the
+  %hemisphere is the sum of the z-component of $\delta F$, i.e.
+  %\begin{align*}
+    %F & = \sum \delta F\cos{\theta} \\
+      %& = \int_0^{\pi/2}d\theta\int_0^{2\pi}d\phi\frac{Q^2}{8\pi
+    %R^2}\sin{\theta}\cos{\theta}\\
+      %& = \frac{Q^2}{8R^2}.
+  %\end{align*}
 \end{solution}
 
 
@@ -177,8 +269,12 @@
 
 \begin{problem}{Purcell 2.1}
   The vector function which follows represents a possible electrostatic field:
-
-  \noindent {\hfill $E_x = 6xy$ \hfill $E_y = 3x^2 - 3y^2$ \hfill $E_z = 0$ \hfill}
+  
+  \begin{align*}
+    E_x & = 6xy &
+      E_y & = 3x^2 - 3y^2 &
+        E_z & = 0
+  \end{align*}
 
   Calculate the line integral of $\vec E$ from the point $(0, 0, 0)$ to the point $(x_1, y_1, 0)$ along the path which runs straight from $(0, 0, 0)$ to $(x_1, 0, 0)$ and thence to $(x_1, y_1, 0)$. Make a similar calculation for the path which runs along the other two sides of the rectangle, via the point $(0, y_1, 0)$. You ought to get the same answer if the assertion above is true. Now you have the potential function $\phi(x, y, z)$. Take the gradient of this function and see that you get back the components of the given field.
 \end{problem}
@@ -259,11 +355,12 @@
 
 
 \begin{problem}{Purcell 2.4}
-  Describe the electric field and the charge distribution that go with the following potential: 
+  Describe the electric field that goes with the following potential: 
   \begin{align*}
     \phi & = x^2 + y^2 + z^2 & \text{for }x^2 + y^2 + z^2 < a^2 \\
     \phi & = -a^2 + \frac{2a^3}{(x^2 + y^2 + z^2)^{1/2}} & \text{for }a^2 < x^2 + y^2 + z^2
   \end{align*}
+  Discuss what happens at the boundary ($x^2 + y^2 + z^2 = a^2$).
 \end{problem}
 \begin{solution}
   %Since $\vec E = -\vec \nabla \phi$, $$\vec E(x, y, z) =
@@ -290,17 +387,17 @@
             & = -2x\hat{\bf x}-2y\hat{\bf y}-2z\hat{\bf z},
   \end{align*}
   or $\vec{E}=(E_x,E_y,E_z)=(-2x,-2y,-2z)$.
-  \begin{align*}
-    \rho & = \frac{1}{4\pi}\nabla\cdot\vec{E}\\
-         & = \frac{1}{4\pi}(\frac{\partial E_x}{\partial x}+
-    \frac{\partial E_y}{\partial y}+\frac{\partial E_z}{\partial z})\\
-         & = -\frac{3}{2\pi}.
-  \end{align*}
+  %\begin{align*}
+    %\rho & = \frac{1}{4\pi}\nabla\cdot\vec{E}\\
+         %& = \frac{1}{4\pi}(\frac{\partial E_x}{\partial x}+
+    %\frac{\partial E_y}{\partial y}+\frac{\partial E_z}{\partial z})\\
+         %& = -\frac{3}{2\pi}.
+  %\end{align*}
   For $x^2+y^2+z^2>a^2$, $\phi=-a^2+\frac{2a^3}{(x^2+y^2+z^2)^{1/2}}$,
   \[\vec{E}=\left(\frac{2a^3 x}{(x^2+y^2+z^2)^{3/2}}\right)\hat{\bf x}+
   \left(\frac{2a^3 y}{(x^2+y^2+z^2)^{3/2}}\right)\hat{\bf y}+
   \left(\frac{2a^3 z}{(x^2+y^2+z^2)^{3/2}}\right)\hat{\bf z}.\]
-  \[\rho=0.\]
+  %\[\rho=0.\]
   That's not the end of the story: we should be careful of the boundary!
   Take a limit of $x^2+y^2+z^2\rightarrow a^2$ from both inside and
   outside; the fields are not the same.  This indicates there are some surface
@@ -309,13 +406,13 @@
   and $a^+\equiv \lim_{\varepsilon\rightarrow
   0,\varepsilon>0}(a+\varepsilon)$.  
   \begin{align*}
-  \vec{E_1}& = \vec{E}\left(x^2+y^2+z^2=(a^-)^2\right)=-2x\hat{\bf x}-2y\hat{\bf y}-2z\hat{\bf
-  z}\\
-  \vec{E_2}& = \vec{E}\left(x^2+y^2+z^2=(a^+)^2\right)= 2x\hat{\bf x}+2y\hat{\bf y}+2z\hat{\bf
-  z}\\
-  |\vec{E_2}-\vec{E_1}|& = |4x\hat{\bf x}+4y\hat{\bf y}+4z\hat{\bf z}|\\
-  & = 4\sqrt{x^2+y^2+z^2}=4a\nonumber\\
-  \sigma & = |\vec{E_2}-\vec{E_1}|/4\pi =+a/\pi. 
+    \vec{E_1}& = \vec{E}\left(x^2+y^2+z^2=(a^-)^2\right)=-2x\hat{\bf x}-2y\hat{\bf y}-2z\hat{\bf
+      z}\\
+    \vec{E_2}& = \vec{E}\left(x^2+y^2+z^2=(a^+)^2\right)= 2x\hat{\bf x}+2y\hat{\bf y}+2z\hat{\bf
+      z}\\
+    |\vec{E_2}-\vec{E_1}|& = |4x\hat{\bf x}+4y\hat{\bf y}+4z\hat{\bf z}|\\
+      & = 4\sqrt{x^2+y^2+z^2}=4a\\
+    \sigma & = |\vec{E_2}-\vec{E_1}|/4\pi =+a/\pi. 
   \end{align*}
 \end{solution}
 
@@ -393,8 +490,10 @@
   \begin{center}\includegraphics[width=0.35\textwidth]{ps02_sol_06}\end{center}
   To get the potential due to the little vertical strip:
   \begin{align*}
-    \phi_{\text{strip}} & = \smash{\int}_{y=0}^{y=x\tan\theta} \frac{(\sigma\,dx)\,dy}{\sqrt{x^2+y^2}} \\
-      & = \sigma\,dx\smash{\int}_{y=0}^{y=x\tan\theta} \frac{dy}{\sqrt{x^2+y^2}}
+    d\phi_{\text{strip}} & = \frac{\sigma\,dA}{r} \\
+    \intertext{where $dA = dx\,dy$}
+    \phi_{\text{strip}} & = \smashoperator{\int}_{y=0}^{y=x\tan\theta} \frac{(\sigma\,dx)\,dy}{\sqrt{x^2+y^2}} \\
+      & = \sigma\,dx\smashoperator{\int}_{y=0}^{y=x\tan\theta} \frac{dy}{\sqrt{x^2+y^2}}
   \end{align*}
   It is actually good to change variables to $\psi$:
   

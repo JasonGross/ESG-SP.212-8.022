@@ -21,7 +21,7 @@
 %% LaTeX version 1999/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{esg8022pset}
- [2010/10/08 v0.1b ESG PSet Template]
+ [2011/02/05 v0.1c ESG PSet Template]
 \LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 \RequirePackage{fancyhdr}
 \RequirePackage[T1]{fontenc}
@@ -98,9 +98,7 @@
 
     \begingroup
       \writetoboth{%
-        \string\classname{\expandafter\unexpanded\expandafter{\@classname}}
-      }
-      \writetoboth{%
+        \string\classname{\expandafter\unexpanded\expandafter{\@classname}}^^M
         \string\semester{\expandafter\unexpanded\expandafter{\@semester}}
       }
       \writetoboth{%
@@ -114,6 +112,9 @@
       }
       \writetoboth{%
         \string\readingassignment{\expandafter\unexpanded\expandafter{\@readingassignment}}
+      }
+      \writetoboth{%
+        \string\psettitle{\expandafter\unexpanded\expandafter{\@psettitle}}
       }
       \writetoboth{\string\begin{document}}
     \endgroup
@@ -130,13 +131,18 @@
 
 \AtBeginDocument{
   \begingroup
+    \def\@headerextra{%
+      \xifblank{\@psettitle}{}{%
+        (\@psettitle)\space
+      }%
+    }%
     \ifthenelse{\boolean{esg8022pset@problems}}{%
-      \edef\@cheader{Problem Set \@problemsetnumber\space - Problems}
+      \edef\@cheader{Problem Set \@problemsetnumber\space\@headerextra - Problems}
     }{
       \ifthenelse{\boolean{esg8022pset@solutions}}{
-        \edef\@cheader{Problem Set \@problemsetnumber\space - Solutions}
+        \edef\@cheader{Problem Set \@problemsetnumber\space\@headerextra - Solutions}
       }{
-        \edef\@cheader{Problem Set \@problemsetnumber\space - Problems}
+        \edef\@cheader{Problem Set \@problemsetnumber\space\@headerextra - Problems}
       }
     }
   \expandafter\endgroup
@@ -155,23 +161,27 @@
           \space Solutions%
         }{}%
       \par}%
+      \xifblank{\@psettitle}{}{%
+        {\noindent \Large \@psettitle\par}%
+      }%
     \end{center}%
     {\noindent Due: \@duedate \\\\}%
-    %\ifx\@readingassignment\@empty
-    %  {\noindent Reading: \@readingassignment \par}%
-    %\else
-    %\fi
+    \xifblank{\@readingassignment}{}{%
+      {\noindent Reading: \@readingassignment \par}%
+    }%
   \endgroup
   \global\let\duedate\relax
   \global\let\problemsetnumber\relax
   \global\let\semester\relax
   \global\let\classname\relax
   \global\let\readingassignment\relax
+  \global\let\psettitle\relax
   \global\let\@duedate\relax
   \global\let\@problemsetnumber\relax
   \global\let\@semester\relax
   \global\let\@classname\relax
   \global\let\@readingassignment\relax
+  \global\let\@psettitle\relax
 }
 \newcommand*{\duedate}[1]{\gdef\@duedate{#1}}
 \newcommand*{\problemsetnumber}[1]{\gdef\@problemsetnumber{#1}}
@@ -179,6 +189,7 @@
 \newcommand*{\classname}[1]{\gdef\@classname{#1}}
 \newcommand*{\readingassignment}[1]{\gdef\@readingassignment{#1}}
 \readingassignment{}
+\newcommand*{\psettitle}[1]{\gdef\@psettitle{#1}}
 \newenvironment{problem}[2][\relax]{%
   \ifthenelse{\equal{#1}{\relax}}{%
     \writetoall{\string\section{Problem \string\thesection: #2}}%
@@ -186,17 +197,44 @@
     \writetoall{\string\section*{Problem #1: #2}}%
   }%
   \writetosolutions{\string\subsection{Problem}}%
+  \gdef\esgpset@curcode{}
   \begingroup% Lets Keep the Changes Local
     \@bsphack
-    \immediate\openout\esgpset@tempout\esgpset@tempfilename
     \let\do\@makeother\dospecials\catcode`\^^M\active
-    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\immediate\write\esgpset@tempout{\the\verbatim@line}}%
+    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
     \verbatim@start
-}{\@esphack\immediate\closeout\esgpset@tempout\endgroup
-  \input{\esgpset@tempfilename}%
+}{\@esphack\endgroup
+  \expandnext{\scantokens}{\esgpset@curcode}%
 }
 \newenvironment{solution}{%
   \writetosolutions{\string\subsection{Solution}}%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetosolutions{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\endgroup}%
+\newenvironment{ForProblems}{%
+  \gdef\esgpset@curcode{}%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetoproblems{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\endgroup
+  \expandnext{\scantokens}{\esgpset@curcode}%
+}
+\newenvironment{ForPSet}{%
+  \gdef\esgpset@curcode{}%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\endgroup
+  \expandnext{\scantokens}{\esgpset@curcode}%
+}
+\newenvironment{ForSolutions}{%
   \begingroup% Lets Keep the Changes Local
     \@bsphack
     \let\do\@makeother\dospecials\catcode`\^^M\active

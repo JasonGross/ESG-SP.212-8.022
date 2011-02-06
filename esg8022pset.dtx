@@ -19,7 +19,7 @@
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<driver>\ProvidesFile{esg8022pset.dtx}
 %<class>\ProvidesClass{esg8022pset}
-%<class> [2010/10/08 v0.1b ESG PSet Template]
+%<class> [2011/02/05 v0.1c ESG PSet Template]
 %<class>\LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 %<class>\RequirePackage{fancyhdr}
 %<class>\RequirePackage[T1]{fontenc}
@@ -69,6 +69,8 @@
 %
 % \changes{v0.1}{2010/09/07}{Initial version.}
 % \changes{v0.1b}{2010/10/08}{Made title textsc.}
+% \changes{v0.1c}{2011/02/05}{Made readingassignment optional.  Added
+%                             psettitle, ForProblems, ForSolutions, ForPSet.}
 %
 % \GetFileInfo{esg8022pset.dtx}
 %
@@ -160,9 +162,7 @@
 
     \begingroup
       \writetoboth{%
-        \string\classname{\expandafter\unexpanded\expandafter{\@classname}}
-      }
-      \writetoboth{%
+        \string\classname{\expandafter\unexpanded\expandafter{\@classname}}^^M
         \string\semester{\expandafter\unexpanded\expandafter{\@semester}}
       }
       \writetoboth{%
@@ -176,6 +176,9 @@
       }
       \writetoboth{%
         \string\readingassignment{\expandafter\unexpanded\expandafter{\@readingassignment}}
+      }
+      \writetoboth{%
+        \string\psettitle{\expandafter\unexpanded\expandafter{\@psettitle}}
       }
       \writetoboth{\string\begin{document}}
     \endgroup
@@ -193,13 +196,18 @@
 
 \AtBeginDocument{
   \begingroup
+    \def\@headerextra{%
+      \xifblank{\@psettitle}{}{%
+        (\@psettitle)\space
+      }%
+    }%
     \ifthenelse{\boolean{esg8022pset@problems}}{%
-      \edef\@cheader{Problem Set \@problemsetnumber\space - Problems}
+      \edef\@cheader{Problem Set \@problemsetnumber\space\@headerextra - Problems}
     }{
       \ifthenelse{\boolean{esg8022pset@solutions}}{
-        \edef\@cheader{Problem Set \@problemsetnumber\space - Solutions}
+        \edef\@cheader{Problem Set \@problemsetnumber\space\@headerextra - Solutions}
       }{
-        \edef\@cheader{Problem Set \@problemsetnumber\space - Problems}
+        \edef\@cheader{Problem Set \@problemsetnumber\space\@headerextra - Problems}
       }
     }
   \expandafter\endgroup
@@ -218,23 +226,27 @@
           \space Solutions%
         }{}%
       \par}%
+      \xifblank{\@psettitle}{}{%
+        {\noindent \Large \@psettitle\par}%
+      }%
     \end{center}%
     {\noindent Due: \@duedate \\\\}%
-    %\ifx\@readingassignment\@empty
-    %  {\noindent Reading: \@readingassignment \par}%
-    %\else
-    %\fi
+    \xifblank{\@readingassignment}{}{%
+      {\noindent Reading: \@readingassignment \par}%
+    }%
   \endgroup
   \global\let\duedate\relax
   \global\let\problemsetnumber\relax
   \global\let\semester\relax
   \global\let\classname\relax
   \global\let\readingassignment\relax
+  \global\let\psettitle\relax
   \global\let\@duedate\relax
   \global\let\@problemsetnumber\relax
   \global\let\@semester\relax
   \global\let\@classname\relax
   \global\let\@readingassignment\relax
+  \global\let\@psettitle\relax
 }
 %    \end{macrocode}
 %
@@ -243,6 +255,7 @@
 % \begin{macro}{\semester}
 % \begin{macro}{\classname}
 % \begin{macro}{\readingassignment}
+% \begin{macro}{\psettitle}
 %    These four macros are provided by \file{esg8022pset.dtx} to provide
 %    information about the class assigning the pset.
 %    The information is stored away in internal control sequences.
@@ -256,7 +269,9 @@
 \newcommand*{\classname}[1]{\gdef\@classname{#1}}
 \newcommand*{\readingassignment}[1]{\gdef\@readingassignment{#1}}
 \readingassignment{}
+\newcommand*{\psettitle}[1]{\gdef\@psettitle{#1}}
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -268,7 +283,6 @@
 %
 % \subsection{Problem Environments}
 % \begin{environment}{problem}
-% \begin{environment}{statement}
 % \begin{environment}{solution}
 %    \begin{macrocode}
 \newenvironment{problem}[2][\relax]{%
@@ -278,14 +292,14 @@
     \writetoall{\string\section*{Problem #1: #2}}%
   }%
   \writetosolutions{\string\subsection{Problem}}%
+  \gdef\esgpset@curcode{}
   \begingroup% Lets Keep the Changes Local
     \@bsphack
-    \immediate\openout\esgpset@tempout\esgpset@tempfilename
     \let\do\@makeother\dospecials\catcode`\^^M\active
-    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\immediate\write\esgpset@tempout{\the\verbatim@line}}%
+    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
     \verbatim@start
-}{\@esphack\immediate\closeout\esgpset@tempout\endgroup
-  \input{\esgpset@tempfilename}%
+}{\@esphack\endgroup
+  \expandnext{\scantokens}{\esgpset@curcode}%
 }
 \newenvironment{solution}{%
   \writetosolutions{\string\subsection{Solution}}%
@@ -298,8 +312,44 @@
 %    \end{macrocode}
 % \end{environment}
 % \end{environment}
-% \end{environment}
 %
+%
+%
+% \subsection{Problems/Solutions Environments}
+% \begin{environment}{ForProblems}
+% \begin{environment}{ForSolutions}
+% \begin{environment}{ForPSet}
+%    \begin{macrocode}
+\newenvironment{ForProblems}{%
+  \gdef\esgpset@curcode{}%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetoproblems{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\endgroup
+  \expandnext{\scantokens}{\esgpset@curcode}%
+}
+\newenvironment{ForPSet}{%
+  \gdef\esgpset@curcode{}%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\endgroup
+  \expandnext{\scantokens}{\esgpset@curcode}%
+}
+\newenvironment{ForSolutions}{%
+  \begingroup% Lets Keep the Changes Local
+    \@bsphack
+    \let\do\@makeother\dospecials\catcode`\^^M\active
+    \def\verbatim@processline{\writetosolutions{\the\verbatim@line}}%
+    \verbatim@start
+}{\@esphack\endgroup}% 
+%    \end{macrocode}
+% \end{environment}
+% \end{environment}
 %
 %
 % \Finale
