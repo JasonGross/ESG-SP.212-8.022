@@ -19,5 +19,6 @@
 *.swo
 *.backup
 *.zip
+.github/id_rsa
 thumbs.db
 Thumbs.db
