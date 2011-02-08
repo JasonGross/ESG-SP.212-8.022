@@ -249,13 +249,59 @@
   \begin{center}\includegraphics[width=0.2\textwidth]{ps01_8}\end{center}
   \begin{enumerate}[(a)]
     \item Evaluate the electric field (magnitude \emph{and} direction) on the $x$-axis.  Show that for $x \gg b$, $|\vec E| \propto 1 / x^3$.  What is the direction in this limit?
-    \item Evaluate the electric field on the $y$-axis.  Consider $y < -b$, $-b < y < b$, and $b < y$ separately.  Additionally, find the magnitude and direction for $y \gg b$.
+    \item Evaluate the electric field on the $y$-axis.  Consider $y < -b$, $-b < y < b$, and $b < y$ separately.  Additionally, find the magnitude and direction for $|y| \gg b$, and for $|y| \ll b$.
   \end{enumerate}
 \end{problem}
 \begin{solution}
   Electric dipole - we will come back to this with a different approach
-  \begin{center}\includegraphics[width=0.9\textwidth]{ps01_sol_07_1}\end{center}
-  \begin{center}\includegraphics[width=0.9\textwidth]{ps01_sol_07_2}\end{center}
+  
+  %\begin{center}\includegraphics[width=0.75\textwidth]{ps01_sol_07_1}\end{center}
+  %\begin{enumerate}[(a)]
+    %\item
+      %$$\vec E = 2 |\vec E_1| \cos\theta = -\frac{2q}{x^2 + b^2}\frac{b}{\sqrt{x^2 + b^2}}\hat y = -\frac{2qb}{(x^2 + b^2)^{3/2}}\hat y$$
+      %For $x \gg b$, same direction,
+      %$$\frac{q}{(x^2 + b^2)^{3/2}} = \frac{1}{x^3}\frac{1}{(1 + b^2 / x^2)^{3/2}} \simeq \frac{1}{x^3}\qquad\qquad \vec E \simeq \frac{-2qb}{x^3}\hat y$$
+    %\item For $y > b$,
+      %$$\vec E = \left(\frac{q}{(y - b)^2} + \frac{-q}{(y + b)^2}\right)\hat y$$
+      %which is along the positive $y$-axis.
+      %
+      %For $y < -b$,
+      %$$\vec E = \left(-\frac{q}{(y - b)^2} - \frac{-q}{(y + b)^2}\right)\hat y,$$
+      %which is along the positive $y$-axis (since $y < -b < 0$).
+      %
+      %Combining these, for $y > b$ or $y < -b$,
+      %$$\vec E = \left( \frac{q}{(|y| - b)^2} + \frac{-q}{(b + |y|)^2}\right)\hat y.$$
+      %
+      %For $0 < y < b$,
+      %$$\vec E = \left( -\frac{q}{(b - y)^2} + \frac{-q}{(|y| + b)^2}\right)\hat y,$$
+      %which is along the negative $y$-axis.
+      %
+      %For $-b < y < 0$,
+      %$$\vevc E = \left(-\frac{q}{(y - b)^2} + \frac{-q}{(y + b)^2}\right)\hat y,$$
+      %which is along the negative $y$-axis.
+      %
+      %Thus, for $-b < y < b$,
+      %$$\vevc E = \left(\frac{q}{(b - |y|)^2} + \frac{q}{(b + |y|)^2}\right)(-\hat y)$$
+      %
+      %Since the Taylor expansion of $1 / (1 + x)^2$ is, for $x \ll 1$,
+      %$$\frac{1}{(1+x)^2} = 1 + \left.\left[ - \frac{2}{(1 + x)^2}\right]\right|_{x=0} x + \mathcal O(x^2) \simeq 1 - 2x,$$
+      %\begin{align*}
+        %(y \pm b)^{-2} & = y^{-2}\left( 1 \pm \frac{b}{y}\right)^{-2} \\
+          %& \simeq y^{-2}\left( 1 \mp \frac{2b}{y}\right)
+      %\end{align*}
+      %
+      %Therefore, for $|y| \ll b$, 
+      %$$E \sim q y^{-2}\left[\left(1 + \frac{2b}{y}\right) - \left( 1 - \frac{2b}{y}\right)\right] = \frac{4qb}{y^3} \sim y^{-3}.$$
+      %
+      %For $|y| \gg b$, 
+      %\begin{align*}
+        %\vec E & = \left( \frac{q}{(|y| - b)^2} + \frac{-q}{(b + |y|)^2}\right)\hat y \\
+         %& = q y^{-2}\left( \frac{1}{(|1 - b/|y|)^2} - \frac{1}{(1 + b / |y|)^2}\right) \hat y \\
+        %& \simeq q y^{-2}\left[\left( 1 + \frac{2b}{|y|}\right) - \left( 1 - \right)\right] FIX
+      %\end{align*}
+  %\end{enumerate}
+  \begin{center}\includegraphics[width=0.9\textwidth]{ps01_sol_07_1_hand}\end{center}
+  \begin{center}\includegraphics[width=0.9\textwidth]{ps01_sol_07_2_hand}\end{center}
 \end{solution}
 
 
