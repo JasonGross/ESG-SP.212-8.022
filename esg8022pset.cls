@@ -21,7 +21,7 @@
 %% LaTeX version 1999/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{esg8022pset}
- [2011/02/05 v0.1c ESG PSet Template]
+ [2011/02/09 v0.1c ESG PSet Template]
 \LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 \RequirePackage{fancyhdr}
 \RequirePackage[T1]{fontenc}
@@ -63,6 +63,9 @@
   \newcommand{\writetoproblems}[1]{\immediate\write\esgpset@problemsout{#1}}
   \newcommand{\writetosolutions}[1]{\immediate\write\esgpset@solutionsout{#1}}
   \newcommand{\writetothis}[1]{{\edef\temp{#1}\expandafter}\expandafter\scantokens\expandafter{\temp}}
+  \newcommand{\pre@writetothis}[1]{\gdef\esgpset@curcode{}}%\immediate\openout\esgpset@tempout\esgpset@tempfilename
+  \newcommand{\do@writetothis}[1]{\gappto\esgpset@curcode{#1^^J}}%\immediate\write\esgpset@tempout{\unexpanded{#1}}
+  \newcommand{\post@writetothis}[1]{\expandnext{\scantokens}{\esgpset@curcode}}%\immediate\closeout\esgpset@tempout\input{\esgpset@tempfilename}%
 
   \immediate\openout\esgpset@problemsout\esgpset@problemsfilename
   \immediate\openout\esgpset@solutionsout\esgpset@solutionsfilename
@@ -165,8 +168,9 @@
         {\noindent \Large \@psettitle\par}%
       }%
     \end{center}%
-    {\noindent Due: \@duedate \\\\}%
+    {\noindent Due: \@duedate}%
     \xifblank{\@readingassignment}{}{%
+      \\\\
       {\noindent Reading: \@readingassignment \par}%
     }%
   \endgroup
@@ -197,14 +201,15 @@
     \writetoall{\string\section*{Problem #1: #2}}%
   }%
   \writetosolutions{\string\subsection{Problem}}%
-  \gdef\esgpset@curcode{}
   \begingroup% Lets Keep the Changes Local
+    \pre@writetothis
     \@bsphack
     \let\do\@makeother\dospecials\catcode`\^^M\active
-    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
+    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\do@writetothis}{\the\verbatim@line}}%
     \verbatim@start
 }{\@esphack\endgroup
-  \expandnext{\scantokens}{\esgpset@curcode}%
+  \post@writetothis
+  \relax% not sure why I need this...
 }
 \newenvironment{solution}{%
   \writetosolutions{\string\subsection{Solution}}%
@@ -215,24 +220,26 @@
     \verbatim@start
 }{\@esphack\endgroup}%
 \newenvironment{ForProblems}{%
-  \gdef\esgpset@curcode{}%
   \begingroup% Lets Keep the Changes Local
+    \pre@writetothis
     \@bsphack
     \let\do\@makeother\dospecials\catcode`\^^M\active
-    \def\verbatim@processline{\writetoproblems{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
+    \def\verbatim@processline{\writetoproblems{\the\verbatim@line}\expandnext{\do@writetothis}{\the\verbatim@line}}%
     \verbatim@start
 }{\@esphack\endgroup
-  \expandnext{\scantokens}{\esgpset@curcode}%
+  \post@writetothis
+  \relax% not sure why I need this...
 }
 \newenvironment{ForPSet}{%
-  \gdef\esgpset@curcode{}%
   \begingroup% Lets Keep the Changes Local
+    \pre@writetothis
     \@bsphack
     \let\do\@makeother\dospecials\catcode`\^^M\active
-    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\gappto\esgpset@curcode}{\the\verbatim@line}}%
+    \def\verbatim@processline{\writetoboth{\the\verbatim@line}\expandnext{\do@writetothis}{\the\verbatim@line}}%
     \verbatim@start
 }{\@esphack\endgroup
-  \expandnext{\scantokens}{\esgpset@curcode}%
+  \post@writetothis
+  \relax% not sure why I need this...
 }
 \newenvironment{ForSolutions}{%
   \begingroup% Lets Keep the Changes Local
