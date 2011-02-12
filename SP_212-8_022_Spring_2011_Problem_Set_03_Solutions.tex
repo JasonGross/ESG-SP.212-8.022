@@ -81,20 +81,20 @@
       \begin{enumerate}[(i)]
         \item $${\vec{\nabla}\cdot \left( \hat{x} x + \hat{y} y + \hat{z} z \right)} = \Kdiv{x}{y}{z}{}{+}{+} = 3 $$
         \item $$\vec{\nabla}\cdot \left(\hat{x} \frac{y}{\sqrt{x^2+y^2}} - \hat{y} \frac{x}{\sqrt{x^2+y^2}}\right) = $$ $$\KKdiv{\left(\frac{y}{\sqrt{x^2+y^2}}\right)}{\left(\frac{x}{\sqrt{x^2+y^2}}\right)}{(0)}{}{-}{+} = 0$$
-        \item $$\vec{\nabla}\cdot {\left(  \frac{\hat r}{r^2}  \right)} = \frac{1}{r^2} \dr\left( r^2 \left( \frac{1}{r^2} \right) \right) + \frac{1}{r \sin \theta} \dtheta\left( 0 \right) + \frac{1}{r \sin \theta} \frac{\partial}{\partial \phi}\left( 0 \right) = \frac{1}{r^2}.0 = 0, \text{ for }r \neq  0 $$
-          {\color{red} What does $\frac{1}{r^2}.0 = 0$ mean?}
+        \item $$\vec{\nabla}\cdot {\left(  \frac{\hat r}{r^2}  \right)} = \frac{1}{r^2} \dr\left( r^2 \left( \frac{1}{r^2} \right) \right) + \frac{1}{r \sin \theta} \dtheta\left( 0 \right) + \frac{1}{r \sin \theta} \frac{\partial}{\partial \phi}\left( 0 \right) = 0, \text{ for }r \neq  0 $$
           We will now examine the behavior at the origin by using Gauss's law for an infinitesimal surface enclosing the origin. The surface integral of $\hat r/r^2$ over an infinitesimal sphere of radius $r$ enclosing the origin is
           $$ \int_{S} \frac{\hat r}{r^2} \cdot d\vec{A} = \int_{0}^{\pi} \int_{0}^{2 \pi} \frac{1}{r^2} r^2\sin \theta\,d\theta\,d\phi = 4 \pi $$
           We also know that (Divergence theorem)
           \begin{equation}\int \vec{\nabla}\cdot {\left(  \frac{\hat r}{r'^2}  \right)}\,dV = \int_{S} \frac{\hat r}{r^2} \cdot d\vec{A} =4 \pi \label{eq:Glaw}\end{equation}
-          Further, for an infinitesimally small sphere $(r \rightarrow 0)$,
-          $$  \int \vec{\nabla}\cdot {\left(  \frac{\hat r}{r'^2}  \right)}\,dV \approx \frac{4}{3} \pi r^3  \vec{\nabla}\cdot\left(\frac{\hat r}{r^2}\right) $$
-          It is clear from the above equation and \autoref{eq:Glaw} that the divergence of $\hat r/r^2$ diverges at the origin. Hence,
-          $$\vec{\nabla}\cdot {\left(  \frac{\hat r}{r^2}  \right)} = 4 \pi \delta^3(\vec{r}) $$
-          where, $\delta^3(\vec{r})$ is the three dimensional Dirac delta function defined as follows:
+           $\delta^3(\vec{r})$ is the three dimensional Dirac delta function defined as follows:
           $$\delta^3(\vec{r}) = \begin{cases} 0 & \text{for }r \neq  0 \\ \infty & \text{when }r = 0\end{cases}$$
           and the integral of the Dirac delta function over any region ($\mathcal V$) enclosing the origin is $1$ i.e.,
-          $$\int_{\cal V}\delta^3(\vec{r})\,dV = 1.$$
+          $$\int_{\mathcal V}\delta^3(\vec{r})\,dV = 1.$$
+          At $r = 0$, $\vec v \cdot \hat r / r^2$ must be different from zero. %Further, for an infinitesimally small sphere $(r \rightarrow 0)$,
+          %$$  \int \vec{\nabla}\cdot {\left(  \frac{\hat r}{r'^2}  \right)}\,dV \approx \frac{4}{3} \pi r^3  \vec{\nabla}\cdot\left(\frac{\hat r}{r^2}\right) $$
+          It is clear from %the above equation and
+          \autoref{eq:Glaw} that %the divergence of $\hat r/r^2$ diverges at the origin. Hence,
+          $$\vec{\nabla}\cdot {\left(  \frac{\hat r}{r^2}  \right)} = 4 \pi \delta^3(\vec{r}) $$
         \item $$\vec{\nabla}\cdot {\left(  \hat{r}\frac{2\cos\theta}{r^3} + \hat{\theta}\frac{\sin\theta}{r^3} \right)} =$$
           $$ \frac{1}{r^2} \dr\left( r^2 \left( \frac{2 \cos \theta}{r^3} \right) \right) + \frac{1}{r \sin \theta} \dtheta\left( \sin \theta \left( \frac{\sin \theta}{r^3} \right) \right) + \frac{1}{r \sin \theta} \frac{\partial}{\partial \phi}\left( 0 \right) $$
           $$= -\frac{2 \cos \theta}{r^4} + \frac{2 \cos \theta}{r^4} =0, \text{ for }r \neq  0 $$
@@ -114,7 +114,7 @@
         \item $$ {\vec{\nabla} \times \left( \hat{x} xy + \hat{y} y^2 + \hat{z} yz \right)} =$$ $$\hat x\left( \dy(yz) - \dz(y^2) \right) + \hat y\left( \dz(xy) - \dx(yz) + \hat z\left( \dx(y^2) - \dy(xy) \right)\right) = \hat x z - \hat z x$$
         \item $${\vec{\nabla} \times \left( \frac{\hat r}{r^2} \right)} = \frac{\hat r}{r \sin \theta} \left( \dtheta \left( 0 \right) - \frac{\partial}{\partial \phi} \left( 0 \right)\right) + \frac{\hat\theta}{r} \left( \frac{1}{\sin \theta} \left( \frac{\partial}{\partial \phi} \left(\frac{\hat r}{r^2} \right) \right)-   \dr \left( 0 \right) \right)$$ $$+  \frac{\hat\phi}{r} \left( \dr \left( 0 \right) - \dtheta \left( \frac{\hat r}{r^2}\right) \right) = 0\text{ for }r \neq 0$$
           The line integral of $\left( \hat r / r^2 \right)$ around an infinitesimal closed curve enclosing the origin is zero. Hence, by Stokes' theorem $\vec{\nabla}\times\left({\hat r/r^2}\right) = 0$ near the origin as well. Hence, ${\vec{\nabla} \times \left( { \hat r / r^2} \right)} = 0$ everywhere.
-        \item $${\vec{\nabla} \times \left( \frac{ \hat\phi}{R} \right)} = \hat{R} \left( 0 -0 \right) + \hat\phi \left( 0 - 0\right) + \hat z \left( \frac{1}{R} \dr \left( \frac{1}{R} \right) - 0 \right) = \frac{1}{R}.0 = 0\text{ for }R \neq 0 $$
+        \item $${\vec{\nabla} \times \left( \frac{ \hat\phi}{R} \right)} = \hat{R} \left( 0 -0 \right) + \hat\phi \left( 0 - 0\right) + \hat z \left( \frac{1}{R} \dr \left( \frac{1}{R} \right) - 0 \right) = 0\text{ for }R \neq 0 $$
           The line integral  of ${ \hat\phi / R} $ around an infinitesimal closed curve enclosing the origin is $2\pi$. Hence, ${\vec{\nabla} \times \left( { \hat\phi / R} \right)}$ diverges at the origin. Therefore,
           $${\vec{\nabla} \times \left( \frac{ \hat\phi}{R} \right)} = 2\pi \delta^2(\vec{R}) $$
           where, $\delta^2(\vec{R})$ is the $2-D$ Dirac delta function defined as follows:
@@ -147,14 +147,14 @@
       \end{figure}
       Using Divergence theorem we get,
       $$\int \vec{\nabla}\cdot \left( \vec{\nabla} \times \vec{A} \right)\,dV = \oint \left( \vec{\nabla} \times \vec{A} \right)\cdot d\vec{S}$$
-      where (for this problem) the surface area element is $d\vec{S}$ instead of the usual $d\vec{A}$ since the vector $\vec{A}$ has already been assigned a different meaning. We can evaluate the surface integral by summing up the surface integral over several infinitesimal cuts (Please see \autoref{fig:balloon}).
+      where (for this problem) the surface area element is $d\vec{S}$ instead of the usual $d\vec{A}$ since the vector $\vec{A}$ has already been assigned a different meaning. We can evaluate the surface integral by summing up the surface integral over several infinitesimal cuts (see \autoref{fig:balloon}).
       Hence,
-      $$\oint  \left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS = \sum_i \int_{\operatorname{int}C_i}\left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS$$
-      where $\operatorname{int}C_i$ denotes the region enclosed by $C_i$ on the curved surface (white area). Using Stoke's law we get,
-      $$\sum_i \int_{\operatorname{int}C_i}\left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS = \int_{C_i} \vec{A}\cdot \vec{dr}$$
+      $$\oint  \left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS = \sum_i \iint_{S_i}\left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS$$
+      where $S_i$ denotes the region enclosed by $C_i$ on the curved surface (white area). Using Stoke's law we get,
+      $$\sum_i \oint_{S_i}\left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS = \sum_i \oint_{S_i} \vec{A}\cdot \vec{dr}$$
       Note that the line integral around the infinitesimal ``cut'' ($C_i$) must vanish, as it is a sum of a line integral evaluated in the clockwise direction and the same integral evaluated in the counter-clockwise direction. Hence,
-      $$\int_{C_i} \vec{A}\cdot \vec{dr} = 0 \implies  \oint  \left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS = 0 \implies \int \vec{\nabla}\cdot \left( \vec{\nabla} \times \vec{A} \right)\,dV = 0$$
-      Since the volume integral of $\vec{\nabla}\cdot \left( \vec{\nabla} \times \vec{A} \right)$ for any arbitrary volume, $\vec{\nabla}\cdot \left( \vec{\nabla} \times \vec{A}\right) = 0$.
+      $$\sum_i \oint_{S_i} \vec{A}\cdot \vec{dr} = 0 \implies  \oint  \left( \vec{\nabla} \times \vec{A} \right)\cdot \hat{n}\,dS = 0 \implies \int \vec{\nabla}\cdot \left( \vec{\nabla} \times \vec{A} \right)\,dV = 0$$
+      Since we evaluated the volume integral of $\vec{\nabla}\cdot \left( \vec{\nabla} \times \vec{A} \right)$ for any arbitrary volume, $\vec{\nabla}\cdot \left( \vec{\nabla} \times \vec{A}\right) = 0$.
   \end{enumerate}
 \section{Problem \thesection: Stokes's Theorem in Action}
 \subsection{Problem}
@@ -209,7 +209,7 @@
 
   Thus we have verified that,
   $$\oint \vec{F}\cdot\hat{n}\,dA = \int (\vec{\nabla}\cdot\vec{F}) dV$$
-\section{Problem \thesection: Purcell 2.4 \& 2.8}
+\section{Problem \thesection: Purcell 2.4 \& 2.8 --- One more time}
 \subsection{Problem}
   \begin{enumerate}[(a)]
     \item Describe the charge distribution that goes with the following potential:
@@ -218,11 +218,8 @@
         \phi & = -a^2 + \frac{2a^3}{(x^2 + y^2 + z^2)^{1/2}} & \text{for }a^2 < x^2 + y^2 + z^2
       \end{align*}
       Discuss what happens at the boundary ($x^2 + y^2 + z^2 = a^2$).
-    \item Consider a very long cylinder of radius $R$ that is filled with a uniform charge density $\rho$ (Fig. 2.17).  Use the following two different approaches to find the electric field, $\vec{E}$, both inside and outside the cylinder.
-      \begin{enumerate}[(i)]
-        \item Apply Gauss' law
-        \item Integrate Poisson's equation: $\vec{\nabla} \cdot \vec{E} = 4 \pi \rho$.
-      \end{enumerate}
+    \item Consider a very long cylinder of radius $R$ that is filled with a uniform charge density $\rho$ (Fig. 2.17).  Again, find the electric field, $\vec{E}$, both inside and outside the cylinder, by integrating Poisson's equation: $\vec{\nabla} \cdot \vec{E} = 4 \pi \rho$.
+
       Be sure that the $\vec E$ field inside and the $\vec E$ field outside match at the boundary (i.e., at $R$).
       \begin{center}\includegraphics[width=0.5\textwidth]{ps02_2}\end{center}
   \end{enumerate}
@@ -254,7 +251,7 @@
       outside; the fields are not the same.  This indicates there are some surface
       charge density $\sigma$ on the boundary $x^2+y^2+z^2=a^2$.  Let
       $a^-\equiv \lim_{\varepsilon\rightarrow 0,\varepsilon>0}(a-\varepsilon)$
-      and $a^+\equiv \lim_{\varepsilon\rightarrow
+      and $a^+\equiv \lim\limits_{\varepsilon\rightarrow
       0,\varepsilon>0}(a+\varepsilon)$.
       \begin{align*}
         \vec{E_1}& = \vec{E}\left(x^2+y^2+z^2=(a^-)^2\right)=-2x\hat{x}-2y\hat{y}-2z\hat{\bf
@@ -267,35 +264,16 @@
       \end{align*}
 
 
-    \item
-      \begin{enumerate}[(i)]
-        \item By Gauss' Law: \par\noindent
-          \begin{figure}[h]
-            \centering
-            \includegraphics[width=0.4\textwidth]{ps03_sol_05}
-            \caption{Gaussian Surface (a) Outside (b) Inside}
-            \label{fig:cylinder}
-          \end{figure}
-          Note that the charge distribution is axially symmetric. Hence, there is no dependence on $\phi$. Since the cylinder is infinite, there is no dependence on $z$. Further, we must also have $E_\phi = E_z = 0$. Hence, $E_r$ is the only non-zero component of the electric field and it is non-zero.\footnote{This $r$ is the radial coordinate of cylindrical polar coordinates} The electric field outside the cylinder can be found by applying Gauss's law to the Gaussian surface (cylinder) shown in \autoref{fig:cylinder} (a):
-          $$E_r \left( 2\pi r h\right) = 4 \pi \left( \rho \pi R^2 h\right)$$
-          Hence, the electric field outside the cylinder is
-          $$E_r = \frac{2 \pi \rho R^2}{r}$$
-          Similarly, the electric field inside the cylinder is found by applying Gauss's law to the Gaussian surface in Figure (\ref {cylinder} b)
-          $$E_r \left( 2\pi r l\right) = 4 \pi \left( \rho \pi r^2 l\right) $$
-          Hence, the electric field inside the cylinder is
-          $$E_r = {2 \pi \rho r }$$
-        \item By integration: \par\noindent
-          Outside the cylinder the differential form of Gauss's law takes the following form (in cylindrical coordinates)
-          $$frac{1}{r} \frac{\partial}{\partial r} \left( r E^{\mbox{\tiny out}}_r \right)  = 0$$
-          Inside the cylinder,
-          $$\frac{1}{r} \dr \left( r E^{\text{in}}_r \right)  = 4 \pi \rho$$
-          Solving the above equations we find,
-          $$E^{\text{out}}_r = \frac{A}{r}\mbox{ and }E^{\text{in}}_r = 2\pi \rho r + \frac{B}{r}$$
-          Note that $B$ must vanish for the electric field to be well defined at the origin. Equating, the electric field inside and outside we get,
-          $$E^{\text{out}}_r(R) = E^{\text{in}}_r(R) \implies A = 2\pi R^2 \rho$$
-          Hence,
-          $$E^{\text{out}}_r = \frac{2\pi R^2 \rho}{r} \text{ and } E^{\text{in}}_r=2\pi r \rho$$
-    \end{enumerate}
+    \item Outside the cylinder the differential form of Gauss's law takes the following form (in cylindrical coordinates)
+      $$\frac{1}{r} \frac{\partial}{\partial r} \left( r E^{\mbox{\tiny out}}_r \right)  = 0$$
+      Inside the cylinder,
+      $$\frac{1}{r} \dr \left( r E^{\text{in}}_r \right)  = 4 \pi \rho$$
+      Solving the above equations we find,
+      $$E^{\text{out}}_r = \frac{A}{r}\mbox{ and }E^{\text{in}}_r = 2\pi \rho r + \frac{B}{r}$$
+      Note that $B$ must vanish for the electric field to be well defined at the origin. Equating, the electric field inside and outside we get,
+      $$E^{\text{out}}_r(R) = E^{\text{in}}_r(R) \implies A = 2\pi R^2 \rho$$
+      Hence,
+      $$E^{\text{out}}_r = \frac{2\pi R^2 \rho}{r} \text{ and } E^{\text{in}}_r=2\pi r \rho$$
   \end{enumerate}
 \section{Problem \thesection: Potential of an Electric Dipole}
 \subsection{Problem}
@@ -316,7 +294,7 @@
       $$\varphi(x,y,z) = \frac{q}{\left( x^2 + y^2 +z^2 \right)^{1/2}}\left( \left( 1+ \frac{1}{2} \frac{az}{x^2 + y^2 + z^2} \right) - \left(1-\frac{1}{2} \frac{az}{x^2 + y^2 + z^2} \right)\right) + \mathcal O(a^2)$$
       After some simplification we get
       \begin{equation}  \varphi(x,y,z) = \frac{q az}{\left( x^2 + y^2 +z^2 \right)^{3/2}} \label{eq:potdipsim}\end{equation}
-    \item The expression for the dipole potential in \autoref{eq:potdipsim} can be written in spherical polar coordinates as follows\footnote{Please see handout.},
+    \item The expression for the dipole potential in \autoref{eq:potdipsim} can be written in spherical polar coordinates as follows,
       $$\varphi(r,\theta,\phi) = \frac{q a \cos \theta}{r ^2}$$
     \item The electric field is given by
       \begin{align*}
@@ -341,9 +319,27 @@
       \frac{Q \left(\vec{r} - \vec{r}_{0}\right)}{|\vec{r} - \vec{r}_{0}|^3} & \text{for }|\vec{r} - \vec{r}_{0}|>a
     \end{cases}
   $$
-  where $\vec{r}$ denotes the position vector of the point at which electric field is evaluated and $\vec{r}_{0}$ denotes the position vector of the center of the spherical shell.
+  where $\vec{r}$ denotes the position vector of the point at which electric field is evaluated and $\vec r_0$ denotes the position vector of the center of the spherical shell.  In class, we usually put $\vec r_0 = \vec 0$.
 
-  We will now evaluate the electric field due to two non-conducting spherical shells touching each other. Without loss of generality, we can assume that the centers are located at $(0,0,\pm a)$. The electric field is given by the superposition of the electric field of each spherical shell. Hence,
+  We will now evaluate the electric field due to two non-conducting spherical shells touching each other. Without loss of generality, we can assume that the centers are located at $(0,0,\pm a)$.
+  \begin{center}
+    \begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
+      \clip(-2.5,-1.1) rectangle (2.5,1.1);
+      \draw[->,color=black] (-10,0) -- (2.5,0);
+      \foreach \x in {-2,-1,1,2}
+        \draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize\ifnum\x=-1$-a$\fi\ifnum\x=1$a$\fi};
+      \draw[color=black] (2.3,0.03) node [anchor=south west] {$z$};
+      %\draw[color=black] (0pt,-20pt) node[center] {\footnotesize $0$};
+      \draw(1,0) circle (1);
+      \draw(-1,0) circle (1);
+      \fill [color=black] (-1,0) circle (1.5pt);
+      \fill [color=black] (1,0) circle (1.5pt);
+      \fill [color=black] (0,0) circle (1.5pt);
+      \draw[color=black] (0.75,0.5) node {$Q$};
+      \draw[color=black] (-1.25,0.5) node {$-Q$};
+    \end{tikzpicture}
+  \end{center}
+  The electric field is given by the superposition of the electric field of each spherical shell. Hence,
   $$\vec E(\vec{r}) =
     \begin{cases}
       -\frac{Q \left(\vec{r}  + a \hat z \right)}{|\vec{r} + a \hat z|^3} & \text{for }|\vec{r} - a \hat z| < a \\
@@ -440,7 +436,7 @@
           Q_{\text{total}} = (4\pi)^2 k(b-a)$
       \end{enumerate}
   \end{enumerate}
-\section{Problem \thesection: Purcell 2.20 (Optional) (Potential at the center of a gold nucleus)}
+\section{Problem \thesection: Purcell 2.20 (Potential at the center of a gold nucleus)}
 \subsection{Problem}
   As a distribution of electric charge, the gold nucleus can be
   described as a sphere of radius \SI{6e-13}{\centi\meter} with a charge $Q = 79e$
@@ -458,6 +454,5 @@
   We can make the path of integration come radial straight in. If the point $P$ has $r<a$,
   \[ \phi(r) = -\int_\infty^r E_{r'}\,dr' = -\int_\infty^a \frac{Q}{r'^2}\,dr' - \int_a^r\frac{Qr'}{a^2}\,dr' = \frac{Q}{a} - \frac{Qr^2}{2a^3} + \frac{Q}{2a} \]
   In SI units,
-  \[ \phi(0) = \frac{1}{4\pi\epsilon_0}\frac{3Q}{2a} = \frac{3\cdot79(\SI{1.6e-19}{\coulomb})}{4\pi(\SI{8.85e-12}{\coulomb\squared\per\newton\per\meter\squared})2(6\cdot19^{-15}\si{\meter})} = \SI{28.4}{\mega\volt}. \] % times 19^{-15}!?
-  {\color{red} Is it really $6\cdot19^{-15}\si{\meter}$ and not \SI{6e-15}{\meter}?}
+  \[ \phi(0) = \frac{1}{4\pi\epsilon_0}\frac{3Q}{2a} = \frac{3\cdot79(\SI{1.6e-19}{\coulomb})}{4\pi(\SI{8.85e-12}{\coulomb\squared\per\newton\per\meter\squared})2(\SI{6e-15}{\meter})} = \SI{28.4}{\mega\volt}. \]
 \end{document}
