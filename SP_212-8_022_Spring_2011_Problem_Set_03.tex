@@ -91,7 +91,7 @@
           $$ \int_{S} \frac{\hat r}{r^2} \cdot d\vec{A} = \int_{0}^{\pi} \int_{0}^{2 \pi} \frac{1}{r^2} r^2\sin \theta\,d\theta\,d\phi = 4 \pi $$
           We also know that (Divergence theorem)
           \begin{equation}\int \vec{\nabla}\cdot {\left(  \frac{\hat r}{r'^2}  \right)}\,dV = \int_{S} \frac{\hat r}{r^2} \cdot d\vec{A} =4 \pi \label{eq:Glaw}\end{equation}
-           $\delta^3(\vec{r})$ is the three dimensional Dirac delta function defined as follows:
+          Define $\delta^3(\vec{r})$ to be the three dimensional Dirac delta function defined as follows:
           $$\delta^3(\vec{r}) = \begin{cases} 0 & \text{for }r \neq  0 \\ \infty & \text{when }r = 0\end{cases}$$
           and the integral of the Dirac delta function over any region ($\mathcal V$) enclosing the origin is $1$ i.e.,
           $$\int_{\mathcal V}\delta^3(\vec{r})\,dV = 1.$$
@@ -122,7 +122,7 @@
         \item $${\vec{\nabla} \times \left( \frac{ \hat\phi}{R} \right)} = \hat{R} \left( 0 -0 \right) + \hat\phi \left( 0 - 0\right) + \hat z \left( \frac{1}{R} \dr \left( \frac{1}{R} \right) - 0 \right) = 0\text{ for }R \neq 0 $$
           The line integral  of ${ \hat\phi / R} $ around an infinitesimal closed curve enclosing the origin is $2\pi$. Hence, ${\vec{\nabla} \times \left( { \hat\phi / R} \right)}$ diverges at the origin. Therefore, 
           $${\vec{\nabla} \times \left( \frac{ \hat\phi}{R} \right)} = 2\pi \delta^2(\vec{R}) $$
-          where, $\delta^2(\vec{R})$ is the $2-D$ Dirac delta function defined as follows:
+          where, $\delta^2(\vec{R})$ is the 2-D Dirac delta function defined as follows:
           $$ \delta^2(\vec{R}) = \begin{cases} 0 & \text{for }R \neq  0 \\ \infty & \text{when }R = 0 \end{cases}$$
           and the integral of the Dirac delta function over any region ($\mathcal A$) enclosing the origin is $1$ i.e.,
           $$\int_{\mathcal A}\delta^2(\vec{R})\,dA = 1.$$
