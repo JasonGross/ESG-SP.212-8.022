@@ -1,0 +1,158 @@
+%%
+%% This is file `mathtools.drv',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% mathtools.dtx  (with options: `driver')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2002-2011 by Morten Hoegholm <mh.ctan@gmail.com>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% This Current Maintainer of this work is Morten Hoegholm,
+%% Lars Madsen, Will Robertson and Joseph Wright.
+%% 
+%% This work consists of the main source file mathtools.dtx
+%% and the derived files
+%%    mathtools.sty, mathtools.pdf, mathtools.ins, mathtools.drv.
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{mathtools.drv}%
+  [2011/02/12 v1.10 mathematical typesetting tools]
+\documentclass{ltxdoc}
+\IfFileExists{fourier.sty}{\usepackage{fourier}}{}
+\addtolength\marginparwidth{-25pt}
+\usepackage{mathtools}
+
+\setcounter{IndexColumns}{2}
+
+\providecommand*\pkg[1]{\textsf{#1}}
+\providecommand*\env[1]{\texttt{#1}}
+\providecommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+\providecommand*\mode[1]{\texttt{[#1]}}
+\providecommand*\file[1]{\texttt{#1}}
+\usepackage{xcolor,varioref,amssymb}
+\makeatletter
+\newcommand*\thinfbox[2][black]{\fboxsep0pt\textcolor{#1}{\rulebox{{\normalcolor#2}}}}
+\newcommand*\thinboxed[2][black]{\thinfbox[#1]{\ensuremath{\displaystyle#2}}}
+\newcommand*\rulebox[1]{%
+  \sbox\z@{\ensuremath{\displaystyle#1}}%
+  \@tempdima\dp\z@
+  \hbox{%
+    \lower\@tempdima\hbox{%
+      \vbox{\hrule height\fboxrule\box\z@\hrule height\fboxrule}%
+    }%
+  }%
+}
+
+\newenvironment{codesyntax}
+    {\par\small\addvspace{4.5ex plus 1ex}%
+     \vskip -\parskip
+     \noindent
+     \begin{tabular}{|l|}\hline\ignorespaces}%
+    {\\\hline\end{tabular}\nobreak\par\nobreak
+     \vspace{2.3ex}\vskip -\parskip\noindent\ignorespacesafterend}
+\makeatletter
+
+\newcommand*\FeatureRequest[2]{%
+  \hskip1sp
+  \marginpar{%
+    \parbox[b]{\marginparwidth}{\small\sffamily\raggedright
+      \strut Feature request by\\#1\\#2%
+    }
+  }%
+}
+
+\newcommand*\ProvidedBy[2]{%
+  \hskip1sp
+  \marginpar{%
+    \parbox[b]{\marginparwidth}{\small\sffamily\raggedright
+      \strut Feature provided by\\#1\\#2%
+    }
+  }%
+}
+
+\newcommand*\cttPosting[2]{%
+  \hskip1sp
+  \marginpar{%
+    \parbox[b]{\marginparwidth}{\small\sffamily\raggedright
+     \strut Posted on \texttt{comp.text.tex} \\#1\\#2%
+    }%
+  }%
+}
+
+\expandafter\def\expandafter\MakePrivateLetters\expandafter{%
+  \MakePrivateLetters  \catcode`\_=11\relax
+}
+
+\providecommand*\SpecialOptIndex[1]{%
+  \@bsphack
+  \index{#1\actualchar{\protect\ttfamily #1}
+          (option)\encapchar usage}%
+      \index{options:\levelchar#1\actualchar{\protect\ttfamily #1}\encapchar
+            usage}\@esphack}
+\providecommand*\opt[1]{\texttt{#1}}
+
+\providecommand*\SpecialKeyIndex[1]{%
+  \@bsphack
+  \index{#1\actualchar{\protect\ttfamily #1}
+          (key)\encapchar usage}%
+      \index{keys:\levelchar#1\actualchar{\protect\ttfamily #1}\encapchar
+            usage}\@esphack}
+\providecommand*\key[1]{\textsf{#1}}
+
+\providecommand*\eTeX{$\m@th\varepsilon$-\TeX}
+
+\def\MTmeta#1{%
+     \ensuremath\langle
+     \ifmmode \expandafter \nfss@text \fi
+     {%
+      \meta@font@select
+      \edef\meta@hyphen@restore
+        {\hyphenchar\the\font\the\hyphenchar\font}%
+      \hyphenchar\font\m@ne
+      \language\l@nohyphenation
+      #1\/%
+      \meta@hyphen@restore
+     }\ensuremath\rangle
+     \endgroup
+}
+\makeatother
+\DeclareRobustCommand\meta{\begingroup\MakePrivateLetters\MTmeta}%
+\def\MToarg#1{{\ttfamily[}\meta{#1}{\ttfamily]}\endgroup}
+\DeclareRobustCommand\oarg{\begingroup\MakePrivateLetters\MToarg}%
+\def\MHmarg#1{{\ttfamily\char`\{}\meta{#1}{\ttfamily\char`\}}\endgroup}
+\DeclareRobustCommand\marg{\begingroup\MakePrivateLetters\MHmarg}%
+\def\MHarg#1{{\ttfamily\char`\{#1\ttfamily\char`\}}\endgroup}
+\DeclareRobustCommand\arg{\begingroup\MakePrivateLetters\MHarg}%
+\def\MHcs#1{\texttt{\char`\\#1}\endgroup}
+\DeclareRobustCommand\cs{\begingroup\MakePrivateLetters\MHcs}
+
+\def\endverbatim{\if@newlist
+\leavevmode\fi\endtrivlist\vspace{-\baselineskip}}
+\expandafter\let\csname endverbatim*\endcsname =\endverbatim
+
+\let\MTtheindex\theindex
+\def\theindex{\MTtheindex\MakePrivateLetters}
+
+\usepackage[final,hyperindex=false]{hyperref}
+\renewcommand*\usage[1]{\textit{\hyperpage{#1}}}
+
+\OnlyDescription
+\begin{document}
+  \DocInput{mathtools.dtx}
+\end{document}
+\endinput
+%%
+%% End of file `mathtools.drv'.

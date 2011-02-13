@@ -1,0 +1,60 @@
+%%
+%% This is file `backref.drv',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% backref.dtx  (with options: `driver')
+%% 
+%% File: backref.dtx
+%% Copyright (C) 1995-2000 David Carlisle, Sebastian Rahtz, Heiko Oberdiek
+%%               2001-2010 Heiko Oberdiek
+%%
+%% This file is part of the `Hyperref Bundle'.
+%% -------------------------------------------
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status `maintained'.
+%%
+%% The Current Maintainer of this work is Heiko Oberdiek.
+%%
+%% The list of all files belonging to the `Hyperref Bundle' is
+%% given in the file `manifest.txt'.
+\ProvidesFile{backref.drv}
+  [2010/08/30 v1.36 Bibliographical back referencing]%
+\documentclass{ltxdoc}
+\usepackage[numbered]{hypdoc}
+\usepackage{bmhydoc}
+\usepackage{backref}
+\EnableCrossrefs
+\CodelineIndex
+\begin{document}
+  \GetFileInfo{backref.sty}%
+  \title{%
+    Back referencing from bibliographical citations%
+    \thanks{%
+      This file has version number \fileversion, %
+      last revised \filedate.%
+    }%
+  }%
+  \author{David Carlisle and Sebastian Rahtz}%
+  \date{\filedate}%
+  \maketitle
+  \makeatletter
+  \@ifundefined{HyperrefOverview}{}{%
+    \HyperrefOverview*%
+  }%
+  \tableofcontents
+  \DocInput{backref.dtx}%
+  \PrintIndex
+\end{document}
+\endinput
+%%
+%% End of file `backref.drv'.

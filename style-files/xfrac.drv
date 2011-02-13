@@ -1,0 +1,83 @@
+%%
+%% This is file `xfrac.drv',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% xfrac.dtx  (with options: `driver')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2004, 2008-2011 by Morten Hoegholm <mh.ctan@gmail.com>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3c of this license or (at your option) any later
+%% version. The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% This Current Maintainer of this work is Morten Hoegholm,
+%% Lars Madsen, Will Robertson and Josseph Wright.
+%% 
+%% This work consists of the main source file xfrac.dtx
+%% and the derived files
+%%    xfrac.sty, xfrac.pdf, xfrac.ins, xfrac.drv.
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{xfrac.drv}%
+  [2011/01/17 v0.3b Text style fractions]
+\RequirePackage{fix-cm}
+\documentclass{ltxdoc}
+
+\usepackage{xfrac}
+\usepackage{nicefrac}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\makeatletter
+\newenvironment{TemplateInterfaceDescription}[1]
+  {\subsection{The Template Type `#1'}%
+   \begingroup
+   \@beginparpenalty\@M
+   \description
+   \def\TemplateArgument##1##2{\item[Arg: ##1]##2\par}%
+   \def\TemplateSemantics{\enddescription\endgroup
+       \subsubsection*{Semantics:}}%
+  }
+  {\par\bigskip}
+
+\newenvironment{TemplateDescription}[2]
+  {\subsection{The Template `#2' (type #1)}%
+   \subsubsection*{Attributes:}%
+   \begingroup
+   \@beginparpenalty\@M
+   \description
+   \def\TemplateKey##1##2##3##4{\item[##1 (##2)]##3%
+     \ifx\TemplateKey##4\TemplateKey\else
+         \hfill\penalty500\relax\qquad \hbox{}\hfill Default:~##4%
+         \nobreak\hskip-\parfillskip\hskip0pt\relax
+     \fi
+     \par}%
+   \def\TemplateSemantics{\enddescription\endgroup
+       \subsubsection*{Semantics \& Comments:}}%
+  }
+  {\par\bigskip}
+
+\renewcommand*\MakePrivateLetters{\makeatletter\catcode`\_=11\relax}
+\makeatother
+
+\providecommand*\eTeX{\ensuremath{\varepsilon}-\kern-.125em\TeX}
+\providecommand*\LaTeXplus{\LaTeXe$*$}
+\providecommand*\key[1]{\textbf{#1}}
+\providecommand*\pkg[1]{\textsf{#1}}
+\newcommand*\switch[2]{{\fontfamily{#1}\selectfont #2}}
+
+\usepackage{lmodern}
+\begin{document}
+  \catcode`\_=12
+  \DocInput{xfrac.dtx}
+\end{document}
+\endinput
+%%
+%% End of file `xfrac.drv'.

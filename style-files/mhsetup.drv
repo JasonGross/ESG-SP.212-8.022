@@ -1,0 +1,58 @@
+%%
+%% This is file `mhsetup.drv',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% mhsetup.dtx  (with options: `driver')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2002-2007,2010 by Morten Hoegholm <mh.ctan@gmail.com>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% This Current Maintainer of this work is Morten Hoegholm,
+%% Lars Madsen, Will Robertson and Joseph Wright.
+%% 
+%% This work consists of the main source file mhsetup.dtx
+%% and the derived files
+%%    mhsetup.sty, mhsetup.pdf, mhsetup.ins, mhsetup.drv.
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{mhsetup.drv}%
+  [2010/01/21 v1.2a programming setup (MH)]
+\documentclass{ltxdoc}
+\usepackage{mhsetup}
+
+\addtolength\oddsidemargin{30pt}
+\providecommand*\pkg[1]{\textsf{#1}}
+\providecommand*\env[1]{\texttt{#1}}
+\providecommand*\opt[1]{\texttt{#1}}
+\def\MakePrivateLetters{%
+  \makeatletter\catcode`\_=11\relax \catcode`\:=11\relax
+}
+
+\def\MHmarg#1{{\ttfamily\char`\{}\meta{#1}{\ttfamily\char`\}}\endgroup}
+\DeclareRobustCommand\marg{\begingroup\MakePrivateLetters\MHmarg}%
+\def\MHarg#1{{\ttfamily\char`\{#1\ttfamily\char`\}}\endgroup}
+\DeclareRobustCommand\arg{\begingroup\MakePrivateLetters\MHarg}%
+\def\MHcs#1{\texttt{\char`\\#1}\endgroup}
+\DeclareRobustCommand\cs{\begingroup\MakePrivateLetters\MHcs}
+\makeatletter
+\providecommand*\eTeX{$\m@th\varepsilon$-\TeX}
+\makeatother
+\begin{document}
+  \DocInput{mhsetup.dtx}
+\end{document}
+\endinput
+%%
+%% End of file `mhsetup.drv'.

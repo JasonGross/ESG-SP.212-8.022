@@ -1,0 +1,222 @@
+%%
+%% This is file `empheq.drv',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% empheq.dtx  (with options: `driver')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2002-2007 by Morten Hoegholm <mh.ctan@gmail.com>
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any later
+%% version. The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%% 
+%% This work has the LPPL maintenance status "maintained".
+%% 
+%% This Current Maintainer of this work is Morten Hoegholm.
+%% 
+%% This work consists of the main source file empheq.dtx
+%% and the derived files
+%%    empheq.sty, empheq.pdf, empheq.ins, empheq.drv.
+%% 
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesFile{empheq.drv}%
+  [2007/12/03 v2.12 Emphasizing equations (MH)]
+\documentclass{ltxdoc}
+\usepackage{mathpazo}
+\usepackage[overload]{empheq}
+\usepackage{xcolor,varioref,booktabs,fancybox}
+
+\pagestyle{headings}
+\hyphenation{emph-eq}
+\makeatletter
+\providecommand*\pkg[1]{\textsf{#1}}
+\providecommand*\env[1]{\texttt{#1}}
+\providecommand*\email[1]{\href{mailto:#1}{\texttt{#1}}}
+\providecommand*\mode[1]{\texttt{[#1]}}
+\providecommand*\file[1]{\texttt{#1}}
+\addtolength\marginparwidth{-30pt}
+
+\newcommand*\AddDescribe[3]{%
+  \@namedef{Describe#1}{\leavevmode\@bsphack\begingroup\MakePrivateLetters
+    \@nameuse{Describe@#1}}
+  \@namedef{Describe@#1}##1{\endgroup
+                \marginpar{\raggedleft\@nameuse{PrintDescribe#1}{##1}}%
+                \@nameuse{Special#1Index}{##1}\@esphack\ignorespaces}
+  \@namedef{Special#1Index}##1{\@bsphack
+      \index{##1\actualchar{\protect\ttfamily ##1}
+            (#2)\encapchar usage}%
+      \index{#3:\levelchar##1\actualchar{\protect\ttfamily ##1}\encapchar
+            usage}\@esphack}
+  \@namedef{PrintDescribe#1}##1{\strut \MacroFont ##1\ }%
+  \@namedef{Print#1Name}##1{\strut \MacroFont ##1\ }%
+}
+\AddDescribe{Color}{color}{colors}
+\AddDescribe{KeyFamily}{key family}{key families}
+\newcommand*\DescribeDelimiter[1]{%
+  \cs{#1}&\SpecialMkhIndex{empheq#1}\cs{empheq}\texttt{#1} &
+  \SpecialMkhIndex{empheqbig#1}\cs{empheqbig}\texttt{#1} &
+  $\@nameuse{#1}$\tabularnewline}
+\newcommand*\SpecialMkhIndex[1]{%
+  \@bsphack
+    \index{#1\actualchar{\protect\ttfamily \protect\bslash\space#1}
+     (` $\bslash#1$ ')\encapchar usage}%
+  \@esphack
+}
+\newcommand\TabDescribeOption[3][(default)]{%
+    \SpecialOptIndex{#2}\opt{#2}  & #3 \tabularnewline
+}
+\newcommand*\TabDescribeAmsKey[2][]{%
+    \SpecialKeyIndex{#2}\env{#2} &
+    \texttt{\{#2#1\}} &
+    \SpecialKeyIndex{#2*}\env{#2*} &
+    \texttt{\{#2*#1\}} \tabularnewline
+}
+\newcommand*\TabDescribeOptKey[3][]{%
+    \SpecialKeyIndex{#2}\key{#2} &
+    \texttt{#2=}\meta{#3} & #1 \tabularnewline
+}
+
+\newenvironment{codesyntax}
+    {\par\small\addvspace{4.5ex plus 1ex}%
+     \vskip -\parskip
+     \noindent
+     \begin{tabular}{|l|}\hline\ignorespaces}%
+    {\\\hline\end{tabular}\nobreak\par\nobreak
+     \vspace{2.3ex}\vskip -\parskip\noindent\ignorespacesafterend}
+\makeatletter
+
+\newcommand*\FeatureRequest[2]{%
+  \hskip1sp
+  \marginpar{%
+    \parbox[b]{\marginparwidth}{\small\sffamily\raggedright
+      \strut Feature request by\\#1\\#2%
+    }
+  }%
+}
+
+\newcommand*\cttPosting[2]{%
+  \hskip1sp
+  \marginpar{%
+    \parbox[b]{\marginparwidth}{\small\sffamily\raggedright
+     \strut Posted on \texttt{comp.text.tex} \\#1\\#2%
+    }%
+  }%
+}
+
+\expandafter\def\expandafter\MakePrivateLetters\expandafter{%
+  \MakePrivateLetters  \catcode`\_=11\relax
+}
+
+\providecommand*\SpecialOptIndex[1]{%
+  \@bsphack
+  \index{#1\actualchar{\protect\ttfamily #1}
+          (option)\encapchar usage}%
+      \index{options:\levelchar#1\actualchar{\protect\ttfamily #1}\encapchar
+            usage}\@esphack}
+\providecommand*\opt[1]{\texttt{#1}}
+
+\providecommand*\SpecialKeyIndex[1]{%
+  \@bsphack
+  \index{#1\actualchar{\protect\ttfamily #1}
+          (key)\encapchar usage}%
+      \index{keys:\levelchar#1\actualchar{\protect\ttfamily #1}\encapchar
+            usage}\@esphack}
+\providecommand*\key[1]{\textsf{#1}}
+\providecommand*\keyfam[1]{\textsf{#1}}
+
+\providecommand*\eTeX{$\m@th\varepsilon$-\TeX}
+
+\def\MTmeta#1{%
+     \ensuremath\langle
+     \ifmmode \expandafter \nfss@text \fi
+     {%
+      \meta@font@select
+      \edef\meta@hyphen@restore
+        {\hyphenchar\the\font\the\hyphenchar\font}%
+      \hyphenchar\font\m@ne
+      \language\l@nohyphenation
+      #1\/%
+      \meta@hyphen@restore
+     }\ensuremath\rangle
+     \endgroup
+}
+\makeatother
+\DeclareRobustCommand\meta{\begingroup\MakePrivateLetters\MTmeta}%
+\def\MToarg#1{{\ttfamily[}\meta{#1}{\ttfamily]}\endgroup}
+\DeclareRobustCommand\oarg{\begingroup\MakePrivateLetters\MToarg}%
+\def\MHmarg#1{{\ttfamily\char`\{}\meta{#1}{\ttfamily\char`\}}\endgroup}
+\DeclareRobustCommand\marg{\begingroup\MakePrivateLetters\MHmarg}%
+\def\MHarg#1{{\ttfamily\char`\{#1\ttfamily\char`\}}\endgroup}
+\DeclareRobustCommand\arg{\begingroup\MakePrivateLetters\MHarg}%
+\def\MHcs#1{\texttt{\char`\\#1}\endgroup}
+\DeclareRobustCommand\cs{\begingroup\MakePrivateLetters\MHcs}
+\def\MHbool#1{{\ttfamily #1}\endgroup}
+\DeclareRobustCommand\bool{\begingroup\MakePrivateLetters\MHbool}%
+
+\def\endverbatim{\if@newlist
+\leavevmode\fi\endtrivlist\vspace{-\baselineskip}}
+\expandafter\let\csname endverbatim*\endcsname =\endverbatim
+
+\let\MTtheindex\theindex
+\def\theindex{\MTtheindex\MakePrivateLetters}
+
+\newcommand*\widefbox[1]{\fbox{\hspace{1em}#1\hspace{1em}}}
+\definecolor{myblue}{rgb}{.8, .8, 1}
+\newcommand*\mybluebox[1]{%
+  \colorbox{myblue}{\hspace{1em}#1\hspace{1em}}}
+\newenvironment{important}[2][]{%
+  \setkeys{EmphEqEnv}{#2}%
+  \setkeys{EmphEqOpt}{box=\mybluebox,#1}%
+  \EmphEqMainEnv}%
+  {\endEmphEqMainEnv}
+\definecolor{shadecolor}{cmyk}{0,0,0.41,0}
+\definecolor{light-blue}{cmyk}{0.25,0,0,0}
+\newsavebox{\mysaveboxM} % M for math
+\newsavebox{\mysaveboxT} % T for text
+\newcommand*\Garybox[2][Example]{%
+  \sbox{\mysaveboxM}{#2}%
+  \sbox{\mysaveboxT}{\fcolorbox{black}{light-blue}{#1}}%
+  \sbox{\mysaveboxM}{%
+    \parbox[b][\ht\mysaveboxM+.5\ht\mysaveboxT+.5\dp\mysaveboxT][b]{%
+      \wd\mysaveboxM}{#2}%
+  }%
+  \sbox{\mysaveboxM}{%
+    \fcolorbox{black}{shadecolor}{%
+      \makebox[\linewidth-10em]{\usebox{\mysaveboxM}}%
+    }%
+  }%
+  \usebox{\mysaveboxM}%
+  \makebox[0pt][r]{%
+    \makebox[\wd\mysaveboxM][c]{%
+      \raisebox{\ht\mysaveboxM-0.5\ht\mysaveboxT
+                +0.5\dp\mysaveboxT-0.5\fboxrule}{\usebox{\mysaveboxT}}%
+    }%
+  }%
+}
+
+\newcommand\EmphEqpart{%
+  \def\partname{\EmphEqpartname}%
+  \part}
+
+\def\EmphEqpartname{Part}
+\makeatother
+
+\usepackage{graphicx}
+\usepackage[final,breaklinks=true,hyperindex=false]{hyperref}
+\renewcommand*\usage[1]{\textit{\hyperpage{#1}}}
+
+\OnlyDescription
+\begin{document}
+\DocInput{empheq.dtx}
+\end{document}
+\endinput
+%%
+%% End of file `empheq.drv'.
