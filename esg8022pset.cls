@@ -21,10 +21,9 @@
 %% LaTeX version 1999/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{esg8022pset}
- [2011/02/09 v0.1c ESG PSet Template]
+ [2011/02/20 v0.1e ESG PSet Template]
 \LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 \RequirePackage{fancyhdr}
-\RequirePackage[T1]{fontenc}
 \RequirePackage{lastpage}
 \RequirePackage{xifthen}
 \RequirePackage{verbatim}
