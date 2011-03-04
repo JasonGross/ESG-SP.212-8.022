@@ -1,0 +1,168 @@
+\documentclass[solutions]{esg8022pset} 
+  \usepackage{amsmath}
+  \usepackage{amssymb}
+  \usepackage{enumerate}
+  \usepackage{graphicx}
+  \usepackage{hyperref}
+  \usepackage{mathtools}
+  \usepackage[per-mode=symbol,exponent-product=\cdot]{siunitx} %If this line is giving you trouble, try replacing per-mode with per
+  \providecommand{\uvec}[1]{{\hat{\bf{#1}}}}
+  \usepackage{pgf,tikz}
+  \usetikzlibrary{arrows}
+  \usepackage{wasysym}
+  \usepackage{subfig}
+  \usepackage{wrapfig}
+  \makeatletter
+  \newcommand{\interitemtext}[1]{%
+    \begin{list}{}
+     {\itemindent=0mm\labelsep=0mm
+     \labelwidth=0mm\leftmargin=0mm
+     \addtolength{\leftmargin}{-\@totalleftmargin}}
+      \item #1
+    \end{list}
+  }
+  \makeatother
+  \renewcommand{\d}{\,d}
+  \providecommand{\norm}[1]{\lVert#1\rVert}
+
+  \AtBeginDocument{%
+    % Appologies to any future editor on the inconsistencies in TeX code and the unnecessary braces.  I'm aggregating previously typeset problems, and didn't think it worth my time to improve the quality of TeX code in ways that won't make any difference to the typeset material. -Jason Gross (jgross@mit.edu)
+  }%
+\classname{Physics 8.022} \semester{Spring 2011} 
+\problemsetnumber{6}
+\date{\today }
+\duedate{Sunday, March 13 at 10 \textsc {pm}}
+\readingassignment{}
+\problemsettitle{Resistances and Circuits}
+\begin{document}
+\section{Problem \thesection: Purcell 4.4: Resistance of Atlantic Ocean}
+\subsection{Problem}
+  The first telegraphic messages crossed the Atlantic Ocean in 1858, by a cable 3000 km long laid between Newfoundland and Ireland. The conductor in this cable consisted of seven copper wires, each of diameter 0.73 mm, bundled together and surrounded by an insulating sheath.
+  \begin{enumerate}[(a)]
+    \item Calculate the resistance of the conductor. Use \SI{3e-8}{\ohm\meter} for the resistivity of copper, which was of somewhat dubious purity.
+    \item A return path for the current was provided by the ocean itself. Given that the resistivity of seawater is about \SI{0.25}{\ohm\meter}, see if you can show that the resistance of the ocean return would have been much smaller than that of the cable.
+  \end{enumerate}
+\subsection{Solution}
+  %\begin{enumerate}[a)]
+   %\item Since $R = \frac{\rho L}{A} = \frac{({3\cdot 10^{-8}\,\Omega\cdot \rm m})({3000\,\rm km})}{\pi ({0.365\,\rm mm})^2} \approx 215034\,\Omega$ for one wire, $R \approx 30719\,\Omega$
+   %\item $R = \frac{\rho L}{A} = \frac{({0.25\,\Omega\cdot \rm m})({3000\,\rm km})}{A} = \frac{750000\,\Omega\cdot{\rm m}^2}{A}$.  To be the same resistivity, the ocean must be at least $25$ m$^2$, or about $3$ m deep.  Since the ocean is much deeper than this, about 3339 m deep, the resistance of the ocean return would have been much smaller than that of the cable. (Value from \url{http://en.wikipedia.org/wiki/Atlantic\_ocean\#Geography}.)
+  %\end{enumerate}
+
+\section{Problem \thesection: Sea Water}
+\subsection{Problem}
+  \begin{wrapfigure}{r}{0.25\textwidth}
+    \begin{center}\includegraphics[width=0.20\textwidth]{ps06_02_01.pdf}\end{center}
+  \end{wrapfigure}
+  An oceanographer is studying how the ion concentration in sea water depends on depth. She does this by lowering into the water (until completely submerged) a pair of concentric metallic cylinders (see figure) at the end of a cable and taking data to determine the resistance between these electrodes as a function of depth. The water between the two cylinders forms a cylindrical shell of inner radius $r_a$, outer radius $r_b$, and length $L$ much larger than $r_b$. The scientist applies a potential difference $\Delta V$ between the inner and outer surfaces, producing an outward radial current $I$. Let $\rho$ represent the resistivity of the water.
+  \begin{enumerate}[(a)]
+    \item Find the resistance of the water between the cylinders in terms of $L$, $\rho$, $r_a$, and $r_b$.
+    \item Express the resistivity of the water in terms of the measured quantities $L$, $r_a$, $r_b$, $\Delta V$, and $I$.
+  \end{enumerate}
+\subsection{Solution}
+  %\begin{enumerate}[a)]
+   %\item Since $R = \frac{\rho L}{A}$, $R = \int_{r_a}^{r_b}\frac{\rho}{2L\pi r}\d r = \frac{\rho}{2\pi L}\ln\frac{r_b}{r_a}$
+   %\item Since $\Delta V = I R$, $\rho = \frac{2\pi L \Delta V}{I \ln \frac{r_b}{r_a}}$.
+  %\end{enumerate}
+
+\section{Problem \thesection: Non-uniform Conductivity}
+\subsection{Problem}
+  A cylindrical glass rod is heated with a torch until it conducts enough current to cause a light bulb to glow. The rod has a length $L = 2$ cm, a diameter $d = 0.5$ cm, and its ends, plated with material of infinite conductivity, are connected to the rest of the circuit. When red hot, the rod's conductivity varies with position $x$ measured from the center of the rod as $\sigma(x) = \sigma_0 L^4 / x^4$, with $\sigma_0 = 4 \cdot 10^{-2} (\Omega\cdot{\rm m})^{-1}$.
+  \begin{enumerate}[(a)]
+    \item What is the resistance of the glass rod? Express your answer both symbolically and as a value in ohms.
+    \item When a voltage $\Delta V$ is applied between the two ends, what is the current density $\vec J(x)$ and what is the steady-state electric field $\vec E(x)$?
+    \item In steady-state, what is the volume charge density $\rho(x)$ found within the rod? (Note that you are not asked for the surface charge $\sigma$ that will accumulate on the surfaces.)
+  \end{enumerate}
+\subsection{Solution}
+  %\begin{enumerate}[a)]
+   %\item The resistance of a small volume element is $\d R = \frac{\d x}{A\sigma(x)} = \frac{x^4 \d x}{A\sigma_0 L^4}$. $R = \frac{1}{\pi \left(\frac{d}{2}\right)^2 \sigma_0 L^4}\int_{-L/2}^{L/2} x^4 \d x = \frac{4}{\pi d^2 L^4 \sigma_0} \cdot \frac{L^5}{80} = \frac{L}{20\pi d^2 \sigma_0}$.  Numerically, this is $R \approx 318\,\Omega$.
+   %\item By charge conservation, $I$ is constant throughout the rod.  Then, for an infinitesimal length $\d x$, $\d V = I\d R = \frac{J}{A}\d R = J\frac{x^4 \d x}{\sigma_0 L^4}$.  Integrating, $\Delta V = \frac{J}{\sigma_0 L^4} \cdot \frac{L^5}{80} = \frac{J L}{80 \sigma_0}$.  Then $\vec J = \frac{80\Delta V \sigma_0}{L} \hat x$.  Since $\vec J = \sigma\vec E$, $\vec E(x) =  \frac{80\Delta V \sigma_0}{L\sigma_0 L^4 / x^4} \hat x = \frac{80\Delta V x^4}{L^5} \hat x$.
+   %\item Since $\vec E(0) = 0$, I take a Gaussian cylindrical surface with one end at $x = 0$.  Then $EA = 4\pi \int_0^x A\rho(x)\d x$, so $4\pi\rho(x) = \left.\frac{\d E(x')}{\d x'}\right|_{x' = x} = \frac{80\Delta V x^3}{\pi L^5}$.
+  %\end{enumerate}
+
+\section{Problem \thesection: Battery Lifetime}
+\subsection{Problem}
+  A standard D cell can supply 10 mA at 1.5 V for about 300 hours. An alkaline D cell can do about the same. Assume that the chemistry of the batteries will produce the same amount of energy and will maintain the emf $\epsilon = 1.5$ V regardless of the current drawn from the battery. However the internal resistance of a standard D cell is about 1 $\Omega$ and the internal resistance of an alkaline D cell is about 0.1 $\Omega$, so the amount of energy dissipated internally is different. Suppose that you have a multi-speed winch that is 50\% efficient, and that you are trying to lift a mass of 60 kg. The winch acts as load with a variable resistance $R_L$ at different speeds.
+  \begin{enumerate}[(a)]
+    \item Suppose the winch is set to super-slow speed. Then the load resistance is much greater than the internal resistance and you can assume that there is no loss of energy to internal resistance. How high can each battery lift the mass before the battery uses all of its energy?
+    \item For each battery, what should the resistance of the winch be set at in order to have the battery lift the mass at the fastest rate?
+    \item What is the fastest rate in m/sec that each battery can lift the mass?
+    \item At this fastest lift rate, what is the maximum height that you can lift the mass before the battery dies?
+    \item How long does it take to reach this height?
+  \end{enumerate}
+\subsection{Solution}
+  %\begin{enumerate}[a)]
+   %\item Since $P = IV$, so $E = IVt$.  Since the winch is 50\% efficient, $mg\Delta h = \Delta U_g = \frac12IVt$; $\Delta h = \frac{IVt}{2mg} = \frac{({10\,\rm mA})({1.5\,\rm V})({300\,\rm hrs})}{2({60\,\rm kg})g} \approx 14\,\rm m$.
+   %\item The fastest rate occurs at the greatest power.  The total power dissipated is $P = I^2 R$.  Since $I = \frac{V}{R_I + R_L}$, the power dissipated by the wench is $\frac{V^2}{(R_I + R_L)^2}R_L$.  The maximum occurs at $\frac{\partial}{\partial R_L}\left(\frac{V^2}{(R_I + R_L)^2}R_L\right) = \frac{V^2}{(R_I + R_L)^2}\left(1 - \frac{2R_L}{R_L + R_I}\right) = 0$, which is $R_L = R_I$.  Then $R_L = 1\,\Omega$ for the standard D cell and $R_L = 0.1\,\Omega$ for the alkaline D cell.
+   %\item The rate of energy use $mgv = \frac{\Delta U_g}{\Delta t} = \frac12\frac{V^2}{(R_I + R_L)^2}R_L$.  Since $R_L = R_I$, $mgv = \frac12\frac{V^2 R_I}{4R_I^2} = \frac{V^2}{8R_I}$; $v = \frac{V^2}{8m gR_I} = \frac{({1.5\,\rm V})^2}{8({60\,\rm kg})g R_I}$.  This is approximately $0.00048$ m/s for the standard D cell and about $0.0048$ m/s for the alkaline D cell.
+   %\item Since the internal resistance is the same as $R_L$, half the power is dissipated internally.  Since the wench is only 50\% efficient, and height is linear in power, the total height is half that when $R_L \gg R_I$, about $6.9$ m.
+   %\item Since the velocity is $\frac{V^2}{8mgR_I}$ and the height is $\frac{I_0Vt_{I_0}}{4mg}$, the time is $\left. \frac{I_0Vt_{I_0}}{4mg} \middle/ \frac{V^2}{8mgR_I}\right. = \frac{I_0 V t_{I_0} 8 mg R_I}{4 m g V^2} = \frac{2I_0 t_{I_0} R_I}{V} = \frac{2({10\,\rm mA})({300\,\rm hrs})}{({1.5\,\rm V})}R_I$.  This is approximately 4 hours for the standard D cell and 24 minutes for the alkaline D cell.
+  %\end{enumerate}
+
+\section{Problem \thesection: Purcell 4.16}
+\subsection{Problem}
+  In the circuit below, if $R_0$ is given, what value must $R_1$ have in order
+  that the input resistance between the terminals shall be equal to $R_0$?
+
+  \begin{center}\includegraphics[width=0.4\textwidth]{ps06_05_01.pdf}\end{center}
+\subsection{Solution}
+
+\section{Problem \thesection: Purcell 4.19: Design an ohmmeter}
+\subsection{Problem}
+  You own a micro-ammeter that reads \SI{50}{\micro\ampere} at full scale deflection, and the coil in the meter movement has a resistance of 20 $\Omega$. By adding two resistors, $R_1$ and $R_2$, and a 1.5 V battery you can convert this into an ohmmeter. When the two outgoing leads of this ohmmeter are connected together, the meter should register 0 ohms by giving full-scale deflection. When the leads are connected across an unknown resistance $R_u$, the deflection will indicate the resistance value if the scale is appropriately marked. In particular, we want half-scale deflection to indicate 15 $\Omega$. What values of $R_1$ and $R_2$, are required, how should the connections be made, and where on the ohm scale will the marks be (with reference to the old micro-ammeter calibration) for 5 $\Omega$ and 50 $\Omega$? Are there several different combinations that can solve this problem?
+\subsection{Solution}
+
+\section{Problem \thesection: Composite Conducting Medium}
+\subsection{Problem}
+  \begin{wrapfigure}{r}{0.2\textwidth}\vspace{-5\intextsep}
+    \begin{center}\includegraphics[width=0.15\textwidth]{ps06_07_01}\end{center}
+  \end{wrapfigure}
+  An infinite conducting medium has two regions with conductivity $\sigma_{c,1}$ and $\sigma_{c,2}$, separated by a plane interface. In
+  region 1 a uniform current density $\vec J_1$ flows up to the interface, making at an angle $\theta_1$ with the interface. $\vec J_2$ flows away from the interface and makes an angle $\theta_2$ with the interface. Assume that the charge density $\sigma$ is not changing in time.
+  \begin{enumerate}[(a)]
+    \item Find the direction and magnitude of the current density $\vec J_2$ in region 2.
+    \item Find the surface charge density $\sigma$ on the interface.
+  \end{enumerate}
+\subsection{Solution}
+  %\begin{enumerate}[a)]
+   %\item Since the surface charge densities are constant, the normal flux in must be the same as the normal flux out.  Then $J_1 \sin\theta_1 = J_2 \sin\theta_2$.  Then $J_2 = J_1\frac{\sin\theta_1}{\sin\theta_2}$.  Since electric fields are conservative, the integral around a closed loop is zero.  Taking the integral around a closed loop through the plane infinitesimally close to it on both sides, the tangential components of $\vec E_1$ and $\vec E_2$ must be the same; $\frac{J_1}{\sigma_{c,1}} \cos\theta_1 = \frac{J_2}{\sigma_{c,2}}\cos\theta_2$, so $J_2 = J_1\frac{\sigma_{c,2}}{\sigma_{c,1}}\cdot  \frac{\cos\theta_1}{\cos\theta_2}$.  Then $\frac{\sin\theta_1}{\sin\theta_2} = \frac{\sigma_{c,2}}{\sigma_{c,1}}\cdot  \frac{\cos\theta_1}{\cos\theta_2}$, so $\frac{\sigma_{c,1}}{\sigma_{c,2}}\tan\theta_1 = \tan\theta_2$.  Then $\theta_2 = \tan^{-1}\left(\frac{\sigma_{c,1}}{\sigma_{c,2}}\tan\theta_1\right)$.  Plugging this in, $J_2 = J_1\cdot \frac{\sqrt{\sin ^2\left(\theta _1\right) \sigma _{c,1}^2+\cos^2\left(\theta _1\right) \sigma _{c,2}^2}}{\sigma _{c,1}}$
+   %\item Since $EA = 4\pi q$, $\ell^2\left(\frac{J_2}{\sigma_{c,2}}\sin\theta_2 - \frac{J_1}{\sigma_{c,1}}\sin\theta_1\right) = 4\pi \ell^2 \sigma$, so $\sigma = \frac{\frac{J_2}{\sigma_{c,2}}\sin\theta_2 - \frac{J_1}{\sigma_{c,1}}\sin\theta_1}{4\pi} = \frac{J_1\sin\theta_1}{4\pi}\breakingleft(\frac{1}{\sigma_{c,2}} - \frac{1}{\sigma_{c,2}}\breakingright)$.
+  %\end{enumerate}
+
+\section{Problem \thesection: Multiple Loop Circuits}
+\subsection{Problem}
+  Consider the following circuit consisting of a voltage source $V_0$ , three resistors with resistances $R_1$, $R_2$, and $R_3$, and a capacitor with capacitance $C$ connected together as shown in the Figure below.
+  \begin{center}\includegraphics[width=0.4\textwidth]{ps06_08_01}\end{center}
+  \begin{enumerate}[(a)]
+    \item Find a differential equation for the charge on the capacitor and try to solve it.
+    \item What is the time constant for this circuit?
+    \interitemtext{\textbf{Try to answer the following questions conceptually then check your answer against your solutions.}}
+    \item At $t = 0$, what is the voltage difference across the capacitor?
+    \item What is the current that flows in the branch containing the voltage source at $t = 0$.
+    \item When a long time has passed after the switch was closed, what is the current that flows in the branch of the circuit that included the capacitor?
+    \item When a long time has passed after the switch was closed (based on your result form part e), find the current that flows from the voltage source?
+  \end{enumerate}
+\subsection{Solution}
+  %\begin{enumerate}[a)]
+   %\item Solving the equations $V_0 = I_1 R_1 + I_2 R_2 = I_1 R_1 + I_3 R_3 + V_C$, $V_C C = Q$, $I_1 = I_2 + I_3$, and $\frac{\d Q}{\d t} = I_3$, $-C R_2 R_1 Q'(t)-C R_3 R_1 Q'(t)-C R_2 R_3 Q'(t)+R_1 Q(t)+R_2 Q(t)=C R_2 V_0$.  Solving this equation, $Q(t) = K e^{-\left(R_1+R_2\right) t / \left( C R_2 R_3+C R_1 \left(R_2+R_3\right)\right)}+\frac{C R_2 V_0}{R_1+R_2}.$  If we assume that $Q(0) = 0$, then $$Q(t) = \frac{C R_2 V_0}{R_1+R_2}\left(1 -  e^{-\left(R_1+R_2\right) t / \left( C R_2 R_3+C R_1 \left(R_2+R_3\right)\right)}\right).$$
+   %\item By analogy with with equation $C\epsilon (1 - e^{-t / RC}) = Q(t)$, the time constant for this circuit is $\frac{C R_2 R_3+C R_1 (R_2+R_3)}{R_1+R_2}$.
+   %\item At $t = 0$, the voltage difference across the capacitor is 0 (there's no charge difference, so no $\vec E$).  Algebraically, this is $Q(0) = CV(0)$, or $V(0) = \frac{R_2 V_0}{R_1+R_2}\left(1 -  e^{0}\right) = 0$.
+   %\item The total current is $I_T = \frac{V_0(R_2 + R_3)}{R_2 R_3 + R_1(R_2 + R_3)}$.  Using the equation for charge, this is $I_T = I + I_{R_2} = I + \frac{V_0 - I_T R_1}{R_2}$, so $$I_T = \frac{V_0 + I R_2}{R_1+R_2} =  \frac{V_0 + \frac{\d Q}{\d t}  R_2}{R_1+R_2} =  \frac{V_0 + R_2 \frac{R_2 V_0}{R_2 R_3 + R_1 (R_2+R_3)} e^{0}}{R_1+R_2} = \frac{\left(R_2+R_3\right) V_0}{R_2 R_3 + R_1 R_2 + R_1 R_3}.$$
+   %\item No current flows.  Algebraically, this is $$\lim_{t\to\infty} \frac{\d Q}{\d t} = \lim_{t\to\infty} \frac{R_2 V_0}{R_2 R_3 + R_1 (R_2+R_3)} e^{-\left(R_1+R_2\right) \cdot t / \left( C R_2 R_3+C R_1 \left(R_2+R_3\right)\right)} = 0.$$
+   %\item Since no current flows through the branch with the capacitor, the current from the voltage source is $I = \frac{V}{R} = \frac{V_0}{R_1 + R_2}$.
+  %\end{enumerate}
+
+\section{Problem \thesection: Infinite Lattice of Resistors}
+\subsection{Problem}
+  Suppose you have an infinite lattice of resistors, all of the same resistance $R$, as illustrated in the figure. Suppose you apply a potential difference between two adjacent nodes C and D which causes a current of $I = 1$ A to flow into C and a current of $I = 1$ A to flow out of D.
+  \begin{enumerate}[(a)]
+   \item How much current flows through the resistor connecting C to D?
+   \item What is the total resistance $R_{CD}$ of the lattice between the two points?
+  \end{enumerate}
+  \begin{center}\includegraphics[width=0.33\textwidth]{ps06_09_01}\end{center}
+\subsection{Solution}
+  %\begin{enumerate}[a)]
+   %\item This is equivalent to the superposition of 1 A flowing into C with 1 A flowing out of D.  Since both of these cases are horizontally and vertically symmetric, $\frac14$ A flows through the resistor between C and D in both cases, and so $\frac12$ A flows through that resistor in the superposition setup.
+   %\item The resistance of the lattice between C and D is $R_{CD}$ such that this setup is equivalent to a circuit with a 1 A battery connected to a resistor of resistance $R_{CD}$.  Then $({1\,\rm A})R_{CD} = V = \left({\frac12\,\rm A}\right)R$, so $R_{CD} = \frac12 R$.
+  %\end{enumerate}
+
+\end{document}
