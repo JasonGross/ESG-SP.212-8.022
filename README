@@ -1,5 +1,7 @@
 This is a repository for the problem sets for ESG's 8.022 class, as of spring 2011.
 
+The template file is SP_212-8_022_Spring_2011_Problem_Set_00_Template.tex.  When LaTeXed, this file makes a problems pdf, a problems only .tex file, and a solutions .tex file.  You'll need to LaTeX the solutions file to get a solutions pdf.
+
 To get new changes that have been made by someone else, type
   git pull origin master:master
 in a terminal, when you are in the same folder as this file.
