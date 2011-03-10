@@ -1,0 +1,18 @@
+This is a repository for the problem sets for ESG's 8.022 class, as of spring 2011.
+
+To get new changes that have been made by someone else, type
+  git pull origin master:master
+in a terminal, when you are in the same folder as this file.
+If this fails (saying that the commit was not a fast-forward), try
+  git pull origin master:master -f
+You should always check for updates in this way BEFORE you start editing.
+
+To save changes that you have made, with git, type
+  git add .
+  git commit -am "Type a description of your changes here."
+in a terminal, when you are in the same folder as this file.
+To make it so that others can see the changes as well, type
+ git push origin master:master
+
+If you want to revert any changes that may have happened between now and the last time you saved (commited), type
+  git reset --hard
