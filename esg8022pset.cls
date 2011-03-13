@@ -21,7 +21,7 @@
 %% LaTeX version 1999/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{esg8022pset}
- [2011/02/20 v0.1e ESG PSet Template]
+ [2011/03/13 v0.1f ESG PSet Template]
 \LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
@@ -150,7 +150,8 @@
   \begingroup
     \bf
     \begin{center}%
-      {\noindent  \textsc{Massachusetts Institute of Technology} \par}%
+      {\noindent \fontencoding{T1}\selectfont % allow bold textsc
+        \textsc{Massachusetts Institute of Technology} \par}%
       {\noindent  Experimental Study Group \par}%
     \end{center}%
     {\noindent  \@classname, \@semester \par}%

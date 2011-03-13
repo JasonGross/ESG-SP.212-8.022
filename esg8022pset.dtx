@@ -19,7 +19,7 @@
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<driver>\ProvidesFile{esg8022pset.dtx}
 %<class>\ProvidesClass{esg8022pset}
-%<class> [2011/02/20 v0.1e ESG PSet Template]
+%<class> [2011/03/13 v0.1f ESG PSet Template]
 %<class>\LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 %<class>\RequirePackage{fancyhdr}
 %<class>\RequirePackage{lastpage}
@@ -73,6 +73,8 @@
 % \changes{v0.1d}{2011/02/13}{Added documentation.  Updated to use more of etoolbox.}
 % \changes{v0.1e}{2011/02/20}{Removed the package fontenc; it was causing
 %                             font problems.}
+% \changes{v0.1f}{2011/03/13}{Font type T1 required for bold textsc.
+%                             Inserted it.}
 %
 % \GetFileInfo{esg8022pset.dtx}
 %
@@ -314,7 +316,8 @@
   \begingroup
     \bf
     \begin{center}%
-      {\noindent  \textsc{Massachusetts Institute of Technology} \par}%
+      {\noindent \fontencoding{T1}\selectfont % allow bold textsc
+        \textsc{Massachusetts Institute of Technology} \par}%
       {\noindent  Experimental Study Group \par}%
     \end{center}%
     {\noindent  \@classname, \@semester \par}%
