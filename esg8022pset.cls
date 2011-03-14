@@ -21,14 +21,13 @@
 %% LaTeX version 1999/12/01 or later.
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{esg8022pset}
- [2011/03/13 v0.1f ESG PSet Template]
-\LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
+ [2011/03/13 v0.1g ESG PSet Template]
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage{xifthen}
 \RequirePackage{verbatim}
-\RequirePackage[margin=1in]{geometry}
-\RequirePackage{etoolbox,etextools}
+\RequirePackage{etoolbox}[2011/01/03]
+\RequirePackage{etextools}
 \newboolean{esg8022pset@solutions}\newboolean{esg8022pset@problems}
 \newboolean{esg8022pset@pdfproblems}\newboolean{esg8022pset@pdfsolutions}
 \DeclareOption{problems}{\setboolean{esg8022pset@problems}{true}\setboolean{esg8022pset@solutions}{false}}
@@ -37,24 +36,15 @@
 \DeclareOption{makesolutionspdf}{\setboolean{esg8022pset@pdfsolutions}{true}}
 \DeclareOption{makeallpdfs}{\setboolean{esg8022pset@pdfproblems}{true}\setboolean{esg8022pset@pdfsolutions}{true}}
 \ProcessOptions\relax
+\LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
+\RequirePackage[margin=1in]{geometry}
 \ifthenelse{\boolean{esg8022pset@problems} \OR \boolean{esg8022pset@solutions}}{
 }{
-  \expandnext{\renewcommand{\end}[1]}{\end{#1}\ifcsdef{end#1@hook}{\csname end#1@hook\endcsname}{}}
-
-  \newcommand{\AfterEnvironment}[2]{%
-    \ifcsdef{end#1@hook}{}{%
-      \csdef{end#1@hook}{}%
-    }%
-    \csappto{end#1@hook}{#2}%
-  }
-
   \newwrite\esgpset@problemsout
   \newwrite\esgpset@solutionsout
-  %\newwrite\esgpset@tempout
   \newcommand{\esgpset@compilefile}[1]{\write18{pdflatex "#1"}}
   \edef\esgpset@problemsfilename{\jobname\string_Problems.tex}
   \edef\esgpset@solutionsfilename{\jobname\string_Solutions.tex}
-  %\edef\esgpset@tempfilename{\jobname.tmp}
   \newcommand{\esgpset@writetoboth}[1]{\esgpset@writetoproblems{#1}%
     \esgpset@writetosolutions{#1}}
   \newcommand{\esgpset@writetoall}[1]{\esgpset@writetoboth{#1}\esgpset@writetothis{#1}}
@@ -148,9 +138,10 @@
   \expandafter\endgroup
   \expandafter\chead\expandafter{\@cheader}
   \begingroup
-    \bf
+    \bf \let\@oldtextsc=\textsc
+    \renewcommand{\textsc}[1]{{\fontencoding{T1}\selectfont\@oldtextsc{#1}}}%
     \begin{center}%
-      {\noindent \fontencoding{T1}\selectfont % allow bold textsc
+      {\noindent
         \textsc{Massachusetts Institute of Technology} \par}%
       {\noindent  Experimental Study Group \par}%
     \end{center}%
@@ -192,8 +183,8 @@
 \newcommand*{\readingassignment}[1]{\gdef\@readingassignment{#1}}
 \readingassignment{}
 \newcommand*{\problemsettitle}[1]{\gdef\@problemsettitle{#1}}
-\newenvironment{problem}[2][\relax]{%
-  \ifthenelse{\equal{#1}{\relax}}{%
+\newenvironment{problem}[2][]{%
+  \xifempty{#1}{%
     \esgpset@writetoall{\string\section{Problem \string\thesection: \unexpanded{#2}}}%
   }{%
     \esgpset@writetoall{\string\section*{Problem #1: \unexpanded{#2}}}%

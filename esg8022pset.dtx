@@ -19,23 +19,13 @@
 %<class>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<driver>\ProvidesFile{esg8022pset.dtx}
 %<class>\ProvidesClass{esg8022pset}
-%<class> [2011/03/13 v0.1f ESG PSet Template]
-%<class>\LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
+%<class> [2011/03/13 v0.1g ESG PSet Template]
 %<class>\RequirePackage{fancyhdr}
 %<class>\RequirePackage{lastpage}
 %<class>\RequirePackage{xifthen}
 %<class>\RequirePackage{verbatim}
-%<class>\RequirePackage[margin=1in]{geometry}
-%<class>\RequirePackage{etoolbox,etextools}
-%
-%<class>\newboolean{esg8022pset@solutions}\newboolean{esg8022pset@problems}
-%<class>\newboolean{esg8022pset@pdfproblems}\newboolean{esg8022pset@pdfsolutions}
-%<class>\DeclareOption{problems}{\setboolean{esg8022pset@problems}{true}\setboolean{esg8022pset@solutions}{false}}
-%<class>\DeclareOption{solutions}{\setboolean{esg8022pset@problems}{false}\setboolean{esg8022pset@solutions}{true}}
-%<class>\DeclareOption{makeproblemspdf}{\setboolean{esg8022pset@pdfproblems}{true}}
-%<class>\DeclareOption{makesolutionspdf}{\setboolean{esg8022pset@pdfsolutions}{true}}
-%<class>\DeclareOption{makeallpdfs}{\setboolean{esg8022pset@pdfproblems}{true}\setboolean{esg8022pset@pdfsolutions}{true}}
-%<class>\ProcessOptions\relax
+%<class>\RequirePackage{etoolbox}[2011/01/03]
+%<class>\RequirePackage{etextools}
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -46,6 +36,7 @@
   \DocInput{esg8022pset.dtx}
 \end{document}
 %</driver>
+%
 % \fi
 %
 % \CheckSum{0}
@@ -75,6 +66,7 @@
 %                             font problems.}
 % \changes{v0.1f}{2011/03/13}{Font type T1 required for bold textsc.
 %                             Inserted it.}
+% \changes{v0.1g}{2011/03/13}{Removed the AfterEnvironment command.  Improved package processing.}
 %
 % \GetFileInfo{esg8022pset.dtx}
 %
@@ -136,11 +128,6 @@
 % I know them (please email me if you find other bugs, or have fixes for the
 % bugs I list).  I sometimes give extra description or justification.
 %
-% \DescribeMacro{\AfterEnvironment}
-% \noindent Usage: |\AfterEnvironment|\marg{environment}\marg{code} \par
-% \noindent Specification: Runs \meta{code} after the end of \meta{environment}.
-%  The code is run as if it were placed after the |\end{|\meta{environment}|}|
-%  statement.
 %
 % \DescribeMacro{\duedate}
 % \noindent Usage: |\duedate|\marg{date} \par
@@ -199,27 +186,29 @@
 %
 % \StopEventually{\PrintChanges\PrintIndex}
 %
+% \section{Options}
+%    \begin{macrocode}
+\newboolean{esg8022pset@solutions}\newboolean{esg8022pset@problems}
+\newboolean{esg8022pset@pdfproblems}\newboolean{esg8022pset@pdfsolutions}
+\DeclareOption{problems}{\setboolean{esg8022pset@problems}{true}\setboolean{esg8022pset@solutions}{false}}
+\DeclareOption{solutions}{\setboolean{esg8022pset@problems}{false}\setboolean{esg8022pset@solutions}{true}}
+\DeclareOption{makeproblemspdf}{\setboolean{esg8022pset@pdfproblems}{true}}
+\DeclareOption{makesolutionspdf}{\setboolean{esg8022pset@pdfsolutions}{true}}
+\DeclareOption{makeallpdfs}{\setboolean{esg8022pset@pdfproblems}{true}\setboolean{esg8022pset@pdfsolutions}{true}}
+\ProcessOptions\relax
+\LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
+\RequirePackage[margin=1in]{geometry}
+%    \end{macrocode}
+%
 % \section{Setup}
 %    \begin{macrocode}
 \ifthenelse{\boolean{esg8022pset@problems} \OR \boolean{esg8022pset@solutions}}{
 }{
-  \expandnext{\renewcommand{\end}[1]}{\end{#1}\ifcsdef{end#1@hook}{\csname end#1@hook\endcsname}{}}
-
-  \newcommand{\AfterEnvironment}[2]{%
-    \ifcsdef{end#1@hook}{}{%
-      \csdef{end#1@hook}{}%
-    }%
-    \csappto{end#1@hook}{#2}%
-  }
-
-
   \newwrite\esgpset@problemsout
   \newwrite\esgpset@solutionsout
-  %\newwrite\esgpset@tempout
   \newcommand{\esgpset@compilefile}[1]{\write18{pdflatex "#1"}}
   \edef\esgpset@problemsfilename{\jobname\string_Problems.tex}
   \edef\esgpset@solutionsfilename{\jobname\string_Solutions.tex}
-  %\edef\esgpset@tempfilename{\jobname.tmp}
   \newcommand{\esgpset@writetoboth}[1]{\esgpset@writetoproblems{#1}%
     \esgpset@writetosolutions{#1}}
   \newcommand{\esgpset@writetoall}[1]{\esgpset@writetoboth{#1}\esgpset@writetothis{#1}}
@@ -314,9 +303,10 @@
   \expandafter\endgroup
   \expandafter\chead\expandafter{\@cheader}
   \begingroup
-    \bf
+    \bf \let\@oldtextsc=\textsc
+    \renewcommand{\textsc}[1]{{\fontencoding{T1}\selectfont\@oldtextsc{#1}}}%
     \begin{center}%
-      {\noindent \fontencoding{T1}\selectfont % allow bold textsc
+      {\noindent
         \textsc{Massachusetts Institute of Technology} \par}%
       {\noindent  Experimental Study Group \par}%
     \end{center}%
@@ -388,8 +378,8 @@
 % \begin{environment}{problem}
 % \begin{environment}{solution}
 %    \begin{macrocode}
-\newenvironment{problem}[2][\relax]{%
-  \ifthenelse{\equal{#1}{\relax}}{%
+\newenvironment{problem}[2][]{%
+  \xifempty{#1}{%
     \esgpset@writetoall{\string\section{Problem \string\thesection: \unexpanded{#2}}}%
   }{%
     \esgpset@writetoall{\string\section*{Problem #1: \unexpanded{#2}}}%
