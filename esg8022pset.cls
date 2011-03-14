@@ -42,7 +42,7 @@
 }{
   \newwrite\esgpset@problemsout
   \newwrite\esgpset@solutionsout
-  \newcommand{\esgpset@compilefile}[1]{\write18{pdflatex "#1"}}
+  \newcommand{\esgpset@compilefile}[1]{\immediate\write18{pdflatex "#1"}}
   \edef\esgpset@problemsfilename{\jobname\string_Problems.tex}
   \edef\esgpset@solutionsfilename{\jobname\string_Solutions.tex}
   \newcommand{\esgpset@writetoboth}[1]{\esgpset@writetoproblems{#1}%
