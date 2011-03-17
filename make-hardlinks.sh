@@ -4,7 +4,7 @@ SCRIPT=$(readlink -f "$0")
 # Absolute path this script is in. /home/user/bin
 SCRIPTPATH=`dirname "$SCRIPT"`
 
-pushd $SCRIPTPATH
+pushd "$SCRIPTPATH"
 git update-index --assume-unchanged *.{sty,cmap,def}
 for i in *.{sty,cmap,def}; do if [ -f style-files/$i ]; then echo $i; ln -f style-files/$i ./; fi; done
 
