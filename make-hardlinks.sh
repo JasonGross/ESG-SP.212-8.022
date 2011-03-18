@@ -9,7 +9,7 @@ git update-index --assume-unchanged *.sty
 git update-index --assume-unchanged *.cmap
 git update-index --assume-unchanged *.def
 git update-index --assume-unchanged *.fd
-for i in *.{sty,cmap,def}; do if [ -f "style-files/$i" ]; then echo $i; ln -f "style-files/$i" ./; fi; done
+for i in *.{sty,cmap,def}; do if [ -L "$i" ]; then echo $i; ln -f "$(readlink -f "$i")" "$i"; fi; done
 
 #cd style-files
 #git update-index --assume-unchanged *
