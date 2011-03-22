@@ -20,5 +20,6 @@
 *.backup
 *.zip
 .github/id_rsa
+*.synctex.gz
 thumbs.db
 Thumbs.db
