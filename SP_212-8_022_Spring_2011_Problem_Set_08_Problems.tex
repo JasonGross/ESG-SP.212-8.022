@@ -1,5 +1,4 @@
-\documentclass[makesolutionspdf]{esg8022pset}
-\begin{preamble}
+\documentclass[problems]{esg8022pset} 
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{enumerate}
@@ -38,43 +37,24 @@
 \AtBeginDocument{%
   % Appologies to any future editor on the inconsistencies in TeX code and the unnecessary braces.  I'm aggregating previously typeset problems, and didn't think it worth my time to improve the quality of TeX code in ways that won't make any difference to the typeset material. -Jason Gross (jgross@mit.edu)
 }%
-\end{preamble}
-
-\classname{Physics 8.022}
-\semester{Spring 2011}
-\problemsetnumber{8} %Put the problem set number here
-\duedate{Sunday, April 3rd at 9 pm}
-%\readingassignment{Kleppner and Kolenkow, \emph{An Introduction to Mechanics}, Chapters Seven and Eight}
+\classname{Physics 8.022} \semester{Spring 2011} 
+\problemsetnumber{8}
+\date{\today }
+\duedate{Sunday, April 3rd at 9 \textsc {pm}}
+\readingassignment{}
 \problemsettitle{Amp\`{e}re's law, Biot-Savart law}
-
 \begin{document}
+\section{Problem \thesection: Long flat conductor}
+  A long flat conductor of width $a$ carries a sheet of current $i$ (see
+  \autoref{fig:flat}). You are asked to find the magnetic field (direction and
+  magnitude) near the center of its flat side and and very close to the
+  surface, such that the distance $R$ from the sheet is $R \ll a$.
 
-\begin{problem}{Long flat conductor}
-A long flat conductor of width $a$ carries a sheet of current $i$ (see figure \ref{fig:flat}). You are asked to find the magnetic  field (direction and magnitude) near the center of its flat side and and very close to the surface, such that the distance R from the sheet is $R<<a$.
-
-      \begin{figure}[ht]
-       \begin{center}
-        \epsfig{file = flat_conductor.eps, width = 10cm}
-        \caption{Flat conductor}
-        \end{center}
-        \label{fig:flat}
-      \end{figure}
-
-\end{problem}
-
-\begin{solution}
-
-      \begin{figure}[ht]
-        \centering
-        \epsfig{file = flat_conductor_sol}.eps, width = 10cm}
-        \label{fig:flatsol}
-      \end{figure}
-
-As shown in the figure, above the conductor, \vec{B} points to the left, below the con-ductor,  \vec{B}  points to the right (the current is pointing out of the paper).Choose an amperian path shown in the plot, since the distance R is much smallerthan $a$, we have:
-\begin{equation}
-2B á L = \frac{4 \pi}{c} I_{enc} = \frac{4 \pi}{c} \frac{L i}{a}
-\end{equation}
-Hence $B=\frac{2 \pi i}{a c}$.
-\end{solution}
+  \begin{figure}[ht]
+    \centering
+    \includegraphics[width = 10cm]{flat_conductor}
+    \caption{Flat conductor}
+    \label{fig:flat}
+  \end{figure}
 
 \end{document}
