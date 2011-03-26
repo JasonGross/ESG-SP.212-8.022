@@ -26,6 +26,7 @@
 %<class>\RequirePackage{verbatim}
 %<class>\RequirePackage{etoolbox}[2011/01/03]
 %<class>\RequirePackage{etextools}
+%<class>\RequirePackage{float}
 %
 %<*driver>
 \documentclass{ltxdoc}
@@ -69,6 +70,7 @@
 % \changes{v0.1g}{2011/03/13}{Removed the AfterEnvironment command.
 %                             Improved package processing.  Fixed pdf
 %                             generation.}
+% \changes{v0.2}{2011/03/25}{Made figures default to H, using float package.}
 %
 % \GetFileInfo{esg8022pset.dtx}
 %
@@ -124,6 +126,8 @@
 % the option |makesolutionspdf| to this document class, and run latex
 % with |\write18| enabled, you will also get a pdf of the solutions 
 % file.
+%
+% The default placement of figures is to be wherever you put them.
 %
 % \section{Usage}
 % I give the usage and specification of every macro defined.  I give bugs when
@@ -200,6 +204,8 @@
 \ProcessOptions\relax
 \LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 \RequirePackage[margin=1in]{geometry}
+\floatplacement{figure}{H}
+\restylefloat{figure}
 %    \end{macrocode}
 %
 % \section{Setup}

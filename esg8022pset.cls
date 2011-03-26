@@ -28,6 +28,7 @@
 \RequirePackage{verbatim}
 \RequirePackage{etoolbox}[2011/01/03]
 \RequirePackage{etextools}
+\RequirePackage{float}
 \newboolean{esg8022pset@solutions}\newboolean{esg8022pset@problems}
 \newboolean{esg8022pset@pdfproblems}\newboolean{esg8022pset@pdfsolutions}
 \DeclareOption{problems}{\setboolean{esg8022pset@problems}{true}\setboolean{esg8022pset@solutions}{false}}
@@ -38,6 +39,8 @@
 \ProcessOptions\relax
 \LoadClass[notitlepage,11pt,twoside,letterpaper]{article}
 \RequirePackage[margin=1in]{geometry}
+\floatplacement{figure}{H}
+\restylefloat{figure}
 \ifthenelse{\boolean{esg8022pset@problems} \OR \boolean{esg8022pset@solutions}}{
 }{
   \newwrite\esgpset@problemsout
