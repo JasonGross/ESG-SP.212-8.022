@@ -64,12 +64,12 @@
   Solution 1
   \begin{figure}[H]
     \centering
-    \includegraphics{ps9_1a}
+    \includegraphics[width = 25cm]{ps9_1a}
   \end{figure}
   
     \begin{figure}[H]
     \centering
-    \includegraphics{ps9_1b}
+    \includegraphics[width = 25cm]{ps9_1b}
   \end{figure}
 \end{solution}
 
@@ -103,12 +103,12 @@ resistor makes sense given the initial velocity of the crossbar.
 Solution  
   \begin{figure}[H]
     \centering
-    \includegraphics{ps9_2a}
+    \includegraphics[width = 25cm]{ps9_2a}
   \end{figure}
   
     \begin{figure}[H]
     \centering
-    \includegraphics{ps9_2b}
+    \includegraphics[width = 25cm]{ps9_2b}
   \end{figure}
 \end{solution}
 
@@ -170,12 +170,12 @@ Given that $M$ is always to be taken as positive, how must the signs be chosen i
 Solution  
   \begin{figure}[H]
     \centering
-    \includegraphics{ps9_5a}
+    \includegraphics[width = 25cm]{ps9_5a}
   \end{figure}
   
     \begin{figure}[H]
     \centering
-    \includegraphics{ps9_5b}
+    \includegraphics[width = 25cm]{ps9_5b}
   \end{figure}
 \end{solution}
 
@@ -189,7 +189,18 @@ The coil is connected by a pair of twisted leads to an external resistance. The 
   with which the field drops to zero.
 \end{problem}
 \begin{solution}
-  Solution 1
+ ${\mathcal{E}}(t) = -(1/c)d\Phi/dt$ and $I(t) =
+{\mathcal{E}}(t)/R$.  Therefore the charge flowing through the closed
+circuit is
+\begin{equation}
+Q=\int I(t)dt=\int_{t_{i}}^{t_{f}} -\frac{d\Phi}{cR}
+= \frac{(\Phi(t_{i}) - \Phi(t_{i}))
+}{cR}=\frac{NB_0\pi a^2}{cR}.
+\end{equation}
+Since it only depends on the initial and final flux (and hence the
+initial and final field, the final field being zero), it doesn't matter how quickly we shut the
+field off --- we can do it in a microsecond, or we can ramp it down
+over a decade.
 \end{solution}
 
 
@@ -212,16 +223,56 @@ loop.  Reciprocity says we must get the same
 $\delta\Phi_B$ when you run the current through the small loop. 
 \end{problem}
 \begin{solution}
-  Solution 1
+Solution  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width = 25cm]{ps9_7a}
+  \end{figure}
+  
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width = 25cm]{ps9_7b}
+  \end{figure}
 \end{solution}
 
 \begin{problem}{Purcell 7.22 --- Spinning a charged ring}
 %Scott S05 #8
 A thin ring of radius $a$ carries a static charge $q$. This ring is in a magnetic field of strength $B_0$, parallel to the ring's axis, and is supported so that it is free to rotate about that axis. If the field is switched off, how much angular momentum will be added to the ring? If the ring has mass $m$, how much angular velocity will it acquire?
+Hint: the variation of magnetic field induces an
+electric field along the ring, which accelerates it. The electric force creates a torque about the ring's axis.
 % an angular velocity $\omega = qB_0/2mc$. 
 \end{problem}
 \begin{solution}
-  Solution 1
+Apply  Faraday's law of induction:
+\begin{eqnarray}
+\Phi_B(t)&=&B(t)\pi a^2,\nonumber\\
+{\mathcal{E}}(t)&=&\int_C \vec{E}(t)\cdot d\vec{s}=E(t)\times 2\pi a\nonumber\\
+&=& -\frac{1}{c}\frac{d\Phi_B(t)}{dt}=\frac{\pi
+a^2}{c}\left(-\frac{dB}{dt}\right)\\
+\textrm{or}\qquad E(t)&=& \frac{a}{2c}\left(-\frac{dB}{dt}\right).
+\end{eqnarray}
+The force on the charge is $F(t)=qE(t)$, along the loop
+direction; so its torque about the ring's axis is $N(t)=F(t)a=
+(qa^2/2c)(-dB)/dt$.  Therefore the total angular momentum added to the ring is
+\begin{equation}\label{eqn6:deltaJ}
+\Delta J=\int_{t_{i}}^{t_{f}} N(t)dt=-\frac{qa^2}{2c}\int_{B(t_{i})}^{B(t_{i})}dB=qa^2 B_0/2c,
+\end{equation}
+where $B_0$ is the initial magnetic field and $B(t_{f})=0$.  The
+momentum of inertia of the ring is  $I=ma^2$.  If the ring is
+initially at rest, the final angular velocity is
+\begin{equation}
+\omega=\frac{\Delta J}{I}=\frac{qB_0}{2mc}.
+\end{equation}
+Note that eq.(\ref{eqn6:deltaJ}) only depends on the initial and final
+values of the magnetic field, not the variation rate.\\
+
+Additional question: If you combine this calculation with the notion
+of angular momentum conservation, what can you infer about
+electromagnetic fields?\\
+
+This simply indicates that electromagnetic field has angular momentum
+of its own --- this angular momentum is transferred to the ring as the
+magnetic field switches off.
 \end{solution}
 
 \begin{problem}{Self inductance per unit length of coaxial conductors }
@@ -243,7 +294,37 @@ magnetic energy.
 \end{problem}
 
 \begin{solution}
-  Solution 1
+ The magnetic field energy stored in an inductor is:
+\begin{equation}
+U=\int\limits_{Everywhere} \frac{B^2}{8\pi} dV = \frac{1}{2}LI^2.
+\end{equation}
+The magnetic field around a cylindrical current flow of current
+I and radius R is given by applying Ampere's law,
+\begin{eqnarray}
+B\times 2\pi r &=& \left\{ \begin{array}{r@{\quad,\quad}l}
+(4\pi/c)I & r>R\\ 0 & r<R \end{array}\right.\nonumber\\
+or\;\;\;\;\;\;\;\;\; \vec{B} &=& \left\{ \begin{array}{r@{\quad,\quad}l}
+(2I/cr) \hat{\theta} & r>R \\ 0 & r<R \end{array}\right.\nonumber
+\end{eqnarray}
+where $\hat{\theta}$ is the unit vector in ``circumferential''
+direction and its circulation obeys the right-hand-rule.\\
+
+\noindent For our problem, adding the contributions from the two cylindrical
+current flows of opposite directions, we have
+\begin{equation}
+\vec{B}= \left\{ \begin{array}{r@{\quad,\quad}l}
+-(2I/cr) \hat{\theta} & R_1<r<R_2 \\ 0 & \textrm{otherwise} \end{array}\right.
+\end{equation}
+So the total magnetic field energy {\sl per unit length} is
+\begin{eqnarray}
+U_{l} &=& \int_{Everywhere} \frac{dV}{l} \frac{B^2}{8\pi}
+= \int_{R_1}^{R_2} 2\pi rdr \frac{(2I/cr)^2}{8\pi}\nonumber\\
+&=& \frac{I^2}{c^2}\ln{(\frac{R_2}{R_1})},\\
+\textrm{so}\qquad L_{l} &=& \frac{2U_{l}}{I^2}=\frac{2}{c^2}\ln{(\frac{R_2}{R_1})},
+\end{eqnarray}
+where $L_{l}$ is the self-inductance {\sl per unit length}.
+
+
 \end{solution}
 
 \begin{problem}{The Director's Challenge --- Extra credit!!!}
