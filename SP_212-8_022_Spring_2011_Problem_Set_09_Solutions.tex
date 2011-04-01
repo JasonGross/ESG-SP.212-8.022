@@ -48,10 +48,25 @@
 \subsection{Problem}
 %Peter F10 #7
   A rectangular loop of wire with mass $m$, width $w$, vertical length $l$, and resistance $R$ falls out of a magnetic field under the influence of gravity. The magnetic field is uniform with magnitude $\vec{B}$ and out of the paper within the area shown in the sketch  and
-   zero outside that area. At the time $t$, the loop is exiting the magnetic field at speed, $v(t) > 0$ (the loop is
-moving downward). What is the terminal velocity of the loop?
+   zero outside that area. At the time $t$, the loop is exiting the magnetic field at speed, $v(t)$. What is the terminal velocity of the loop?
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width = 10cm]{fall}
+    \label{fig:fall}
+  \end{figure}
+
 \subsection{Solution}
   Solution 1
+  \begin{figure}[H]
+    \centering
+    \includegraphics{ps9_1a}
+  \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics{ps9_1b}
+  \end{figure}
 \section{Problem \thesection: Crossbar sliding in magnetic field}
 \subsection{Problem}
 %Scott S05 #7
@@ -62,7 +77,7 @@ $v_0$ towards the right.
 
   \begin{figure}[H]
     \centering
-    \includegraphics[width = 10cm]{faraday8}
+    \includegraphics[width = 10cm]{crossbar}
     \label{fig:crossbar}
   \end{figure}
 
@@ -78,7 +93,16 @@ $t > 0$.
 \par\noindent (d) Show that the {\it total} energy dissipated in the
 resistor makes sense given the initial velocity of the crossbar.
 \subsection{Solution}
-  Solution 1
+Solution
+  \begin{figure}[H]
+    \centering
+    \includegraphics{ps9_2a}
+  \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics{ps9_2b}
+  \end{figure}
 \section{Problem \thesection: Generate electricity at the gym}
 \subsection{Problem}
 In class we discussed that, given the definition of magnetic flux, there are essentially three ways that we can make it vary and thereby create an EMF: we can \\
@@ -93,7 +117,7 @@ Try to make some estimates of the power you can produce. Extra credit if you sug
  Group exercise: build a simple generator and use it to light a led or small bulb. Use whatever you want to
   provide the mechanical work.
  
-\section{Problem \thesection: Purcell 7.11 --- Self inductance connecting two coils}
+\section{Problem \thesection: Purcell 7.11 --- Inductance of two coils}
 \subsection{Problem}
 %Scott S05 #8
 Two coils with self-inductances $L_1$ and $L_2$ and mutual inductance $M$  are shown with the positive direction for current and electromotive force indicated. The equations relating currents and emf's are
@@ -106,26 +130,35 @@ Given that $M$ is always to be taken as positive, how must the signs be chosen i
   \begin{figure}[H]
     \centering
     \includegraphics[width = 5cm]{pu711a}
-    \label{fig:crossbar}
+    \label{fig:pu711a}
   \end{figure}
 
 
   \begin{figure}[H]
     \centering
     \includegraphics[width = 5cm]{pu711b}
-    \label{fig:crossbar}
+    \label{fig:pu711b}
   \end{figure}
 
   \begin{figure}[H]
     \centering
     \includegraphics[width = 5cm]{pu711c}
-    \label{fig:crossbar}
+    \label{fig:pu711c}
   \end{figure}
 
 
 \subsection{Solution}
-  Solution 1
-\section{Problem \thesection: Purcell 7.18 --- Switching off an electromagnet}
+Solution
+  \begin{figure}[H]
+    \centering
+    \includegraphics{ps9_5a}
+  \end{figure}
+
+    \begin{figure}[H]
+    \centering
+    \includegraphics{ps9_5b}
+  \end{figure}
+\section{Problem \thesection: Purcell 7.18 --- Total charge flow from induced EMF}
 \subsection{Problem}
 %Scott S05 #8
 A circular coil of wire, with $N$ turns of radius $a$, is located in the field of an electromagnet.
@@ -136,16 +169,27 @@ The coil is connected by a pair of twisted leads to an external resistance. The 
   with which the field drops to zero.
 \subsection{Solution}
   Solution 1
-\section{Problem \thesection: Purcell 7.20 --- B due to a ring current}
+\section{Problem \thesection: Purcell 7.20 --- Magnetic field due to a loop far from the loop}
 \subsection{Problem}
 %Scott S05 #8
 Can you devise a way to use the theorem $\Phi_{21}=\Phi_{12}$ to find the magnetic
  field strength due to a ring current at points in the plane of the ring at a distance from the ring much greater than the ring radius?
- Hint: consider two concentric rings of radius $R_{2}$ and $R_{1}$, $R_{1}>R_{2}$ and evaluate the effect of a small change
-  of the radius of the outer ring on $\Phi_{21}$ and $\Phi_{12}$.
+ Hint: consider two concentric coplanar rings of radius $R_{2}$ and $R_{1}$, $R_{1}\gg R_{2}$ and evaluate the effect of a small change
+  of the radius of the outer ring on $\Phi_{21}$ and $\Phi_{12}$. \\
+
+\noindent  More detailed hint:  we wish to calculate
+the magnetic field of the small loop at the location of the large
+loop.  Since the large loop is of a radius $R_1 \gg R_2$, this will
+tell us the magnetic field of a small loop at any radius $r \gg R_2$,
+at least in the plane of the small loop. The trick here is to calculate the {\it change} in
+flux, $\Delta\Phi_B$ that occurs if we adjust the radius $R_1$ by
+some amount $\Delta R_1$.  Do this with the reciprocity theorem:
+first, work out $\delta\Phi_B$ by running the current through the big
+loop.  Reciprocity says we must get the same
+$\delta\Phi_B$ when you run the current through the small loop.
 \subsection{Solution}
   Solution 1
-\section{Problem \thesection: Purcell 7.22 --- Rotating ring}
+\section{Problem \thesection: Purcell 7.22 --- Spinning a charged ring}
 \subsection{Problem}
 %Scott S05 #8
 A thin ring of radius $a$ carries a static charge $q$. This ring is in a magnetic field of strength $B_0$, parallel to the ring's axis, and is supported so that it is free to rotate about that axis. If the field is switched off, how much angular momentum will be added to the ring? If the ring has mass $m$, how much angular velocity will it acquire?
