@@ -9,8 +9,8 @@
 \usepackage[per-mode=symbol]{siunitx} %If this line is giving you trouble, try replacing per-mode with per
 %use inter-unit-separator={}\cdot{} ?
 \providecommand{\uvec}[1]{{\hat{\bf{#1}}}}
-\usepackage{pgf,tikz}
-\usetikzlibrary{arrows}
+%\usepackage{pgf,tikz}
+%\usetikzlibrary{arrows}
 \usepackage{wasysym}
 \usepackage{subfig}
 \makeatletter
@@ -50,7 +50,7 @@
 
 \begin{problem}{Falling rectangular loop}
 %Peter F10 #7
-  A rectangular loop of wire with mass $m$, width $w$, vertical length $l$, and resistance $R$ falls out of a magnetic field under the influence of gravity. The magnetic field is uniform with magnitude $\vec{B}$ and out of the paper within the area shown in the sketch  and
+  A rectangular loop of wire with mass $m$, width $w$, vertical length $l$, and resistance $R$ falls out of a magnetic field under the influence of gravity. The magnetic field is uniform with magnitude $\vec{B}$ and out of the paper within the area shown in the sketch and
    zero outside that area. At the time $t$, the loop is exiting the magnetic field at speed, $v(t)$. What is the terminal velocity of the loop?
 
   \begin{figure}[H]
@@ -60,56 +60,42 @@
   \end{figure}
 
 \end{problem}
+
 \begin{solution}
-  Solution 1
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_1a}
-  \end{figure}
-  
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_1b}
-  \end{figure}
+  \begin{center}
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_1a}
+    \clearpage
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_1b}
+  \end{center}
 \end{solution}
 
 \begin{problem}{Crossbar sliding in magnetic field}
 %Scott S05 #7
-A metal crossbar of mass $m$ slides without friction on two long parallel conducting rails a distance $b$ apart.
-A resistor $R$ is connected across the rails at one end. The resistance of the bar and the rails is negligible.
-There is a uniform magnetic field $\vec{B}$ perpendicular to the page. At time $t=0$ the crossbar is given a velocity
-$v_0$ towards the right.
+  A metal crossbar of mass $m$ slides without friction on two long parallel conducting rails a distance $b$ apart.
+  A resistor $R$ is connected across the rails at one end. The resistance of the bar and the rails is negligible.
+  There is a uniform magnetic field $\vec{B}$ perpendicular to the page. At time $t=0$ the crossbar is given a velocity
+  $v_0$ towards the right.
 
   \begin{figure}[H]
     \centering
     \includegraphics[width = 10cm]{crossbar}
     \label{fig:crossbar}
   \end{figure}
-
-\par\noindent (a) Write down a differential equation of the form
-$dv/dt = \mbox{something}$ that governs the motion of the sliding
-crossbar.
-
-\par\noindent (b) Integrate this to find the velocity $v(t)$ for all
-$t > 0$.
-
-\par\noindent (c) Compute the total distance that the cross bar moves.
-
-\par\noindent (d) Show that the {\it total} energy dissipated in the
-resistor makes sense given the initial velocity of the crossbar.
+  
+  \begin{enumerate}[(a)]
+    \item Write down a differential equation of the form $dv/dt = \text{something}$ that governs the motion of the sliding crossbar.
+    \item Integrate this to find the velocity $v(t)$ for all $t > 0$.
+    \item Compute the total distance that the cross bar moves.
+    \item Show that the \emph{total} energy dissipated in the resistor makes sense given the initial velocity of the crossbar.
+  \end{enumerate}
 \end{problem}
 
 \begin{solution}
-Solution  
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_2a}
-  \end{figure}
-  
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_2b}
-  \end{figure}
+  \begin{center}
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_2a}
+    \clearpage
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_2b}
+  \end{center}
 \end{solution}
 
 %\begin{problem}{Car is the Earth's magnetic field}
@@ -121,164 +107,144 @@ Solution
 %\end{solution}
 
 \begin{problem}{Generate electricity at the gym}
-In class we discussed that, given the definition of magnetic flux, there are essentially three ways that we can make it vary and thereby create an EMF: we can \\
-\noindent a) make the area vary;\\
-\noindent b) change the relative orientation of the magnetic field and the area; \\
-\noindent c) make the magnetic field vary. \\
-
-\noindent Think how to use gym exercise machines to produce electricity in each of the three ways. Be creative!
-Try to make some estimates of the power you can produce. Extra credit if you suggest one detailed design.
+  In class we discussed that, given the definition of magnetic flux, there are essentially three ways that we can make it vary and thereby create an EMF: we can
+  \begin{enumerate}[(a)]
+    \item make the area vary;
+    \item change the relative orientation of the magnetic field and the area;
+    \item make the magnetic field vary.
+  \end{enumerate}
+  
+  Think how to use gym exercise machines to produce electricity in each of the three ways. Be creative! 
+  Try to make some estimates of the power you can produce. Extra credit if you suggest one detailed design.
 \end{problem}
 
 
 \begin{problem}{Build a simple generator}
- Group exercise: build a simple generator and use it to light a led or small bulb. Use whatever you want to
+  Group exercise: build a simple generator and use it to light a led or small bulb. Use whatever you want to
   provide the mechanical work.
- \end{problem}
+\end{problem}
 
 \begin{problem}{Purcell 7.11 --- Inductance of two coils}
 %Scott S05 #8
-Two coils with self-inductances $L_1$ and $L_2$ and mutual inductance $M$  are shown with the positive direction for current and electromotive force indicated. The equations relating currents and emf's are
-\begin{equation}
-{\cal E}_1 = -L_1\frac{dI_1}{dt}\pm M\frac{dI_2}{dt} \; {\cal E}_2 = -L_2\frac{dI_2}{dt}\pm M\frac{dI_1}{dt}
-\end{equation}
-Given that $M$ is always to be taken as positive, how must the signs be chosen in these equations? What if we had chosen the other direction for positive current and emf in the lower coil? Now connect the two coils together as in $b$. What is the inductance $L'$ of this circuit? What is the inductance $L''$ of the circuit formed as shown in $c$? Which circuit has the greater self-inductance? Considering that the self-inductance of any circuit must be a positive quantity, see if you can deduce anything concerning the relative magnitudes of $L_1$, $L_2$, and $M$.
-
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 5cm]{pu711a}
-    \label{fig:pu711a}
-  \end{figure}
-
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 5cm]{pu711b}
-    \label{fig:pu711b}
-  \end{figure}
-
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 5cm]{pu711c}
-    \label{fig:pu711c}
-  \end{figure}
-
-
-\end{problem}
-\begin{solution}
-Solution  
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_5a}
-  \end{figure}
+  Two coils with self-inductances $L_1$ and $L_2$ and mutual inductance $M$  are shown with the positive direction for current and electromotive force indicated. The equations relating currents and emf's are
+  \begin{align*}
+    \mathcal{E}_1 & = -L_1\frac{dI_1}{dt}\pm M\frac{dI_2}{dt} 
+    & \mathcal{E}_2 & = -L_2\frac{dI_2}{dt}\pm M\frac{dI_1}{dt}
+  \end{align*}
   
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_5b}
-  \end{figure}
+  Given that $M$ is always to be taken as positive, how must the signs be chosen in these equations? What if we had chosen the other direction for positive current and emf in the lower coil? Now connect the two coils together as in $b$. What is the inductance $L'$ of this circuit? What is the inductance $L''$ of the circuit formed as shown in $c$? Which circuit has the greater self-inductance? Considering that the self-inductance of any circuit must be a positive quantity, see if you can deduce anything concerning the relative magnitudes of $L_1$, $L_2$, and $M$.
+
+  \begin{center}
+    \includegraphics[width = 0.3\textwidth]{pu711a}
+    \includegraphics[width = 0.3\textwidth]{pu711b}
+    \includegraphics[width = 0.3\textwidth]{pu711c}
+  \end{center}
+\end{problem}
+
+\begin{solution}
+  \begin{center}
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_5a}
+    \clearpage
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_5b}
+  \end{center}
 \end{solution}
 
 \begin{problem}{Purcell 7.18 --- Total charge flow from induced EMF}
 %Scott S05 #8
-A circular coil of wire, with $N$ turns of radius $a$, is located in the field of an electromagnet.
-The magnetic field is perpendicular to the coil, and its strength has the constant value $B_{0}$ over that area.
-The coil is connected by a pair of twisted leads to an external resistance. The total resistance of this closed
- circuit is $R$. Suppose the electromagnet is turned off, its field dropping more or less rapidly to zero. Derive
+  A circular coil of wire, with $N$ turns of radius $a$, is located in the field of an electromagnet.
+  The magnetic field is perpendicular to the coil, and its strength has the constant value $B_{0}$ over that area.
+  The coil is connected by a pair of twisted leads to an external resistance. The total resistance of this closed
+  circuit is $R$. Suppose the electromagnet is turned off, its field dropping more or less rapidly to zero. Derive
   the formula for the total charge which passes through the resistor and explain why it does not depend on the rapidity
   with which the field drops to zero.
 \end{problem}
 \begin{solution}
- ${\mathcal{E}}(t) = -(1/c)d\Phi/dt$ and $I(t) =
-{\mathcal{E}}(t)/R$.  Therefore the charge flowing through the closed
-circuit is
-\begin{equation}
-Q=\int I(t)dt=\int_{t_{i}}^{t_{f}} -\frac{d\Phi}{cR}
-= \frac{(\Phi(t_{i}) - \Phi(t_{i}))
-}{cR}=\frac{NB_0\pi a^2}{cR}.
-\end{equation}
-Since it only depends on the initial and final flux (and hence the
-initial and final field, the final field being zero), it doesn't matter how quickly we shut the
-field off --- we can do it in a microsecond, or we can ramp it down
-over a decade.
+  ${\mathcal{E}}(t) = -(1/c)d\Phi/dt$ and $I(t) =
+  {\mathcal{E}}(t)/R$.  Therefore the charge flowing through the closed
+  circuit is
+  \begin{equation}
+    Q=\int I(t)dt=\int_{t_{i}}^{t_{f}} -\frac{d\Phi}{cR}
+    = \frac{(\Phi(t_{i}) - \Phi(t_{i}))
+    }{cR}=\frac{NB_0\pi a^2}{cR}.
+  \end{equation}
+  Since it only depends on the initial and final flux (and hence the
+  initial and final field, the final field being zero), it doesn't matter how quickly we shut the
+  field off --- we can do it in a microsecond, or we can ramp it down
+  over a decade.
 \end{solution}
 
 
 \begin{problem}{Purcell 7.20 --- Magnetic field due to a loop far from the loop}
 %Scott S05 #8
-Can you devise a way to use the theorem $\Phi_{21}=\Phi_{12}$ to find the magnetic
- field strength due to a ring current at points in the plane of the ring at a distance from the ring much greater than the ring radius?
- Hint: consider two concentric coplanar rings of radius $R_{2}$ and $R_{1}$, $R_{1}\gg R_{2}$ and evaluate the effect of a small change
-  of the radius of the outer ring on $\Phi_{21}$ and $\Phi_{12}$. \\
+  Can you devise a way to use the theorem $\Phi_{21}=\Phi_{12}$ to find the magnetic
+  field strength due to a ring current at points in the plane of the ring at a distance from the ring much greater than the ring radius?
+ 
+  \noindent \textsc{Hint}: consider two concentric coplanar rings of radius $R_{2}$ and $R_{1}$, $R_{1}\gg R_{2}$ and evaluate the effect of a small change
+  of the radius of the outer ring on $\Phi_{21}$ and $\Phi_{12}$.
   
-\noindent  More detailed hint:  we wish to calculate
-the magnetic field of the small loop at the location of the large
-loop.  Since the large loop is of a radius $R_1 \gg R_2$, this will
-tell us the magnetic field of a small loop at any radius $r \gg R_2$,
-at least in the plane of the small loop. The trick here is to calculate the {\it change} in
-flux, $\Delta\Phi_B$ that occurs if we adjust the radius $R_1$ by
-some amount $\Delta R_1$.  Do this with the reciprocity theorem:
-first, work out $\delta\Phi_B$ by running the current through the big
-loop.  Reciprocity says we must get the same
-$\delta\Phi_B$ when you run the current through the small loop. 
+  \noindent \textsc{More detailed hint}:  we wish to calculate
+  the magnetic field of the small loop at the location of the large
+  loop.  Since the large loop is of a radius $R_1 \gg R_2$, this will
+  tell us the magnetic field of a small loop at any radius $r \gg R_2$,
+  at least in the plane of the small loop. The trick here is to calculate the {\it change} in
+  flux, $\Delta\Phi_B$ that occurs if we adjust the radius $R_1$ by
+  some amount $\Delta R_1$.  Do this with the reciprocity theorem:
+  first, work out $\delta\Phi_B$ by running the current through the big
+  loop.  Reciprocity says we must get the same
+  $\delta\Phi_B$ when you run the current through the small loop. 
 \end{problem}
 \begin{solution}
-Solution  
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_7a}
-  \end{figure}
-  
-    \begin{figure}[H]
-    \centering
-    \includegraphics[width = 25cm]{ps9_7b}
-  \end{figure}
+  \begin{center}
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_7a}
+    \clearpage
+    \includegraphics[width = \textwidth, height = 0.9\textheight, keepaspectratio = true]{ps9_7b}
+  \end{center}
 \end{solution}
 
 \begin{problem}{Purcell 7.22 --- Spinning a charged ring}
 %Scott S05 #8
-A thin ring of radius $a$ carries a static charge $q$. This ring is in a magnetic field of strength $B_0$, parallel to the ring's axis, and is supported so that it is free to rotate about that axis. If the field is switched off, how much angular momentum will be added to the ring? If the ring has mass $m$, how much angular velocity will it acquire?
-Hint: the variation of magnetic field induces an
-electric field along the ring, which accelerates it. The electric force creates a torque about the ring's axis.
-% an angular velocity $\omega = qB_0/2mc$. 
+  A thin ring of radius $a$ carries a static charge $q$. This ring is in a magnetic field of strength $B_0$, parallel to the ring's axis, and is supported so that it is free to rotate about that axis. If the field is switched off, how much angular momentum will be added to the ring? If the ring has mass $m$, how much angular velocity will it acquire?
+  
+  \noindent \textsc{Hint}: the variation of magnetic field induces an
+  electric field along the ring, which accelerates it. The electric force creates a torque about the ring's axis.
+  % an angular velocity $\omega = qB_0/2mc$. 
 \end{problem}
 \begin{solution}
-Apply  Faraday's law of induction:
-\begin{eqnarray}
-\Phi_B(t)&=&B(t)\pi a^2,\nonumber\\
-{\mathcal{E}}(t)&=&\int_C \vec{E}(t)\cdot d\vec{s}=E(t)\times 2\pi a\nonumber\\
-&=& -\frac{1}{c}\frac{d\Phi_B(t)}{dt}=\frac{\pi
-a^2}{c}\left(-\frac{dB}{dt}\right)\\
-\textrm{or}\qquad E(t)&=& \frac{a}{2c}\left(-\frac{dB}{dt}\right).
-\end{eqnarray}
-The force on the charge is $F(t)=qE(t)$, along the loop
-direction; so its torque about the ring's axis is $N(t)=F(t)a=
-(qa^2/2c)(-dB)/dt$.  Therefore the total angular momentum added to the ring is
-\begin{equation}\label{eqn6:deltaJ}
-\Delta J=\int_{t_{i}}^{t_{f}} N(t)dt=-\frac{qa^2}{2c}\int_{B(t_{i})}^{B(t_{i})}dB=qa^2 B_0/2c,
-\end{equation}
-where $B_0$ is the initial magnetic field and $B(t_{f})=0$.  The
-momentum of inertia of the ring is  $I=ma^2$.  If the ring is
-initially at rest, the final angular velocity is
-\begin{equation}
-\omega=\frac{\Delta J}{I}=\frac{qB_0}{2mc}.
-\end{equation}
-Note that eq.(\ref{eqn6:deltaJ}) only depends on the initial and final
-values of the magnetic field, not the variation rate.\\
+  Apply Faraday's law of induction:
+  \begin{align*}
+    \Phi_B(t) & = B(t)\pi a^2, \\
+    {\mathcal{E}}(t) & = \int_C \vec{E}(t)\cdot d\vec{s} = E(t)\times 2\pi a \\
+      & = -\frac{1}{c}\frac{d\Phi_B(t)}{dt}=\frac{\pi a^2}{c}\left(-\frac{dB}{dt}\right) \\
+  \text{or}\qquad E(t) & = \frac{a}{2c}\left(-\frac{dB}{dt}\right).
+  \end{align*}
+  The force on the charge is $F(t)=qE(t)$, along the loop
+  direction; so its torque about the ring's axis is $N(t)=F(t)a=
+  (qa^2/2c)(-dB)/dt$.  Therefore the total angular momentum added to the ring is
+  \begin{equation}\label{eqn6:deltaJ}
+    \Delta J=\int_{t_{i}}^{t_{f}} N(t)dt=-\frac{qa^2}{2c}\int_{B(t_{i})}^{B(t_{i})}dB=qa^2 B_0/2c,
+  \end{equation}
+  where $B_0$ is the initial magnetic field and $B(t_{f})=0$.  The
+  momentum of inertia of the ring is  $I=ma^2$.  If the ring is
+  initially at rest, the final angular velocity is
+  \begin{equation}
+    \omega=\frac{\Delta J}{I}=\frac{qB_0}{2mc}.
+  \end{equation}
+  Note that \autoref{eqn6:deltaJ} only depends on the initial and final
+  values of the magnetic field, not the variation rate.
 
-Additional question: If you combine this calculation with the notion
-of angular momentum conservation, what can you infer about
-electromagnetic fields?\\
+  Additional question: If you combine this calculation with the notion
+  of angular momentum conservation, what can you infer about
+  electromagnetic fields?
 
-This simply indicates that electromagnetic field has angular momentum
-of its own --- this angular momentum is transferred to the ring as the
-magnetic field switches off.
+  This simply indicates that electromagnetic field has angular momentum
+  of its own --- this angular momentum is transferred to the ring as the
+  magnetic field switches off.
 \end{solution}
 
 \begin{problem}{Self inductance per unit length of coaxial conductors }
 %Scott S05 #8
-A transmission line consists of a pair of nested, long cylindrical
-tubes with radii $R_1$ and $R_2$:
+  A transmission line consists of a pair of nested, long cylindrical
+  tubes with radii $R_1$ and $R_2$:
 
   \begin{figure}[H]
     \centering
@@ -286,49 +252,56 @@ tubes with radii $R_1$ and $R_2$:
     \label{fig:coax}
   \end{figure}
 
-\par\noindent The current $I$ flows up the outer tube and down in the
-inner tube; these currents are uniformly distributed over their
-respective surface.  Compute the self inductance per unit length of
-this configuration.  Hint: make life easy for yourself and do so using
-magnetic energy.
+  The current $I$ flows up the outer tube and down in the
+  inner tube; these currents are uniformly distributed over their
+  respective surface.  Compute the self inductance per unit length of
+  this configuration.
+  
+  \noindent \textsc{Hint}: make life easy for yourself and do so using
+  magnetic energy.
 \end{problem}
 
 \begin{solution}
- The magnetic field energy stored in an inductor is:
-\begin{equation}
-U=\int\limits_{Everywhere} \frac{B^2}{8\pi} dV = \frac{1}{2}LI^2.
-\end{equation}
-The magnetic field around a cylindrical current flow of current
-I and radius R is given by applying Ampere's law,
-\begin{eqnarray}
-B\times 2\pi r &=& \left\{ \begin{array}{r@{\quad,\quad}l}
-(4\pi/c)I & r>R\\ 0 & r<R \end{array}\right.\nonumber\\
-or\;\;\;\;\;\;\;\;\; \vec{B} &=& \left\{ \begin{array}{r@{\quad,\quad}l}
-(2I/cr) \hat{\theta} & r>R \\ 0 & r<R \end{array}\right.\nonumber
-\end{eqnarray}
-where $\hat{\theta}$ is the unit vector in ``circumferential''
-direction and its circulation obeys the right-hand-rule.\\
+  The magnetic field energy stored in an inductor is:
+  \begin{equation}
+    U=\int_{\text{Everywhere}} \frac{B^2}{8\pi} dV = \frac{1}{2}LI^2.
+  \end{equation}
+  The magnetic field around a cylindrical current flow of current
+  $I$ and radius $R$ is given by applying Ampere's law,
+  \begin{align*}
+    B\times 2\pi r & = \begin{cases}
+                        (4\pi/c)I & r>R \\
+                        0 & r<R
+                       \end{cases} \\
+    \text{or}\qquad \vec{B} & = \begin{cases}
+                                  (2I/cr) \hat{\theta} & r>R \\
+                                  0 & r<R
+                                \end{cases}
+  \end{align*}
+  where $\hat{\theta}$ is the unit vector in ``circumferential''
+  direction and its circulation obeys the right-hand-rule.\\
 
-\noindent For our problem, adding the contributions from the two cylindrical
-current flows of opposite directions, we have
-\begin{equation}
-\vec{B}= \left\{ \begin{array}{r@{\quad,\quad}l}
--(2I/cr) \hat{\theta} & R_1<r<R_2 \\ 0 & \textrm{otherwise} \end{array}\right.
-\end{equation}
-So the total magnetic field energy {\sl per unit length} is
-\begin{eqnarray}
-U_{l} &=& \int_{Everywhere} \frac{dV}{l} \frac{B^2}{8\pi}
-= \int_{R_1}^{R_2} 2\pi rdr \frac{(2I/cr)^2}{8\pi}\nonumber\\
-&=& \frac{I^2}{c^2}\ln{(\frac{R_2}{R_1})},\\
-\textrm{so}\qquad L_{l} &=& \frac{2U_{l}}{I^2}=\frac{2}{c^2}\ln{(\frac{R_2}{R_1})},
-\end{eqnarray}
-where $L_{l}$ is the self-inductance {\sl per unit length}.
-
-
+  For our problem, adding the contributions from the two cylindrical
+  current flows of opposite directions, we have
+  \begin{equation}
+    \vec{B} = 
+      \begin{cases}
+        -(2I/cr) \hat{\theta} & R_1<r<R_2 \\ 
+        0 & \text{otherwise}
+      \end{cases}
+  \end{equation}
+  So the total magnetic field energy \emph{per unit length} is
+  \begin{align*}
+    U_{l} & = \int_{\text{Everywhere}} \frac{dV}{l} \frac{B^2}{8\pi} 
+      = \int_{R_1}^{R_2} 2\pi r\,dr \frac{(2I/cr)^2}{8\pi} \\
+      & = \frac{I^2}{c^2}\ln\left(\frac{R_2}{R_1}\right),\\
+    \text{so}\qquad L_{l} & = \frac{2U_{l}}{I^2}=\frac{2}{c^2}\ln{(\frac{R_2}{R_1})},
+  \end{align*}
+  where $L_{l}$ is the self-inductance \emph{per unit length}.
 \end{solution}
 
 \begin{problem}{The Director's Challenge --- Extra credit!!!}
-   Formulate an interesting problem that relates a topic from 8.022 to your
+  Formulate an interesting problem that relates a topic from 8.022 to your
   intended major or any other topic about which you are passionate.  Give references
   to help future students to understand the context.  Try to give a solution.
   Any method --- theoretical, analytical, numerical, experimental --- is acceptable.
