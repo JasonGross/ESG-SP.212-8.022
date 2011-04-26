@@ -44,34 +44,6 @@
 \readingassignment{}
 \problemsettitle{Maxwell's equations, waves}
 \begin{document}
-\section{Problem \thesection: Purcell 9.1}
-\subsection{Problem}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{pu901}
-    \caption{Purcell 9.1}
-  \end{figure}
-  
-\subsection{Solution}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{solpu901}
-    \caption{Solution Purcell 9.1}
-  \end{figure}
-\section{Problem \thesection: Purcell 9.5a}
-\subsection{Problem}
- \begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{pu905}
-    \caption{Purcell 9.5}
-  \end{figure}
-\subsection{Solution}
- \begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{solpu905a}
-    \caption{Solution Purcell 9.5a}
-  \end{figure}
 \section{Problem \thesection: Discovery of magnetic charge}
 \subsection{Problem}
 You discover magnetic
@@ -193,14 +165,155 @@ B&=& \frac{qvr}{c(r^2+d^2)^{3/2}}.
 \end{eqnarray}
 
 
-\section{Problem \thesection: The Director's Challenge --- Extra credit!!!}
+\section{Problem \thesection: General questions}
 \subsection{Problem}
-  Formulate an interesting problem that relates a topic from 8.022 to your
-  intended major or any other topic about which you are passionate.  Give references
-  to help future students to understand the context.  Try to give a solution.
-  Any method --- theoretical, analytical, numerical, experimental --- is acceptable.
-  If you can't give a full solution, outline partial solutions. Enjoy!
-\section{Problem \thesection: Magnetic monopole:experiments}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{eqns}
+    \caption{Equations}
+  \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{max_gen}
+    \caption{Maxwell's equations}
+  \end{figure}
+\section{Problem \thesection: Purcell 9.1}
+\subsection{Problem}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{pu901}
+    \caption{Purcell 9.1}
+  \end{figure}
+  
+\subsection{Solution}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{solpu901}
+    \caption{Solution Purcell 9.1}
+  \end{figure}
+\section{Problem \thesection: Purcell 9.5a}
+\subsection{Problem}
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{pu905}
+    \caption{Purcell 9.5}
+  \end{figure}
+\subsection{Solution}
+ \begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{solpu905a}
+    \caption{Solution Purcell 9.5a}
+  \end{figure}
+\section{Problem \thesection: EM waves}
+\subsection{Problem}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{waves2}
+   \caption{Waves}
+  \end{figure}
+\subsection{Solution}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{waves2sola}
+   \caption{Waves}
+  \end{figure}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{waves2solb}
+   \caption{Waves}
+  \end{figure}
+\section{Problem \thesection: Purcell 9.8}
+\subsection{Problem}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{pu908}
+    \caption{Wave in a box}
+  \end{figure}
+
+\subsection{Solution}
+For the EM field
+\begin{eqnarray}
+\vec{E} &=& \hat{z}E_0 \cos kx\cos ky\cos \omega t\\
+\vec{B} &=&
+B_0(\hat{x}\cos kx\sin ky-\hat{y}\sin kx\cos ky)\sin \omega t,
+\end{eqnarray}
+the two divergencelessness equations of Purcell eqs.(16)
+\[ \vec{\nabla}\cdot\vec{E}=0 \,;\]
+\[ \vec{\nabla}\cdot\vec{B}=0 \,,\]
+can be easily verified.  The other two equations give
+\begin{eqnarray}
+\vec{\nabla}\times\vec{E}+\frac{1}{c}\frac{\partial \vec{B}}{\partial
+t} &=& (\frac{\omega B_0}{c}-E_0 k)(\hat{x}\cos kx\sin ky
+-\hat{y}\sin kx \cos ky)\cos \omega t =0\nonumber\\
+\vec{\nabla}\times\vec{B}-\frac{1}{c}\frac{\partial \vec{E}}{\partial
+t} &=& (\frac{E_0\omega}{c}-2B_0 k)\hat{z}\cos kx \cos ky \sin \omega
+t =0\nonumber\\
+or\;\;\;\;\;\;\; E_0 &=& \frac{\omega}{kc}B_0\\
+E_0 &=& 2\frac{kc}{\omega}B_0.
+\end{eqnarray}
+So the condition is that
+\begin{eqnarray}
+\omega &=& \sqrt{2} ck\\
+E_0 &=& \sqrt{2} B_0.
+\end{eqnarray}
+
+The magnetic field inside a square metal box of size $\pi/k$ is shown
+in Figure \ref{fig:em2}.  Note that the box must run from $-\pi/(2k)$ to
+$\pi/(2k)$ in both $x$ and $y$ in order to satisfy the boundary
+condition that $E = 0$ on the box (which follows from the fact that
+electric fields vanish on conductors).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 9cm]{em2}
+    \caption{The magnetic field inside a squre metal box at
+$t=\pi/2\omega$.  The horizontal axis is $kx$ and vertical axis $ky$.}
+  \end{figure}
+
+\section{Problem \thesection: Galilean Transformation of Maxwell's Wave Equation}
+\subsection{Problem}
+\subsection{Solution}
+
+a. Using chain rule we get,
+$$\frac{\partial E}{\partial x} = \frac{\partial x'}{\partial x}\frac{\partial E}{\partial x'} + \frac{\partial t'}{\partial x}\frac{\partial E}{\partial t'}$$
+Note that
+$$\frac{\partial x'}{\partial x} = 1 \quad \mbox{and} \quad  \frac{\partial t'}{\partial x} = 0$$
+Hence,
+$$\frac{\partial E}{\partial x} = \frac{\partial E}{\partial x'}$$
+
+
+b. In this case
+$$\frac{\partial E}{\partial t} = \frac{\partial x'}{\partial t}\frac{\partial E}{\partial x'} + \frac{\partial t'}{\partial t}\frac{\partial E}{\partial t'}$$
+We also know that
+$$\frac{\partial x'}{\partial t} = -v \quad \mbox{and} \quad  \frac{\partial t'}{\partial t} = 1$$
+Therefore,
+$$\frac{\partial E}{\partial t} = -v \frac{\partial E}{\partial x'} + \frac{\partial E}{\partial t'}$$
+
+c. Using the result of part (a) we get,
+$$\frac{\partial^2E}{\partial x^2}=\frac{\partial }{\partial x} ( \frac{\partial E}{\partial x'})= \frac{\partial }{\partial x'}(\frac{\partial E}{\partial x'}) $$
+Similarly replacing in the result of part (b) $E$ by ${\partial E}/\partial t$ we get
+$$\frac{\partial^{2} E}{\partial t^{2}} = (-v \frac{\partial }{\partial x'} + \frac{\partial }{\partial t'}) ( \frac{\partial E}{\partial t} )$$
+Using the result of part (b) again we get (after some algebra)
+$$ \frac{1}{c^2} \frac{\partial^2E}{\partial t^2}= \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2}  -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
+Hence, the wave equation in fame $F'$ is given by,
+$$\frac{\partial^2E}{\partial x'^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2} = -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
+
+
+d. Substituting the given ansatz into the wave equation of $F'$ we get,
+$$(1 - {V^{2}\over c^{2}}) E''(x' \pm Vt') = \mp{2 vV \over c^{2}} E''(x' \pm Vt') - {v^{2}\over c^{2}}E''(x' \pm Vt')$$
+Hence, the assumed anastz is a solution if
+$$1 = {1\over c^{2}}( V \mp v)^{2} $$
+This implies the speed of the wave in frame $F'$ is $c\pm v$. It is known from experiments that the speed of light in vacuum is frame independent. But just now we had shown that EM waves in frame $F'$ (according to Galilean relativity) is $c\pm v$. Hence, it is clear that ``Galilean/Newtonian relativity'' is not consistent with Maxwell's equation. This is why we need Einstein's theory of special relativity.
+
+\section{Problem \thesection: Optional: loop antenna}
+\subsection{Problem}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 15cm]{loopantenna}
+    \caption{Antenna}
+  \end{figure}
+\section{Problem \thesection: Optional --- Magnetic monopole: experiments}
 \subsection{Problem}
 
  \begin{figure}[H]
@@ -235,4 +348,11 @@ B&=& \frac{qvr}{c(r^2+d^2)^{3/2}}.
     \caption{Magnetic monopole}
 \end{figure}
 
+\section{Problem \thesection: The Director's Challenge --- Extra credit!!!}
+\subsection{Problem}
+  Formulate an interesting problem that relates a topic from 8.022 to your
+  intended major or any other topic about which you are passionate.  Give references
+  to help future students to understand the context.  Try to give a solution.
+  Any method --- theoretical, analytical, numerical, experimental --- is acceptable.
+  If you can't give a full solution, outline partial solutions. Enjoy!
 \end{document}
