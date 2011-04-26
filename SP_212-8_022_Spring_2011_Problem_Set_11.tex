@@ -6,11 +6,11 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{mathtools}
-\usepackage[per-mode=symbol]{siunitx} %If this line is giving you trouble, try replacing per-mode with per
+%\usepackage[per-mode=symbol]{siunitx} %If this line is giving you trouble, try replacing per-mode with per
 %use inter-unit-separator={}\cdot{} ?
 \providecommand{\uvec}[1]{{\hat{\bf{#1}}}}
-\usepackage{pgf,tikz}
-\usetikzlibrary{arrows}
+%\usepackage{pgf,tikz}
+%\usetikzlibrary{arrows}
 \usepackage{wasysym}
 \usepackage{subfig}
 \makeatletter
@@ -25,15 +25,7 @@
 \makeatother
 \renewcommand{\d}{\,d}
 \providecommand{\norm}[1]{\lVert#1\rVert}
-
-\newcommand{\Kgrad}{\left(\hat{x} \frac{\partial}{\partial x} + \hat{y} \frac{\partial}{\partial y} + \hat{z} \frac{\partial}{\partial z}\right)}
-\newcommand{\Kdiv}[6]{{#4}\left(\frac{\partial {#1}}{\partial x} {#5} \frac{\partial {#2}}{\partial y} {#6}\frac{\partial #3}{\partial z} \right)}
-\newcommand{\KKdiv}[6]{{#4}\left(\frac{\partial}{\partial x}{#1} {#5} \frac{\partial}{\partial y}{#2} {#6}\frac{\partial}{\partial z}{#3} \right)}
-\newcommand{\dx}{\frac{\partial}{\partial x}}
-\newcommand{\dy}{\frac{\partial}{\partial y}}
-\newcommand{\dz}{\frac{\partial}{\partial z}}
-\newcommand{\dtheta}{\frac{\partial}{\partial \theta}}
-\newcommand{\dr}{\frac{\partial}{\partial r}}
+\DeclareMathOperator{\curl}{curl}
 
 \AtBeginDocument{%
   % Apologies to any future editor on the inconsistencies in TeX code and the unnecessary braces.  I'm aggregating previously typeset problems, and didn't think it worth my time to improve the quality of TeX code in ways that won't make any difference to the typeset material. -Jason Gross (jgross@mit.edu)
@@ -43,7 +35,7 @@
 \classname{Physics 8.022}
 \semester{Spring 2011}
 \problemsetnumber{10} %Put the problem set number here
-\duedate{Wednesday, May 4th 10 am IN CLASS}
+\duedate{Wednesday, May 4, 10 \textsc{am} IN CLASS}
 %\readingassignment{Kleppner and Kolenkow, \emph{An Introduction to Mechanics}, Chapters Seven and Eight}
 \problemsettitle{Maxwell's equations, waves}
 
@@ -52,143 +44,164 @@
 
 
 \begin{problem}{Discovery of magnetic charge}
-You discover magnetic
-charge.  The units of magnetic charge density,
-$\mu$, are chosen such that $\vec\nabla\cdot\vec B = 4\pi\mu$.
+  You discover magnetic charge.  The units of magnetic charge density,
+  $\mu$, are chosen such that $\vec\nabla\cdot\vec B = 4\pi\mu$.
 
-\par\noindent (a) When this magnetic charge is in motion,
-there is a ``magnetic current density'' $\vec {L} = \mu \vec{ v}$.  In
-analogy to electric charge density and electric current densities,
-write down the equation of continuity for magnetic charge.
-
-\par\noindent (b) What do Maxwell's equations become with this
-new charge? Hint: this vector identity may be useful.. $\vec\nabla\cdot(\vec{\nabla}\times\vec{F})=0$ for any $\vec{F}$.
+  \begin{enumerate}[(a)]
+    \item When this magnetic charge is in motion,
+      there is a ``magnetic current density'' $\vec{L} = \mu \vec{v}$.  In
+      analogy to electric charge density and electric current densities,
+      write down the equation of continuity for magnetic charge.
+    \item What do Maxwell's equations become with this
+      new charge? \par\noindent
+      Hint: The following vector identity may be useful: $\vec\nabla\cdot(\vec{\nabla}\times\vec{F}) = 0$ for any $\vec{F}$.
+  \end{enumerate}
 \end{problem}
 
 \begin{solution}
-(a) \begin{equation}
-\frac{\partial \mu}{\partial t}+\vec{\nabla}\cdot\vec{L}=0.
-\end{equation}
-(b) Take the divergence of the $\vec\nabla\times\vec E$ equation; you'll
-find that the new equation of magnetic charge continuity is violated.
-To fix it, you must add a term that is proportional to $\vec L$ to
-Faraday's law.  The resulting Maxwell equations are:
-
-\begin{eqnarray}
-\vec{\nabla}\times\vec{E} &=& -\frac{1}{c}\frac{\partial
-\vec{B}}{\partial t}-\frac{4\pi}{c}\vec{L}\\
-\vec{\nabla}\times\vec{B} &=& \frac{1}{c}\frac{\partial
-\vec{E}}{\partial t}+\frac{4\pi}{c}\vec{J}\\
-\vec{\nabla}\cdot\vec{E} &=& 4\pi\rho\\
-\vec{\nabla}\cdot\vec{B} &=& 4\pi\mu.
-\end{eqnarray}
-
-
-
-
+  \begin{enumerate}[(a)]
+    \item 
+      \begin{equation}
+        \frac{\partial \mu}{\partial t} + \vec{\nabla}\cdot\vec{L} = 0.
+      \end{equation}
+    \item Take the divergence of the $\vec\nabla\times\vec E$ equation; you'll
+      find that the new equation of magnetic charge continuity is violated.
+      To fix it, you must add a term that is proportional to $\vec L$ to
+      Faraday's law.  The resulting Maxwell equations are:
+      \begin{align}
+        \vec{\nabla}\times\vec{E} &= -\frac{1}{c}\frac{\partial
+          \vec{B}}{\partial t}-\frac{4\pi}{c}\vec{L}\\
+        \vec{\nabla}\times\vec{B} &= \frac{1}{c}\frac{\partial
+          \vec{E}}{\partial t}+\frac{4\pi}{c}\vec{J}\\
+        \vec{\nabla}\cdot\vec{E}  &= 4\pi\rho\\
+        \vec{\nabla}\cdot\vec{B}  &= 4\pi\mu.
+      \end{align}
+  \end{enumerate}
 \end{solution}
 
-\begin{problem}{ Magnetic field of a moving charge}
-A charge $q$ moving
-along the $x$-axis at constant speed $v \ll c$.  When it is at $x =
--d$, what is the magnetic field at $(x,y,z) = (0,r,0)$?
-
-\par\noindent (a)  Solve this first using Biot-Savart.  (Hint:
-the current from the moving charge isn't particularly well defined.
-However, B-S only needs the combination $I dl = (dq/dt) dl = dq
-(dl/dt) \simeq q_{\rm pt\ charge}(dl/dt)$.  Sloppy physicist calculus
-in action!)
-
-\par\noindent (b)  Now solve this using displacement current.
-Look at a circle of radius $r$ centered at the origin and passing
-through the point $(0,r,0)$.  By symmetry, $\vec B$ will be constant
-on this circle and oriented in the tangential direction.  Find a
-surface which has this circle as a boundary and for which $\int \vec
-E\cdot d\vec a$ is simple.  Evaluate this flux, apply the
-``generalized'' form of Ampere's law (integral formulation) and you're
-there.
-
-\par\noindent Note, there's a third way: Lorentz transform from the
-rest frame electric field.  All
-three answers should agree, at least in the limit $v \ll c$.
-
+\begin{problem}{Magnetic field of a moving charge}
+  A charge $q$ moving
+  along the $x$-axis at constant speed $v \ll c$.  When it is at $x =
+  -d$, what is the magnetic field at $(x,y,z) = (0,r,0)$?
+  
+  \begin{enumerate}[(a)]
+    \item Solve this first using Biot-Savart.  (Hint:
+      the current from the moving charge isn't particularly well defined.
+      However, B-S only needs the combination $I\,dl = (dq/dt)\,dl = dq\,
+      (dl/dt) \simeq q_{\text{pt charge}}(dl/dt)$.  Sloppy physicist calculus
+      in action!)
+    \item Now solve this using displacement current.
+      Look at a circle of radius $r$ centered at the origin and passing
+      through the point $(0,r,0)$.  By symmetry, $\vec B$ will be constant
+      on this circle and oriented in the tangential direction.  Find a
+      surface which has this circle as a boundary and for which $\int \vec
+      E\cdot d\vec a$ is simple.  Evaluate this flux, apply the
+      ``generalized'' form of Ampere's law (integral formulation) and you're
+      there.
+  \end{enumerate}
+  
+  \noindent Note, there's a third way: Lorentz transform from the
+  rest frame electric field.  All
+  three answers should agree, at least in the limit $v \ll c$.
 \end{problem}
+
 \begin{solution}
-a) Solve this first using Biot-Savart.\\
+  \begin{enumerate}[(a)]
+    \item Solve this first using Biot-Savart.
 
-For low speed $v\ll c$, we can ignore the relativistic effects.  To
-apply B-S law, we simply treat the moving charge at $x=-d$ as an
-element current at the same location and $I d\vec{l}=qv\hat{x}$.  Then
-we have 
-\begin{equation}
-\vec{B}= \frac{qv\hat{x}\times\hat{r}_1}{cr_1^2},
-\end{equation}
-where $\vec{r}_1$ is the position vector from the moving charge to the
-test point $(0,r,0)$.  Using $r_1 = \sqrt{r^2 + d^2}$ and $\hat
-x\times\hat r_1 = \hat z\sin\theta_1 = \hat z r/r_1$, we find
-\begin{equation}
-\vec{B}= \hat{z}\frac{qvr}{c(r^2+d^2)^{3/2}}.
-\end{equation}
+      For low speed $v\ll c$, we can ignore the relativistic effects.  To
+      apply B-S law, we simply treat the moving charge at $x=-d$ as an
+      element current at the same location and $I d\vec{l}=qv\hat{x}$.  Then
+      we have 
+      \begin{equation}
+      \vec{B}= \frac{qv\hat{x}\times\hat{r}_1}{cr_1^2},
+      \end{equation}
+      where $\vec{r}_1$ is the position vector from the moving charge to the
+      test point $(0,r,0)$.  Using $r_1 = \sqrt{r^2 + d^2}$ and $\hat
+      x\times\hat r_1 = \hat z\sin\theta_1 = \hat z r/r_1$, we find
+      \begin{equation}
+      \vec{B}= \hat{z}\frac{qvr}{c(r^2+d^2)^{3/2}}.
+      \end{equation}
+    \item Now solve this using displacement current.
 
-(b) Now solve this using displacement current.\\
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 15cm]{m6}
+        \caption{Calculation of magnetic field of a moving charge by
+          ``generalized'' Ampere's law.}
+      \end{figure}
+      
+      Consider a surface $\Sigma$ whose boundary is the circle $C$ centered
+      at the origin and in Y-Z plane, and all points on $\Sigma$ have the
+      same distance $r_1$ to the moving charge at $(-d,0,0)$.  Apply Stoke's
+      Theorem,
+      \begin{align}
+        \int_{\Sigma} \vec{\nabla}\times\vec{B}\cdot d\vec{a} &= \int_C
+          \vec{B}\cdot d\vec{l}\\
+        \text{while} \qquad\qquad \int_{\Sigma} \vec{\nabla}\times\vec{B}\cdot
+        d\vec{a} &= \frac{1}{c}\int_{\Sigma} \frac{\partial \vec{E}}{\partial
+          t}\cdot d\vec{a}\nonumber\\
+        &= \frac{1}{c}\frac{\partial}{\partial t}\int_{\Sigma} \vec{E}\cdot
+          d\vec{a}\\
+        \text{so}\qquad \int_C \vec{B}\cdot d\vec{l} &= 
+          \frac{1}{c}\frac{\partial}{\partial t}\int_{\Sigma} \vec{E}\cdot
+          d\vec{a}.
+      \end{align}
 
- \begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{m6}
-    \caption{Calculation of magnetic field of a moving charge by
-``generalized'' Ampere's law.}
-  \end{figure}
+      On the surface $\Sigma$, $E=q/r_1^2$ in radial direction (seen from
+      the moving charge).  So
+      \begin{align}
+        \int \vec{E}\cdot d\vec{a} &= \frac{q}{r_1^2}\int da\nonumber\\
+        &= \frac{q}{r_1^2}r_1^2\int_{0}^{\theta_1}\sin\theta d\theta
+        \int_0^{2\pi}d\phi\nonumber\\
+        &= 2\pi q\left[\cos(0) - \cos(\theta_1)\right]\nonumber\\
+        &= 2\pi q(1-\frac{d}{\sqrt{d^2+r^2}}).
+      \end{align}
 
-Consider a surface $\Sigma$ whose boundary is the circle $C$ centered
-at the origin and in Y-Z plane, and all points on $\Sigma$ have the
-same distance $r_1$ to the moving charge at $(-d,0,0)$.  Apply Stoke's
-Theorem,
-\begin{eqnarray}
-\int_{\Sigma} \vec{\nabla}\times\vec{B}\cdot d\vec{a} &=& \int_C
-\vec{B}\cdot d\vec{l}\\
-\textrm{while} \qquad\qquad \int_{\Sigma} \vec{\nabla}\times\vec{B}\cdot
-d\vec{a} &=& \frac{1}{c}\int_{\Sigma} \frac{\partial \vec{E}}{\partial
-t}\cdot d\vec{a}\nonumber\\
-&=& \frac{1}{c}\frac{\partial}{\partial t}\int_{\Sigma} \vec{E}\cdot
-d\vec{a}\\
-\textrm{so}\qquad \int_C \vec{B}\cdot d\vec{l} &=& 
-\frac{1}{c}\frac{\partial}{\partial t}\int_{\Sigma} \vec{E}\cdot
-d\vec{a}.
-\end{eqnarray}
-
-On the surface $\Sigma$, $E=q/r_1^2$ in radial direction (seen from
-the moving charge).  So
-\begin{eqnarray}
-\int \vec{E}\cdot d\vec{a} &=& \frac{q}{r_1^2}\int da\nonumber\\
-&=& \frac{q}{r_1^2}r_1^2\int_{0}^{\theta_1}\sin\theta d\theta
-\int_0^{2\pi}d\phi\nonumber\\
-&=& 2\pi q\left[\cos(0) - \cos(\theta_1)\right]\nonumber\\
-&=& 2\pi q(1-\frac{d}{\sqrt{d^2+r^2}}).
-\end{eqnarray}
-
-Then, since $d(-d)/dt=v$,
-\begin{eqnarray}
-\frac{1}{c}\frac{\partial}{\partial t}\int_{\Sigma} \vec{E}\cdot
-d\vec{a} &=& \frac{2\pi qv}{c}\frac{r^2}{(d^2+r^2)^{3/2}}\\
-\int_C \vec{B}\cdot d\vec{l} &=& 2\pi rB\\
-B&=& \frac{qvr}{c(r^2+d^2)^{3/2}}.
-\end{eqnarray}
-
-
+      Then, since $d(-d)/dt=v$,
+      \begin{align}
+        \frac{1}{c}\frac{\partial}{\partial t}\int_{\Sigma} \vec{E}\cdot
+        d\vec{a} &= \frac{2\pi qv}{c}\frac{r^2}{(d^2+r^2)^{3/2}}\\
+        \int_C \vec{B}\cdot d\vec{l} &= 2\pi rB\\
+        B&= \frac{qvr}{c(r^2+d^2)^{3/2}}.
+      \end{align}
+  \end{enumerate}
 \end{solution}
 
+\begin{ForProblems}
+  \clearpage
+\end{ForProblems}
 
 \begin{problem}{General questions}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{eqns}
-    \caption{Equations}
-  \end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{max_gen}
-    \caption{Maxwell's equations}
-  \end{figure}
+  \begin{flalign*}
+    \text{I. } \oiint_{\substack{\text{closed} \\ \text{surface}}} \vec{E} \cdot d\vec{a} & = 4\pi q_{\text{enclosed}} &
+    \text{II. } \oiint_{\substack{\text{closed} \\ \text{surface}}} \vec{B} \cdot d\vec{a} & = 0 &
+    \text{III. } \oint\limits_{\substack{\text{closed} \\ \text{loop}}} \vec{E} \cdot d\vec{s} & = -\frac{1}{c}\frac{d}{dt}\iint_{\substack{\text{open} \\ \text{surface}}} \vec{B}\cdot d\vec{a}
+  \end{flalign*}
+  \begin{flalign*}
+    \text{IV. } \oint\limits_{\substack{\text{closed} \\ \text{loop}}} \vec{B} \cdot d\vec{s} & = \frac{4\pi}{c}I_{\text{enclosed}} + \frac{1}{c}\frac{d}{dt}\iint_{\substack{\text{open} \\ \text{surface}}} \vec{E}\cdot d\vec{a} &
+  \end{flalign*}
+  Lorentz Force Equation:
+  \begin{flalign*}
+    \text{V. } \vec{F}_q & = q\vec{E} + q\frac{\vec{v}}{c} \times \vec{B} &
+  \end{flalign*}
+  
+  Indicate the number(s) of the Maxwell equation(s) or the Lorentz Force Equation (V.) that can be
+  used to explain the given phenomena:
+  \begin{enumerate}[(a)]
+    \item A coil with a sinusoidal current flowing can levitate above a conducting plate.
+    \item The electric field of an isolated point charge drops off like $1 / r^2$.
+    \item There are no magnetic monopoles.
+    \item A conducting disc falls more slowly between the poles of a magnet than does a disc
+      which is an insulator.
+    \item The lines of $\vec B$ never end.
+    \item Iron struck by lightning often becomes magnetized.
+    \item There is no magnetic equivalent of a Faraday cage.
+    \item All unbalanced charge in a metal is found at the surface under static conditions.
+    \item Moving a coil through a magnet generates an electric current in the coil.
+    \item Radios can tune in to different frequencies.
+    \item A transformer can step up or step down voltage.
+  \end{enumerate}
 \end{problem}
 
 %\begin{problem}{EM waves}
@@ -203,47 +216,52 @@ B&=& \frac{qvr}{c(r^2+d^2)^{3/2}}.
 \begin{figure}[H]
     \centering
     \includegraphics[width = 15cm]{max_gen_sola}
-    \caption{Maxwell's equations}
   \end{figure}
   \begin{figure}[H]
     \centering
     \includegraphics[width = 15cm]{max_gen_solb}
-    \caption{Maxwell's equations}
   \end{figure}
   \begin{figure}[H]
     \centering
     \includegraphics[width = 15cm]{max_gen_solc}
-    \caption{Maxwell's equations}
   \end{figure}
 
 \end{solution}
 
 \begin{problem}{Purcell 9.1}
+  If the electric field in free space is $\vec E = E_0(\hat x + \hat y)\sin\left[(2\pi / \lambda)(z + ct)\right]$,
+  with $E_0 = 2$ statvolts/cm, the magnetic field, not
+  including any static magnetic field, must be what?
+\end{problem}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{pu901}
-    \caption{Purcell 9.1}
-  \end{figure}
-  \end{problem}
 \begin{solution}
-  \begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{solpu901}
-    \caption{Solution Purcell 9.1}
-  \end{figure}
+  We are given the electric field:
+  $$\vec E = E_0(\hat x + \hat y)\sin\left(\frac{2\pi}{\lambda} (z + ct)\right)$$
+  The corresponding magnetic field must satisfy Maxwell's equations. Using Faraday's Law, we find:
+  $$\vec \nabla \times \vec E = E_0(-\hat x + \hat y)\left(\frac{2\pi}{\lambda}\cos\left(\frac{2\pi}{\lambda}(z + ct)\right)\right) = -\frac{1}{c}\frac{\partial\vec{B}}{\partial t} 
+  \quad \longrightarrow 
+  \vec B = E_0(\hat x - \hat y)\sin\left(\frac{2\pi}{\lambda}(z + ct)\right)$$
+  where we have dropped a constant of integration (static magnetic field).
 \end{solution}
 
 
 \begin{problem}{Purcell 9.5a}
- \begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{pu905}
-    \caption{Purcell 9.5}
-  \end{figure}
+  Here is a particular electromagnetic field in free space:
+  \begin{align*}
+    E_x & = 0  &
+      E_y & = E_0 \sin(kx + \omega t) &
+      E_z & = 0 \\
+    B_x & = 0 &
+      B_y & = 0 &
+      B_z & = -E_0\sin(kx + \omega t)
+  \end{align*}
+  
+  \noindent Show that this field can satisfy Maxwell's equations if $\omega$ and
+  $k$ are related in a certain way.
 \end{problem}
+
 \begin{solution}
- \begin{figure}[H]
+  \begin{figure}[H]
     \centering
     \includegraphics[width = 15cm]{solpu905a}
     \caption{Solution Purcell 9.5a}
@@ -251,12 +269,18 @@ B&=& \frac{qvr}{c(r^2+d^2)^{3/2}}.
 \end{solution}
 
 
-\begin{problem}{EM waves}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{waves2}
-   \caption{Waves}
-  \end{figure}
+\begin{problem}{Electromagnetic Plane Waves}
+  Suppose that in the absence of any charges (free
+  space) an electric field exists in the form
+  $$\vec E = E_0\sin(kz + \omega t) \hat i + E_0 \cos(kz + \omega t) \hat j.$$
+  Show that $\vec E$ satisfies Maxwell's equations provided that a certain magnetic field $\vec B(x,y,z,t)$
+  also exists, and a relation between $\omega$ and $k$ is satisfied.
+  \begin{enumerate}[(a)]
+    \item What is the relation between $\omega$ and $k$?
+    \item What is $\vec B(x,y,z,t)$?
+    \item Describe what the electric and magnetic fields look like at the origin as a function of
+    time.
+  \end{enumerate}
 \end{problem}
 
 \begin{solution}
@@ -274,132 +298,144 @@ B&=& \frac{qvr}{c(r^2+d^2)^{3/2}}.
 
 
 \begin{problem}{Purcell 9.8}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{pu908}
-    \caption{Wave in a box}
-  \end{figure}
-
+  Show that the electromagnetic field described by
+  \begin{align*}
+    \vec E & = E_0 \hat z \cos kx \cos ky \cos \omega t \\
+    \vec B & = B_0(\hat x \cos kx \sin ky - \hat y \sin kx \cos ky) \sin \omega t
+  \end{align*}
+  will satisfy
+  \begin{align*}
+    \curl \vec E & = -\frac{1}{c}\frac{\partial \vec B}{\partial t} &
+      \div\vec E & = 0 \\
+    \curl \vec B & = \frac{1}{c}\frac{\partial \vec E}{\partial t} &
+      \div\vec B & = 0
+  \end{align*}
+  if $E_0 = \sqrt{2}B_0$ and $\omega = \sqrt{2}ck$. This field can exist
+  inside a square metal box, of dimension $\pi / k$ in the $x$ and $y$ directions
+  and arbitrary height. What does the magnetic field look like?
 \end{problem}
 
 \begin{solution}
-For the EM field
-\begin{eqnarray}
-\vec{E} &=& \hat{z}E_0 \cos kx\cos ky\cos \omega t\\
-\vec{B} &=&
-B_0(\hat{x}\cos kx\sin ky-\hat{y}\sin kx\cos ky)\sin \omega t, 
-\end{eqnarray}
-the two divergencelessness equations of Purcell eqs.(16) 
-\[ \vec{\nabla}\cdot\vec{E}=0 \,;\]
-\[ \vec{\nabla}\cdot\vec{B}=0 \,,\]
-can be easily verified.  The other two equations give
-\begin{eqnarray}
-\vec{\nabla}\times\vec{E}+\frac{1}{c}\frac{\partial \vec{B}}{\partial
-t} &=& (\frac{\omega B_0}{c}-E_0 k)(\hat{x}\cos kx\sin ky
--\hat{y}\sin kx \cos ky)\cos \omega t =0\nonumber\\
-\vec{\nabla}\times\vec{B}-\frac{1}{c}\frac{\partial \vec{E}}{\partial
-t} &=& (\frac{E_0\omega}{c}-2B_0 k)\hat{z}\cos kx \cos ky \sin \omega
-t =0\nonumber\\
-or\;\;\;\;\;\;\; E_0 &=& \frac{\omega}{kc}B_0\\
-E_0 &=& 2\frac{kc}{\omega}B_0.
-\end{eqnarray}
-So the condition is that 
-\begin{eqnarray}
-\omega &=& \sqrt{2} ck\\
-E_0 &=& \sqrt{2} B_0.
-\end{eqnarray}
+  For the EM field
+  \begin{align}
+  \vec{E} &= \hat{z}E_0 \cos kx\cos ky\cos \omega t\\
+  \vec{B} &=
+  B_0(\hat{x}\cos kx\sin ky-\hat{y}\sin kx\cos ky)\sin \omega t, 
+  \end{align}
+  the two divergencelessness equations of Purcell eqs.(16) 
+  \[ \vec{\nabla}\cdot\vec{E}=0 \,;\]
+  \[ \vec{\nabla}\cdot\vec{B}=0 \,,\]
+  can be easily verified.  The other two equations give
+  \begin{align}
+  \vec{\nabla}\times\vec{E}+\frac{1}{c}\frac{\partial \vec{B}}{\partial
+  t} &= (\frac{\omega B_0}{c}-E_0 k)(\hat{x}\cos kx\sin ky
+  -\hat{y}\sin kx \cos ky)\cos \omega t =0\nonumber\\
+  \vec{\nabla}\times\vec{B}-\frac{1}{c}\frac{\partial \vec{E}}{\partial
+  t} &= (\frac{E_0\omega}{c}-2B_0 k)\hat{z}\cos kx \cos ky \sin \omega
+  t =0\nonumber\\
+  or\;\;\;\;\;\;\; E_0 &= \frac{\omega}{kc}B_0\\
+  E_0 &= 2\frac{kc}{\omega}B_0.
+  \end{align}
+  So the condition is that 
+  \begin{align}
+  \omega &= \sqrt{2} ck\\
+  E_0 &= \sqrt{2} B_0.
+  \end{align}
 
-The magnetic field inside a square metal box of size $\pi/k$ is shown
-in Figure \ref{fig:em2}.  Note that the box must run from $-\pi/(2k)$ to
-$\pi/(2k)$ in both $x$ and $y$ in order to satisfy the boundary
-condition that $E = 0$ on the box (which follows from the fact that
-electric fields vanish on conductors).
+  The magnetic field inside a square metal box of size $\pi/k$ is shown
+  in \autoref{fig:em2}.  Note that the box must run from $-\pi/(2k)$ to
+  $\pi/(2k)$ in both $x$ and $y$ in order to satisfy the boundary
+  condition that $E = 0$ on the box (which follows from the fact that
+  electric fields vanish on conductors).
 
-\begin{figure}[H]
+  \begin{figure}[H]
     \centering
     \includegraphics[width = 9cm]{em2}
     \caption{The magnetic field inside a squre metal box at
-$t=\pi/2\omega$.  The horizontal axis is $kx$ and vertical axis $ky$.}
+      $t=\pi/2\omega$.  The horizontal axis is $kx$ and vertical axis $ky$.}
+    \label{fig:em2}
   \end{figure}
 
 \end{solution}
 
 
 \begin{problem}{Galilean Transformation of Maxwell's Wave Equation}
-
-Observers in frame $F$ take 8.022 and derive Maxwell's wave equation:
-$$\nabla^2\vec{E} - \frac{1}{c^2} \frac{\partial^2\vec{E}}{\partial t^2} = 0$$
-For simplicity and specificity, assume that $\vec{E} = E(x,t)\, \hat{y}$, and therefore, the wave equation reduces to:
-$$\frac{\partial^2E}{\partial x^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t^2} = 0$$
-The goal of this problem is to understand what form the wave equation would have for observers in another inertial frame $F'$ frame moving along the $x$ axis with speed $v$.  The Galilean transformation of coordinates between the two frames is:
-$$x' = x - vt$$
-$$t' = t~~~~~~~$$
-
-
-\noindent
-a. Use the chain rule to show that
-$$\frac{\partial E}{\partial x} = \frac{\partial E}{\partial x'}$$
-
-
-\noindent
-b. Use the chain rule to show that
-$$\frac{\partial E}{\partial t} = -v \frac{\partial E}{\partial x'} + \frac{\partial E}{\partial t'}$$
-
-
-\noindent
-c. Use the results of parts (a) and (b) to show that the original wave equation in $F$ transforms to
-$$\frac{\partial^2E}{\partial x'^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2} = -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
-in frame $F'$.
-
-
-\noindent
-d. Show that in frame $F'$ a person computing the speed of waves, $V$, governed by the modified Maxwell wave equation, would find $V = v \pm c$.  You may simply assume that the waves are of the form
-$$E(x' \pm Vt')$$
-where $E$ is an arbitrary function.
-
+  Observers in frame $F$ take 8.022 and derive Maxwell's wave equation:
+  $$\nabla^2\vec{E} - \frac{1}{c^2} \frac{\partial^2\vec{E}}{\partial t^2} = 0$$
+  For simplicity and specificity, assume that $\vec{E} = E(x,t)\, \hat{y}$, and therefore, the wave equation reduces to:
+  $$\frac{\partial^2E}{\partial x^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t^2} = 0$$
+  The goal of this problem is to understand what form the wave equation would have for observers in another inertial frame $F'$ frame moving along the $x$ axis with speed $v$.  The Galilean transformation of coordinates between the two frames is:
+  \begin{align*}
+    x' & = x - vt \\
+    t' & = t
+  \end{align*}
+  
+  \begin{enumerate}[(a)]
+    \item Use the chain rule to show that
+      $$\frac{\partial E}{\partial x} = \frac{\partial E}{\partial x'}$$
+    \item Use the chain rule to show that
+      $$\frac{\partial E}{\partial t} = -v \frac{\partial E}{\partial x'} + \frac{\partial E}{\partial t'}$$
+    \item Use the results of parts (a) and (b) to show that the original wave equation in $F$ transforms to
+      $$\frac{\partial^2E}{\partial x'^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2} = -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
+      in frame $F'$.
+    \item Show that in frame $F'$ a person computing the speed of waves, $V$, governed by the modified Maxwell wave equation, would find $V = v \pm c$.  You may simply assume that the waves are of the form
+      $$E(x' \pm Vt')$$
+      where $E$ is an arbitrary function.
+  \end{enumerate}
 \end{problem}
 
 \begin{solution}
-
-a. Using chain rule we get,
-$$\frac{\partial E}{\partial x} = \frac{\partial x'}{\partial x}\frac{\partial E}{\partial x'} + \frac{\partial t'}{\partial x}\frac{\partial E}{\partial t'}$$
-Note that
-$$\frac{\partial x'}{\partial x} = 1 \quad \mbox{and} \quad  \frac{\partial t'}{\partial x} = 0$$
-Hence,
-$$\frac{\partial E}{\partial x} = \frac{\partial E}{\partial x'}$$
-
-
-b. In this case
-$$\frac{\partial E}{\partial t} = \frac{\partial x'}{\partial t}\frac{\partial E}{\partial x'} + \frac{\partial t'}{\partial t}\frac{\partial E}{\partial t'}$$
-We also know that
-$$\frac{\partial x'}{\partial t} = -v \quad \mbox{and} \quad  \frac{\partial t'}{\partial t} = 1$$
-Therefore,
-$$\frac{\partial E}{\partial t} = -v \frac{\partial E}{\partial x'} + \frac{\partial E}{\partial t'}$$
-
-c. Using the result of part (a) we get,
-$$\frac{\partial^2E}{\partial x^2}=\frac{\partial }{\partial x} ( \frac{\partial E}{\partial x'})= \frac{\partial }{\partial x'}(\frac{\partial E}{\partial x'}) $$
-Similarly replacing in the result of part (b) $E$ by ${\partial E}/\partial t$ we get 
-$$\frac{\partial^{2} E}{\partial t^{2}} = (-v \frac{\partial }{\partial x'} + \frac{\partial }{\partial t'}) ( \frac{\partial E}{\partial t} )$$
-Using the result of part (b) again we get (after some algebra)
-$$ \frac{1}{c^2} \frac{\partial^2E}{\partial t^2}= \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2}  -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
-Hence, the wave equation in fame $F'$ is given by,
-$$\frac{\partial^2E}{\partial x'^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2} = -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
-
-
-d. Substituting the given ansatz into the wave equation of $F'$ we get,
-$$(1 - {V^{2}\over c^{2}}) E''(x' \pm Vt') = \mp{2 vV \over c^{2}} E''(x' \pm Vt') - {v^{2}\over c^{2}}E''(x' \pm Vt')$$
-Hence, the assumed anastz is a solution if
-$$1 = {1\over c^{2}}( V \mp v)^{2} $$
-This implies the speed of the wave in frame $F'$ is $c\pm v$. It is known from experiments that the speed of light in vacuum is frame independent. But just now we had shown that EM waves in frame $F'$ (according to Galilean relativity) is $c\pm v$. Hence, it is clear that ``Galilean/Newtonian relativity'' is not consistent with Maxwell's equation. This is why we need Einstein's theory of special relativity. 
-
+  \begin{enumerate}[(a)]
+    \item Using chain rule we get,
+      $$\frac{\partial E}{\partial x} = \frac{\partial x'}{\partial x}\frac{\partial E}{\partial x'} + \frac{\partial t'}{\partial x}\frac{\partial E}{\partial t'}$$
+      Note that
+      $$\frac{\partial x'}{\partial x} = 1 \quad \mbox{and} \quad  \frac{\partial t'}{\partial x} = 0$$
+      Hence,
+      $$\frac{\partial E}{\partial x} = \frac{\partial E}{\partial x'}$$
+      
+    \item In this case
+      $$\frac{\partial E}{\partial t} = \frac{\partial x'}{\partial t}\frac{\partial E}{\partial x'} + \frac{\partial t'}{\partial t}\frac{\partial E}{\partial t'}$$
+      We also know that
+      $$\frac{\partial x'}{\partial t} = -v \quad \mbox{and} \quad  \frac{\partial t'}{\partial t} = 1$$
+      Therefore,
+      $$\frac{\partial E}{\partial t} = -v \frac{\partial E}{\partial x'} + \frac{\partial E}{\partial t'}$$
+      
+    \item Using the result of part (a) we get,
+      $$\frac{\partial^2E}{\partial x^2}=\frac{\partial }{\partial x} ( \frac{\partial E}{\partial x'})= \frac{\partial }{\partial x'}(\frac{\partial E}{\partial x'}) $$
+      Similarly replacing in the result of part (b) $E$ by ${\partial E}/\partial t$ we get 
+      $$\frac{\partial^{2} E}{\partial t^{2}} = (-v \frac{\partial }{\partial x'} + \frac{\partial }{\partial t'}) ( \frac{\partial E}{\partial t} )$$
+      Using the result of part (b) again we get (after some algebra)
+      $$ \frac{1}{c^2} \frac{\partial^2E}{\partial t^2}= \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2}  -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
+      Hence, the wave equation in fame $F'$ is given by,
+      $$\frac{\partial^2E}{\partial x'^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2} = -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
+      
+    \item Substituting the given ansatz into the wave equation of $F'$ we get,
+      $$(1 - \frac{V^{2}}{c^{2}}) E''(x' \pm Vt') = \mp\frac{2 vV}{c^{2}} E''(x' \pm Vt') - \frac{v^{2}}{c^{2}}E''(x' \pm Vt')$$
+      Hence, the assumed anastz is a solution if
+      $$1 = \frac{1}{c^{2}}( V \mp v)^{2} $$
+      This implies the speed of the wave in frame $F'$ is $c\pm v$. It is known from experiments that the speed of light in vacuum is frame independent. But just now we had shown that EM waves in frame $F'$ (according to Galilean relativity) is $c\pm v$. Hence, it is clear that ``Galilean/Newtonian relativity'' is not consistent with Maxwell's equation. This is why we need Einstein's theory of special relativity. 
+  \end{enumerate}
 \end{solution}
 
 \begin{problem}{Optional: loop antenna}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{loopantenna}
-    \caption{Antenna}
-  \end{figure}
+  An electromagnetic wave propagating in air has a magnetic field given by
+  \begin{align*}
+    B_x & = 0 &
+    B_y & = 0 &
+    B_z & = B_0 \cos(\omega t - k x)
+  \end{align*}
+  It encounters a circular loop antenna of radius $a$ centered at the origin $(x, y, z) = (0, 0, 0)$ and lying in the $x-y$ plane.  The radius of the antenna $a \ll \lambda$ where $\lambda$ is the wavelength of the wave.  So you can assume that at any time $t$ the magnetic field inside the loop is approximately equal to its value at the center of the loop.
+  \begin{center}
+    \includegraphics[width = 0.3\textwidth]{loopantenna_diagram}
+  \end{center}
+  \begin{enumerate}[(a)]
+    \item What is the magnetic flux, $\displaystyle\Phi_{\text{mag}}(t) = \iint_{\text{disk}} \vec B \cdot d\vec a$, through the plane of the loop of the antenna?
+  \interitemtext{The loop has a self-inductance $L$ and a resistance $R$.  Faraday's law for the circuit
+  $$IR = -\frac{d\Phi_{\text{mag}}}{dt} - L\frac{dI}{dt}.$$
+  }
+    \item Assume a solution for the current of the form $I(t) = I_0\sin(\omega t - \phi)$ where $\omega$ is the angular frequency of the electromagnetic wave, $I_0$ is the amplitude of the current, and $\phi$ is a phase shift between the changing magnetic flux and the current.  Find expressions for the constants $\phi$ and $I_0$.
+    \item What is the magnetic field created at the center of the loop by this current $I(t)$?
+  \end{enumerate}
 \end{problem}
 
 
@@ -407,13 +443,9 @@ This implies the speed of the wave in frame $F'$ is $c\pm v$. It is known from e
 
 
 \begin{problem}{Optional --- Magnetic monopole: experiments}
-
- \begin{figure}[H]
-    \centering
-    \includegraphics[width = 15cm]{monopoles}
-    \caption{Magnetic monopole}
-  \end{figure}
-
+  One way to search for magnetic monopoles is by monitoring the current through a highly conductive (preferably superconducting) loop. Suppose a monopole with magnetic charge $s$ passes through a perfectly conducting circular loop with self-inductance $L$. The monopole has a constant speed $v$, perpendicular to the plane of the loop. It approaches from very far away, and then recedes to infinity. Calculate the current $I$ that flows around the loop as a result of the monopole's passage.
+  
+  \noindent (Note: experiments of this type have been running for decades, and have produced a few candidate events, but there has been no unambiguous detection.)
 \end{problem}
 
 \begin{solution}
