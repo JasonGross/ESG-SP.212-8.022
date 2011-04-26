@@ -35,7 +35,7 @@
 \newcommand{\dr}{\frac{\partial}{\partial r}}
 
 \AtBeginDocument{%
-  % Appologies to any future editor on the inconsistencies in TeX code and the unnecessary braces.  I'm aggregating previously typeset problems, and didn't think it worth my time to improve the quality of TeX code in ways that won't make any difference to the typeset material. -Jason Gross (jgross@mit.edu)
+  % Apologies to any future editor on the inconsistencies in TeX code and the unnecessary braces.  I'm aggregating previously typeset problems, and didn't think it worth my time to improve the quality of TeX code in ways that won't make any difference to the typeset material. -Jason Gross (jgross@mit.edu)
 }%
 \classname{Physics 8.022} \semester{Spring 2011} 
 \problemsetnumber{10}
@@ -50,12 +50,12 @@ charge.  The units of magnetic charge density,
 $\mu$, are chosen such that $\vec\nabla\cdot\vec B = 4\pi\mu$.
 
 \par\noindent (a) When this magnetic charge is in motion,
-there is a ``magnetic current density'' $\vec L = \mu \vec v$.  In
+there is a ``magnetic current density'' $\vec {L} = \mu \vec{ v}$.  In
 analogy to electric charge density and electric current densities,
 write down the equation of continuity for magnetic charge.
 
 \par\noindent (b) What do Maxwell's equations become with this
-new charge?
+new charge? Hint: this vector identity may be useful.. $\vec\nabla\cdot(\vec{\nabla}\times\vec{F})=0$ for any $\vec{F}$.
 \section{Problem \thesection:  Magnetic field of a moving charge}
 A charge $q$ moving
 along the $x$-axis at constant speed $v \ll c$.  When it is at $x =
@@ -77,7 +77,7 @@ E\cdot d\vec a$ is simple.  Evaluate this flux, apply the
 there.
 
 \par\noindent Note, there's a third way: Lorentz transform from the
-rest frame electric field (which you used on a previous pset).  All
+rest frame electric field.  All
 three answers should agree, at least in the limit $v \ll c$.
 
 \section{Problem \thesection: General questions}
@@ -119,6 +119,37 @@ three answers should agree, at least in the limit $v \ll c$.
   \end{figure}
 
 \section{Problem \thesection: Galilean Transformation of Maxwell's Wave Equation}
+
+Observers in frame $F$ take 8.022 and derive Maxwell's wave equation:
+$$\nabla^2\vec{E} - \frac{1}{c^2} \frac{\partial^2\vec{E}}{\partial t^2} = 0$$
+For simplicity and specificity, assume that $\vec{E} = E(x,t)\, \hat{y}$, and therefore, the wave equation reduces to:
+$$\frac{\partial^2E}{\partial x^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t^2} = 0$$
+The goal of this problem is to understand what form the wave equation would have for observers in another inertial frame $F'$ frame moving along the $x$ axis with speed $v$.  The Galilean transformation of coordinates between the two frames is:
+$$x' = x - vt$$
+$$t' = t~~~~~~~$$
+
+
+\noindent
+a. Use the chain rule to show that
+$$\frac{\partial E}{\partial x} = \frac{\partial E}{\partial x'}$$
+
+
+\noindent
+b. Use the chain rule to show that
+$$\frac{\partial E}{\partial t} = -v \frac{\partial E}{\partial x'} + \frac{\partial E}{\partial t'}$$
+
+
+\noindent
+c. Use the results of parts (a) and (b) to show that the original wave equation in $F$ transforms to
+$$\frac{\partial^2E}{\partial x'^2} - \frac{1}{c^2} \frac{\partial^2E}{\partial t'^2} = -\frac{2v}{c^2} \frac{\partial^2E}{\partial x' \partial t'} + \frac{v^2}{c^2} \frac{\partial^2E}{\partial x'^2}$$
+in frame $F'$.
+
+
+\noindent
+d. Show that in frame $F'$ a person computing the speed of waves, $V$, governed by the modified Maxwell wave equation, would find $V = v \pm c$.  You may simply assume that the waves are of the form
+$$E(x' \pm Vt')$$
+where $E$ is an arbitrary function.
+
 \section{Problem \thesection: Optional: loop antenna}
 \begin{figure}[H]
     \centering
